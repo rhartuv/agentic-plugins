@@ -5,7 +5,7 @@ description: |
   - Adding or updating a skill and its Compass manifest
   - Adding a new pack to Compass registration
   - MCP usage or orchestration changed in SKILL.md
-  - Auditing bidirectional dependsOn/dependencyOf drift after PR #133 model
+  - Auditing bidirectional dependsOn/dependencyOf drift against repo Compass conventions
 
   File-based only: Read/Glob/Grep/Bash. For `.catalog/` marketplace metadata use create-collection.
 model: inherit
@@ -107,7 +107,7 @@ Report violations with file path and fix per workflow §1. Do not weaken checks.
 
 ## Self-review checklist
 
-- [ ] Skill manifest matches PR #133 field conventions (`agents: []`, `distribution: external`, `namespace: ai5-marketplace`).
+- [ ] Skill manifest matches repo Compass conventions (`agents: []`, `labels.distribution: external`, `namespace: ai5-marketplace`, `owner: group:redhat/ai5-marketplace`).
 - [ ] MCP deps derived from `SKILL.md` usage, not copied from sibling skills.
 - [ ] Every new `dependsOn` has matching `dependencyOf` on the target entity.
 - [ ] Pack Location lists every skill manifest path.
