@@ -102,6 +102,7 @@ spec:
     - system:default/agentic-plugins
   dependencyOf:
     - airesource:ai5-marketplace/cluster-report
+    - airesource:ai5-marketplace/network-policy-architect
     - airesource:ai5-marketplace/ocp-admin
     - airesource:ai5-marketplace/rh-virt
     - airesource:ai5-marketplace/vm-clone

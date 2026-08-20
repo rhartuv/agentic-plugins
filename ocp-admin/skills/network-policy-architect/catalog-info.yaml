@@ -1,0 +1,39 @@
+apiVersion: backstage.io/v1alpha1
+kind: AiResource
+metadata:
+  name: network-policy-architect
+  namespace: ai5-marketplace
+  title: Network Policy Architect
+  description: >
+    Design and validate Kubernetes NetworkPolicies following Zero Trust principles
+    (NIST SP 800-207). Two-tier analysis — architecture review then live cluster
+    verification — produces a verified implementation plan with apply-and-verify results.
+  labels:
+    distribution: external
+  annotations:
+    backstage.io/source-location: >-
+      url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/ocp-admin/skills/network-policy-architect/SKILL.md
+  tags:
+    - ai-skill
+    - openshift
+    - security
+    - network-policy
+    - zero-trust
+  links:
+    - url: https://github.com/RHEcosystemAppEng/agentic-plugins
+      title: Source Repository
+      icon: github
+spec:
+  type: skill
+  lifecycle: beta
+  owner: group:redhat/ai5-marketplace
+  disciplines:
+    - security
+    - platform-engineering
+  categories:
+    - security
+    - network-segmentation
+  agents: []
+  dependsOn:
+    - airesource:ai5-marketplace/ocp-admin
+    - mcpserver:ai5-marketplace/openshift-mcp-server
