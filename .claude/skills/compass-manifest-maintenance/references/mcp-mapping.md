@@ -1,50 +1,57 @@
-# MCP mapping: mcps.json → Compass entity refs
+# Deriving MCP `dependsOn` for skill manifests
 
-Map **only** MCP servers a skill actually uses. Derive usage from `SKILL.md` `allowed-tools`, `Required MCP Servers`, and workflow MCP tool names — not from copying another skill's manifest.
+Map **only** MCP servers the skill **actually uses**. Never copy a sibling manifest and never declare every key in `<pack>/mcps.json`.
 
-## Owned MCP servers (registered in `mcps/`)
+## Step 1 — Detect MCP usage in the skill
 
-| `mcps.json` key | Tool / signal hints | Compass entity ref |
-|-----------------|---------------------|-------------------|
-| `openshift-self-managed` | Assisted Installer self-managed API | `mcpserver:ai5-marketplace/assisted-installer` |
-| `openshift-ocm-managed` | OCM / ROSA / managed clusters | `mcpserver:ai5-marketplace/assisted-installer` |
-| `openshift-administration` | Kubernetes/OpenShift cluster ops (`configuration_*`, `nodes_*`, etc.) | `mcpserver:ai5-marketplace/openshift-mcp-server` |
-| `openshift-virtualization` | KubeVirt VM tools | `mcpserver:ai5-marketplace/openshift-mcp-server` |
-| `openshift` | Generic OpenShift MCP (other packs) | `mcpserver:ai5-marketplace/openshift-mcp-server` |
-| `aap-mcp-job-management` | `controller.*`, `eda.*`, job/workflow tools | `mcpserver:ai5-marketplace/ansible-automation-platform` |
-| `aap-mcp-inventory-management` | `controller.inventories_*`, `controller.hosts_*`, `controller.groups_*` | `mcpserver:ai5-marketplace/ansible-automation-platform` |
+From `<pack>/skills/<skill>/SKILL.md`:
 
-## Canonical MCP servers (not duplicated in `mcps/`)
+- `allowed-tools` in frontmatter (tool names / prefixes)
+- `Required MCP Servers` / `Required MCP Tools` in the body
+- Workflow steps that name an MCP server key or tool
 
-| `mcps.json` key | Tool / signal hints | Compass entity ref |
-|-----------------|---------------------|-------------------|
-| `lightspeed-mcp` | `vulnerability__*`, `inventory__*`, `get_mcp_version` (Lightspeed) | `mcpserver:redhat/red-hat-lightspeed-mcp-server` |
-| `red-hat-security` | Red Hat Security MCP / CVE advisory tools | `mcpserver:redhat/security-mcp-server` |
+If none of the above reference MCP tools → **no** `mcpserver:` in `dependsOn` (script-only, `WebFetch`, or public API skills).
 
-## AAP tool prefix quick reference
+## Step 2 — Match usage to `mcps.json` keys
 
-If `allowed-tools` includes any of these prefixes, the skill uses **ansible-automation-platform**:
+Read `<pack>/mcps.json`. Note which **server keys** the skill documents (e.g. `openshift-administration`, `lightspeed-mcp`, `aap-mcp-job-management`).
 
-- `controller.`
-- `gateway.`
-- `eda.`
-- `galaxy.`
-- `lightspeed.aap_rag_search`
+When `allowed-tools` lists tools but SKILL.md does not name a key, infer the server from context in the skill body (which MCP block documents those tools).
 
-## No MCP manifest entry
+## Step 3 — Resolve each key to a Compass entity ref
 
-Skills that use only scripts, `WebFetch`, or public APIs (no MCP tools in `allowed-tools` and no `Required MCP Servers`) should have **no** `mcpserver:` in `dependsOn`. Examples: ocp-admin security-validation skills (`container-cve-validator`, `coreos-cve-validator`, `cve-recon`, `image-inspect`).
+For each MCP the skill uses:
 
-## Plugin `dependsOn` MCP list
+### A. Owned MCP (manifest in this repo)
 
-The pack plugin's `dependsOn` MCP entries = **union** of all `mcpserver:` refs across every skill manifest in that pack (not every key in `mcps.json`).
+1. List `mcps/*.yaml` (exclude `catalog-info.yaml`).
+2. Open manifests and read `metadata.name` and `metadata.namespace` (typically `ai5-marketplace`).
+3. Entity ref: `mcpserver:<namespace>/<metadata.name>`.
+4. **Deduplication:** Several `mcps.json` keys may share one Compass entity (same image/technology). Compare `mcps.json` entries (image URL, upstream repo in manifest `links`) to pick the correct owned manifest — do not create one ref per key if they map to the same `mcps/*.yaml`.
+5. Confirm the skill’s tools appear in that manifest’s `spec.primitives` (or match the server described in SKILL.md) when ambiguous.
 
-## Owned MCP manifest files
+### B. Canonical MCP (registered upstream, not in `mcps/`)
 
-| Compass name | File |
-|--------------|------|
-| `openshift-mcp-server` | `mcps/openshift-mcp-server.yaml` |
-| `assisted-installer` | `mcps/assisted-installer.yaml` |
-| `ansible-automation-platform` | `mcps/ansible-automation-platform.yaml` |
+If the pack references an MCP that **no** file under `mcps/` covers:
 
-When a skill adds or removes an MCP `dependsOn`, update the corresponding MCP file's `dependencyOf` list.
+1. Search existing skill manifests in the same pack (or repo) for the same `mcps.json` key or the same upstream product.
+2. Reuse the `mcpserver:` ref already used there (often `mcpserver:redhat/<name>`).
+3. Do **not** add a duplicate MCPServer manifest in `mcps/`.
+
+When unsure, grep the repo for the `mcps.json` key or tool prefix in other `catalog-info.yaml` files under the same pack.
+
+## Step 4 — Update inverse relations
+
+For each `mcpserver:` added to the skill’s `dependsOn`:
+
+- Add `airesource:ai5-marketplace/<skill-name>` to that MCP manifest’s `spec.dependencyOf` (owned MCPs only — canonical MCPs are maintained by their owners).
+
+## Step 5 — Plugin MCP union
+
+The pack plugin’s `dependsOn` MCP list = **union** of all `mcpserver:` refs across skill manifests in that pack — not the full set of keys in `mcps.json`.
+
+## Sanity checks
+
+- Fewer MCP refs than keys in `mcps.json` is normal (per-skill usage).
+- More MCP refs than the skill uses is wrong (blanket template deps).
+- Canonical refs (`mcpserver:redhat/...`) do not get new files under `mcps/`.
