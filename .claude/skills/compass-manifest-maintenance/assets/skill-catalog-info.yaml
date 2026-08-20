@@ -1,0 +1,36 @@
+# Template: skills/<skill-name>/catalog-info.yaml
+# Replace <pack>, <skill-name>, title, description, tags, disciplines, categories, dependsOn.
+apiVersion: backstage.io/v1alpha1
+kind: AiResource
+metadata:
+  name: <skill-name>
+  namespace: ai5-marketplace
+  title: <Skill Title>
+  description: >
+    <Multi-line description from SKILL.md frontmatter description, trimmed for catalog.>
+  labels:
+    distribution: external
+  annotations:
+    backstage.io/source-location: >-
+      url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/<pack>/skills/<skill-name>/SKILL.md
+  tags:
+    - ai-skill
+    - <domain-tag>
+  links:
+    - url: https://github.com/RHEcosystemAppEng/agentic-plugins
+      title: Source Repository
+      icon: github
+spec:
+  type: skill
+  lifecycle: beta
+  owner: group:redhat/ai5-marketplace
+  disciplines:
+    - <discipline>
+  categories:
+    - <category>
+  agents: []
+  dependsOn:
+    - airesource:ai5-marketplace/<pack>
+    # Add mcpserver: and airesource: (other skills) only when SKILL.md uses them
+  dependencyOf: []
+  # dependencyOf: list orchestration skills that dependsOn this skill (COMPASS-1288)

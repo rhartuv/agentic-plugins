@@ -304,10 +304,9 @@ last_updated: YYYY-MM-DD
    - Dependencies declaration
 4. Include concrete examples and complete error handling
 5. Update the pack's `AGENTS.md` intent routing table to include the new skill
-6. Create `skills/<skill-name>/catalog-info.yaml` Compass manifest (see "Adding Compass Manifests for a New Skill")
-7. Add the skill's `catalog-info.yaml` as a target in the pack's `catalog-info.yaml` Location
-8. Test with `Skill` tool invocation
-9. Validate with `uv run python scripts/validate_skills_tier1.py <pack>/skills/<skill-name>/SKILL.md`
+6. Run **compass-manifest-maintenance** (`.claude/skills/compass-manifest-maintenance/`) to create or update Compass manifests — skill `catalog-info.yaml`, pack Location targets, plugin/MCP inverse `dependencyOf` (see "Adding Compass Manifests for a New Skill")
+7. Test with `Skill` tool invocation
+8. Validate with `uv run python scripts/validate_skills_tier1.py <pack>/skills/<skill-name>/SKILL.md`
 
 **Collection-Specific Standards:**
 - **rh-virt**: Follow `rh-virt/SKILL_TEMPLATE.md` for enhanced quality standards including mandatory Common Issues and Example Usage sections

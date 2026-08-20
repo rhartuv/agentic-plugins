@@ -244,8 +244,9 @@ mkdir -p <pack>/skills/<skill-name>/docs/
    - `docs/external-resources.md` - Any external docs/links/KB articles mentioned by user
 3. **Update <pack>/AGENTS.md**: Add intent routing entry
 4. **Create <pack>/mcps.json**: If new MCP server needed (use `${ENV_VAR}` format)
-5. **Update marketplace/rh-agentic-collection.yml** in [agentic-catalog](https://github.com/RHEcosystemAppEng/agentic-catalog): If new pack (register pack for Lola installation)
-6. **Create pack structure**: If new pack (README.md, AGENTS.md, skills/ directory)
+5. **Compass manifests**: Run **compass-manifest-maintenance** (`.claude/skills/compass-manifest-maintenance/`) for registered packs — skill `catalog-info.yaml`, Location targets, bidirectional `dependsOn`/`dependencyOf` on plugin and MCP manifests
+6. **Update marketplace/rh-agentic-collection.yml** in [agentic-catalog](https://github.com/RHEcosystemAppEng/agentic-catalog): If new pack (register pack for Lola installation)
+7. **Create pack structure**: If new pack (README.md, AGENTS.md, skills/ directory)
 
 Generate SKILL.md following the mandatory section template in SKILL_DESIGN_PRINCIPLES.md (already consulted in Phase 3). If SKILL.md becomes too long, move detailed content to `docs/` with references in main file.
 
