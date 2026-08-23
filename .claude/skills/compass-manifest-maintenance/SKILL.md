@@ -8,13 +8,15 @@ description: |
   - Auditing bidirectional dependsOn/dependencyOf drift against repo Compass conventions
 
   File-based only: Read/Glob/Grep/Bash. For `.catalog/` marketplace metadata use create-collection.
+
+  NOT for: `.catalog/` metadata (use create-collection) or automated Compass registration.
 model: inherit
 color: magenta
 license: Apache-2.0
 allowed-tools: Read Glob Grep Bash
 ---
 
-# Compass manifest maintenance
+# /compass-manifest-maintenance Skill
 
 **Audience:** Maintainers updating `catalog-info.yaml` manifests for Red Hat Compass (Backstage) registration.
 
@@ -22,24 +24,38 @@ allowed-tools: Read Glob Grep Bash
 
 ## Prerequisites
 
+**Required MCP Servers:** None — file-based skill. Do not use Compass MCP tools (`validate-entity`, `register-entity`, `get-catalog-entity`, `query-entity-graph`).
+
 - Repository root as cwd.
 - Read [CLAUDE.md](../../CLAUDE.md) Compass / Backstage Manifests section.
 - Read [references/relationship-rules.md](references/relationship-rules.md) and [references/mcp-mapping.md](references/mcp-mapping.md).
 - Templates: [assets/](assets/).
 
-**Do not use** Compass MCP tools (`validate-entity`, `register-entity`, `get-catalog-entity`, `query-entity-graph`). Validation is structural (roster + inverse ref checks) and optional human Compass UI review after merge.
+**Verification:**
+```bash
+test -f CLAUDE.md && echo "✓ repo root" || echo "✗ wrong directory"
+```
 
-## When to Use
+**Human Notification Protocol:** If drift audit finds violations, report file path and fix per workflow §1.
 
+**Security:** Never display or expose credentials or token values.
+
+## When to Use This Skill
+
+**Use when:**
 - New skill needs `skills/<name>/catalog-info.yaml` and Location / inverse updates.
 - Skill `allowed-tools` or orchestration changed → MCP or skill `dependsOn` must change.
 - New pack registered in Compass (plugin, Location, root index, `system.yaml`).
 - Drift audit: skill on disk without manifest, stale `dependencyOf`, or dangling entity refs.
 - After `agentic-contribution-skill` creates a skill (run before opening PR).
 
-**Do not use for:** `.catalog/collection.yaml` (use **create-collection**), generic Compass platform tasks, or automated Compass registration.
+**Do not use when:** `.catalog/collection.yaml` (use **create-collection** instead), generic Compass platform tasks, or automated Compass registration.
 
 ## Workflow
+
+**MCP Tool:** None — file-based; uses Read, Glob, Grep, Bash only (see `allowed-tools` in frontmatter).
+
+**Parameters:** N/A — no MCP tools; inputs are `<pack>`, `<skill-name>`, and on-disk manifest paths.
 
 ### 1. Add or update a skill manifest
 
@@ -105,6 +121,11 @@ Report violations with file path and fix per workflow §1. Do not weaken checks.
 3. Tier 1 on this skill if edited: `uv run python scripts/validate_skills_tier1.py .claude/skills/compass-manifest-maintenance/SKILL.md`.
 4. Post-merge: maintainer may register in Compass UI manually (out of scope for this skill).
 
+**Error Handling:**
+- If skill on disk has no manifest → create from `assets/skill-catalog-info.yaml` and add Location target.
+- If inverse `dependencyOf` missing on plugin or MCP → update per [relationship-rules.md](references/relationship-rules.md).
+- If MCP ref cannot be resolved → grep pack manifests; do not invent new `mcpserver:` refs.
+
 ## Self-review checklist
 
 - [ ] Skill manifest matches repo Compass conventions (`agents: []`, `labels.distribution: external`, `namespace: ai5-marketplace`, `owner: group:redhat/ai5-marketplace`).
@@ -116,8 +137,22 @@ Report violations with file path and fix per workflow §1. Do not weaken checks.
 
 ## Dependencies
 
+### Required MCP Servers
+
+None — file-based manifest maintenance only.
+
+### Required MCP Tools
+
+None — uses Read, Glob, Grep, Bash.
+
+### Related Skills
+
+- **create-collection** — for `.catalog/` marketplace metadata (not Compass manifests)
+- **agentic-contribution-skill** — run before this skill when creating a new skill
+
+### Reference Documentation
+
 - [CLAUDE.md](../../CLAUDE.md) — entity kinds, namespaces, reference formats
-- **create-collection** — `.catalog/` marketplace metadata (sibling under `.claude/skills/`)
 - [references/relationship-rules.md](references/relationship-rules.md)
 - [references/mcp-mapping.md](references/mcp-mapping.md)
 
