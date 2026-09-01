@@ -68,7 +68,7 @@ The repository is registered in [Red Hat Compass](https://compass.redhat.com) (i
 |------|---------|-----------|-------|
 | **Location** | Index that references other manifest files | — | 6 (1 root + 4 packs + 1 mcps) |
 | **System** | Top-level grouping for the repository | — | 1 (`agentic-plugins`) |
-| **AiResource** | Skills and pack definitions | `plugin` (packs) / `skill` (skills) | 4 packs + 36 skills |
+| **AiResource** | Skills and pack definitions | `plugin` (packs) / `skill` (skills) | 4 packs + 37 skills |
 | **MCPServer** | MCP server configurations | `local` / `remote` | 3 |
 
 #### Location Hierarchy
@@ -78,7 +78,7 @@ Compass ingests a single root Location. Everything else is discovered through de
 ```
 catalog-info.yaml (root Location)
 ├── system.yaml                         → System: agentic-plugins
-├── ocp-admin/catalog-info.yaml         → Location → ocp-admin-plugin.yaml + 7 skills
+├── ocp-admin/catalog-info.yaml         → Location → ocp-admin-plugin.yaml + 8 skills
 ├── rh-sre/catalog-info.yaml            → Location → rh-sre-plugin.yaml + 13 skills
 ├── rh-virt/catalog-info.yaml           → Location → rh-virt-plugin.yaml + 10 skills
 ├── rh-basic/catalog-info.yaml          → Location → rh-basic-plugin.yaml + 6 skills
