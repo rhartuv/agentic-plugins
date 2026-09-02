@@ -3,7 +3,7 @@ name: compass-manifest-maintenance
 description: |
   Author and maintain Compass catalog-info.yaml manifests for agentic packs (skills, plugins, Locations, MCP inverse relations). Use when:
   - Adding or updating a skill and its Compass manifest
-  - Adding a new pack to Compass registration
+  - Registering an existing pack in Compass (manifests only; not creating a new agentic pack)
   - MCP usage or orchestration changed in SKILL.md
   - Auditing bidirectional dependsOn/dependencyOf drift against repo Compass conventions
 
@@ -45,7 +45,7 @@ test -f CLAUDE.md && echo "✓ repo root" || echo "✗ wrong directory"
 **Use when:**
 - New skill needs `skills/<name>/catalog-info.yaml` and Location / inverse updates.
 - Skill `allowed-tools` or orchestration changed → MCP or skill `dependsOn` must change.
-- New pack registered in Compass (plugin, Location, root index, `system.yaml`).
+- Register an existing pack in Compass (plugin, Location, root index, `system.yaml` manifests).
 - Drift audit: skill on disk without manifest, stale `dependencyOf`, or dangling entity refs.
 - After `agentic-contribution-skill` creates a skill (run before opening PR).
 
@@ -90,7 +90,7 @@ test -f CLAUDE.md && echo "✓ repo root" || echo "✗ wrong directory"
 
 6. **Reconcile plugin MCP deps** — plugin `dependsOn` = union of all `mcpserver:` refs across pack skill manifests.
 
-### 2. Add a new pack (Compass registration)
+### 2. Register a new pack in Compass
 
 1. Create `<pack>/<pack>-plugin.yaml` from [assets/plugin-catalog-info.yaml](assets/plugin-catalog-info.yaml).
 2. Create `<pack>/catalog-info.yaml` from [assets/pack-location.yaml](assets/pack-location.yaml).

@@ -87,21 +87,9 @@ catalog-info.yaml (root Location)
 
 #### Entity Relationships
 
-All relationships use `dependsOn` / `dependencyOf`:
+Use `dependsOn` / `dependencyOf` for custom kinds (`AiResource`, `MCPServer`); do not use `partOf` / `hasPart` on those kinds. Compass does not auto-generate inverse relations (COMPASS-1288) — declare both sides on every edge.
 
-> **Why not `partOf`/`hasPart`?** Compass only processes `partOf`/`hasPart` for standard Backstage kinds (Component, API, Resource). Custom kinds like `AiResource` and `MCPServer` can store these fields in `spec`, but they are not processed into the relation graph. Only `dependsOn`/`dependencyOf` and `ownedBy`/`ownerOf` generate actual relations for custom kinds.
-
-Concrete relationships in this repo:
-
-- **Skill → Plugin**: `dependsOn` / `dependencyOf` (a skill belongs to its plugin)
-- **Plugin → System**: `spec.system` (generates `partOf` relation automatically; no explicit `dependsOn` to the system needed)
-- **MCPServer → System**: `dependsOn` / `dependencyOf` (an MCP server belongs to the system)
-- **Skill → MCPServer**: `dependsOn` / `dependencyOf` (a skill uses an MCP server)
-- **Plugin → MCPServer**: `dependsOn` / `dependencyOf` (a plugin uses an MCP server)
-- **Skill → Skill**: `dependsOn` / `dependencyOf` (orchestration skills invoke other skills)
-- **All entities → Group**: `spec.owner: group:redhat/ai5-marketplace`
-
-> **Bidirectional declaration policy:** Compass does not auto-generate inverse relations for custom entity kinds such as `AiResource` and `MCPServer` (tracked as COMPASS-1288). Until this is resolved upstream, we explicitly declare **both directions** of every relationship in our manifests. For example, if a skill declares `dependsOn: [airesource:rh-sre/rh-sre]`, the plugin must also declare `dependencyOf: [airesource:rh-sre/<skill>]`. When adding or modifying a relationship, always update both the source and target manifests.
+Full relationship matrix, bidirectional policy, entity ref formats, and file touch lists: [`.claude/skills/compass-manifest-maintenance/references/relationship-rules.md`](.claude/skills/compass-manifest-maintenance/references/relationship-rules.md). Use the **compass-manifest-maintenance** skill when adding or updating manifests.
 
 #### Namespaces
 
