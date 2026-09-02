@@ -89,7 +89,7 @@ catalog-info.yaml (root Location)
 
 Use `dependsOn` / `dependencyOf` for custom kinds (`AiResource`, `MCPServer`); do not use `partOf` / `hasPart` on those kinds. Compass does not auto-generate inverse relations (COMPASS-1288) — declare both sides on every edge.
 
-Full relationship matrix, bidirectional policy, entity ref formats, and file touch lists: [`.claude/skills/compass-manifest-maintenance/references/relationship-rules.md`](.claude/skills/compass-manifest-maintenance/references/relationship-rules.md). Use the **compass-manifest-maintenance** skill when adding or updating manifests.
+Full relationship matrix, bidirectional policy, entity ref formats, and file touch lists: [`.claude/skills/compass-manifest-maintenance/references/relationship-rules.md`](.claude/skills/compass-manifest-maintenance/references/relationship-rules.md). Use the **compass-manifest-maintenance** skill when adding or updating manifests. CI enforces structural rules via `scripts/validate_compass_manifests.py` (`make validate-compass-manifests`).
 
 #### Namespaces
 
@@ -293,8 +293,9 @@ last_updated: YYYY-MM-DD
 4. Include concrete examples and complete error handling
 5. Update the pack's `AGENTS.md` intent routing table to include the new skill
 6. Run **compass-manifest-maintenance** (`.claude/skills/compass-manifest-maintenance/`) to create or update Compass manifests — skill `catalog-info.yaml`, pack Location targets, plugin/MCP inverse `dependencyOf` (see "Adding Compass Manifests for a New Skill")
-7. Test with `Skill` tool invocation
-8. Validate with `uv run python scripts/validate_skills_tier1.py <pack>/skills/<skill-name>/SKILL.md`
+7. Run `make validate-compass-manifests` (or full `make validate`)
+8. Test with `Skill` tool invocation
+9. Validate with `uv run python scripts/validate_skills_tier1.py <pack>/skills/<skill-name>/SKILL.md`
 
 **Collection-Specific Standards:**
 - **rh-virt**: Follow `rh-virt/SKILL_TEMPLATE.md` for enhanced quality standards including mandatory Common Issues and Example Usage sections

@@ -100,7 +100,7 @@ test -f CLAUDE.md && echo "✓ repo root" || echo "✗ wrong directory"
 
 ### 3. Drift / compliance audit
 
-Run checks with `Glob`/`Grep`/`Bash`:
+Run `uv run python scripts/validate_compass_manifests.py` (or `make validate-compass-manifests`). It enforces the same structural rules as this table:
 
 | Check | Rule |
 |-------|------|
@@ -117,7 +117,7 @@ Report violations with file path and fix per workflow §1. Do not weaken checks.
 ### 4. Validate (file-based)
 
 1. Compare YAML against [assets/](assets/) and a known-good manifest in the same pack.
-2. Re-run drift audit (§3).
+2. Run `uv run python scripts/validate_compass_manifests.py` (included in `make validate` and `make validate-structure`).
 3. Tier 1 on this skill if edited: `uv run python scripts/validate_skills_tier1.py .claude/skills/compass-manifest-maintenance/SKILL.md`.
 4. Post-merge: maintainer may register in Compass UI manually (out of scope for this skill).
 
@@ -153,6 +153,7 @@ None — uses Read, Glob, Grep, Bash.
 ### Reference Documentation
 
 - [CLAUDE.md](../../CLAUDE.md) — entity kinds, namespaces, reference formats
+- `scripts/validate_compass_manifests.py` — CI roster and bidirectional ref checks
 - [references/relationship-rules.md](references/relationship-rules.md)
 - [references/mcp-mapping.md](references/mcp-mapping.md)
 
@@ -167,6 +168,10 @@ None — uses Read, Glob, Grep, Bash.
 ## Example usage
 
 ```bash
+# CI structural validation (roster + bidirectional refs)
+uv run python scripts/validate_compass_manifests.py
+# or: make validate-compass-manifests
+
 # Roster: skills on disk missing from Location (example: rh-sre)
 comm -23 \
   <(find rh-sre/skills -name SKILL.md | sed 's|.*/skills/||;s|/SKILL.md||' | sort) \
@@ -175,7 +180,7 @@ comm -23 \
 # Tier 1 lint for this maintenance skill
 uv run python scripts/validate_skills_tier1.py .claude/skills/compass-manifest-maintenance/SKILL.md
 
-# Full repo validation (no Compass CI yet)
+# Full repo validation
 make validate
 ```
 

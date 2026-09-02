@@ -1,4 +1,4 @@
-.PHONY: help install validate validate-structure validate-collection-schema validate-collection-compliance validate-skill-design validate-skill-design-changed validate-mcp-tools validate-spelling package clean check-uv
+.PHONY: help install validate validate-structure validate-collection-schema validate-collection-compliance validate-compass-manifests validate-skill-design validate-skill-design-changed validate-mcp-tools validate-spelling package clean check-uv
 
 help:
 	@echo "agentic-plugins"
@@ -9,6 +9,7 @@ help:
 	@echo "  validate-structure            - Structure, links, compliance, MCP tools (no per-skill tier checks)"
 	@echo "  validate-collection-schema    - Schema + roster + banners (subset of compliance)"
 	@echo "  validate-collection-compliance - Full .catalog compliance (includes collection.json drift)"
+	@echo "  validate-compass-manifests     - Compass catalog-info.yaml roster and bidirectional refs"
 	@echo "  validate-skill-design         - Validate all skills (use PACK=rh-sre for a specific pack)"
 	@echo "  validate-skill-design-changed - Validate only changed skills (staged + unstaged, for local dev)"
 	@echo "  validate-mcp-tools            - Validate allowed-tools against live MCP servers (requires podman)"
@@ -57,6 +58,8 @@ validate: check-uv
 	uv run python scripts/validate_docs_tree_links.py || EXIT=1; \
 	echo "=== Validating collection compliance (.catalog/)..."; \
 	uv run python scripts/validate_collection_compliance.py || EXIT=1; \
+	echo "=== Validating Compass manifests..."; \
+	uv run python scripts/validate_compass_manifests.py || EXIT=1; \
 	echo "=== Validating MCP tool references (skips gracefully without podman)..."; \
 	uv run python scripts/validate_mcp_tools.py --summary-only --log-file .validate/mcp-tools.log || EXIT=1; \
 	echo "=== Validating skill design principles..."; \
@@ -79,6 +82,8 @@ validate-structure: check-uv
 	uv run python scripts/validate_docs_tree_links.py || EXIT=1; \
 	echo "=== Validating collection compliance (.catalog/)..."; \
 	uv run python scripts/validate_collection_compliance.py || EXIT=1; \
+	echo "=== Validating Compass manifests..."; \
+	uv run python scripts/validate_compass_manifests.py || EXIT=1; \
 	echo "=== Validating MCP tool references (skips gracefully without podman)..."; \
 	uv run python scripts/validate_mcp_tools.py --summary-only --log-file .validate/mcp-tools.log || EXIT=1; \
 	echo "=== Validation complete!"; \
@@ -89,6 +94,9 @@ validate-collection-schema: check-uv
 
 validate-collection-compliance: check-uv
 	@uv run python scripts/validate_collection_compliance.py
+
+validate-compass-manifests: check-uv
+	@uv run python scripts/validate_compass_manifests.py
 
 validate-skill-design: check-uv
 	@uv run python scripts/validate_skills_tier2.py $(if $(PACK),$(PACK))
