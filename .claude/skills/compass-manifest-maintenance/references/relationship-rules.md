@@ -31,6 +31,11 @@ Compass does **not** auto-generate inverse relations for custom kinds (`AiResour
 
 All skills, plugins, and owned MCPs use `metadata.namespace: ai5-marketplace`.
 
+## Lifecycle (`spec.lifecycle`)
+
+- **New skill:** copy `spec.lifecycle` from `<pack>/<pack>-plugin.yaml` (ask before changing). Skill must not exceed plugin maturity (`development` < `beta` < `production`).
+- **New pack:** default plugin to `development`.
+
 ## Files to touch when adding a skill
 
 1. `skills/<skill-name>/catalog-info.yaml` — new or updated entity

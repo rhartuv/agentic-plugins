@@ -62,6 +62,7 @@ test -f CLAUDE.md && echo "✓ repo root" || echo "✗ wrong directory"
 1. **Resolve** `<pack>` and `<skill-name>` — confirm `<pack>/skills/<skill-name>/SKILL.md` exists.
 
 2. **Read golden sources** (precedence):
+   - `<pack>/<pack>-plugin.yaml` — `spec.lifecycle` (default for new skill manifest; see [relationship-rules.md](references/relationship-rules.md) Lifecycle)
    - `SKILL.md` frontmatter: `name`, `description`, `allowed-tools`
    - `SKILL.md` body: `Required MCP Servers`, `/skill-name` invocations, Dependencies, validator prerequisites
    - `<pack>/mcps.json` — server keys (map via [mcp-mapping.md](references/mcp-mapping.md))
@@ -73,26 +74,31 @@ test -f CLAUDE.md && echo "✓ repo root" || echo "✗ wrong directory"
    - Other skills: orchestration or documented `/other-skill` invocations in `SKILL.md`
    - Script-only skills: no `mcpserver:` entries
 
-4. **Write** `<pack>/skills/<skill-name>/catalog-info.yaml` from [assets/skill-catalog-info.yaml](assets/skill-catalog-info.yaml):
+4. **Set `spec.lifecycle`** (do not hardcode `beta`):
+   - Read `spec.lifecycle` from `<pack>/<pack>-plugin.yaml` — use as the **default** for the skill.
+   - **Human in the loop:** ask whether to change it. The skill may match the plugin or use a **less mature** value only (e.g. plugin `beta` → skill `development` is OK; plugin `development` → skill `beta` is **not** allowed).
+   - See [relationship-rules.md](references/relationship-rules.md) Lifecycle.
+
+5. **Write** `<pack>/skills/<skill-name>/catalog-info.yaml` from [assets/skill-catalog-info.yaml](assets/skill-catalog-info.yaml):
    - `namespace: ai5-marketplace`
    - `labels.distribution: external`
    - `agents: []`
-   - `lifecycle: beta`
+   - `lifecycle:` value from step 4 (typically matches the plugin)
    - `owner: group:redhat/ai5-marketplace`
    - `backstage.io/source-location` → GitHub `main` branch SKILL.md URL
    - `dependencyOf`: list orchestrators that `dependsOn` this skill (scan pack or update when editing orchestrator)
 
-5. **Update inverse manifests** ([relationship-rules.md](references/relationship-rules.md)):
+6. **Update inverse manifests** ([relationship-rules.md](references/relationship-rules.md)):
    - `<pack>/catalog-info.yaml` — `./skills/<skill-name>/catalog-info.yaml` in `spec.targets`
    - `<pack>/<pack>-plugin.yaml` — `dependencyOf: airesource:ai5-marketplace/<skill-name>`
    - Each `mcpserver:` in skill `dependsOn` → matching `mcps/*.yaml` `dependencyOf`
    - Each skill in skill `dependsOn` → that skill's `dependencyOf` includes orchestrator
 
-6. **Reconcile plugin MCP deps** — plugin `dependsOn` = union of all `mcpserver:` refs across pack skill manifests.
+7. **Reconcile plugin MCP deps** — plugin `dependsOn` = union of all `mcpserver:` refs across pack skill manifests.
 
 ### 2. Register a new pack in Compass
 
-1. Create `<pack>/<pack>-plugin.yaml` from [assets/plugin-catalog-info.yaml](assets/plugin-catalog-info.yaml).
+1. Create `<pack>/<pack>-plugin.yaml` from [assets/plugin-catalog-info.yaml](assets/plugin-catalog-info.yaml) with **`spec.lifecycle: development`** (default for new packs; confirm with user before raising maturity).
 2. Create `<pack>/catalog-info.yaml` from [assets/pack-location.yaml](assets/pack-location.yaml).
 3. Add `./<pack>/catalog-info.yaml` to root `catalog-info.yaml`.
 4. Add `airesource:ai5-marketplace/<pack>` to `system.yaml` `spec.dependencyOf`.
@@ -128,7 +134,8 @@ Report violations with file path and fix per workflow §1. Do not weaken checks.
 
 ## Self-review checklist
 
-- [ ] Skill manifest matches repo Compass conventions (`agents: []`, `labels.distribution: external`, `namespace: ai5-marketplace`, `owner: group:redhat/ai5-marketplace`).
+- [ ] Skill `spec.lifecycle` matches plugin default or a less mature value (never above the plugin).
+- [ ] Manifest conventions: `agents: []`, `labels.distribution: external`, `namespace: ai5-marketplace`, `owner: group:redhat/ai5-marketplace`.
 - [ ] MCP deps derived from `SKILL.md` usage, not copied from sibling skills.
 - [ ] Every new `dependsOn` has matching `dependencyOf` on the target entity.
 - [ ] Pack Location lists every skill manifest path.

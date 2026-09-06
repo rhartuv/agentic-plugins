@@ -1,5 +1,6 @@
 # Template: <pack>/<pack>-plugin.yaml
 # Replace <pack>, title, description, tags, disciplines, categories, dependencyOf, dependsOn (MCP union).
+# New packs: spec.lifecycle defaults to development (confirm with user before raising maturity).
 apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:

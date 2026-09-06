@@ -103,7 +103,8 @@ All entities (skills, plugins, and MCP servers) share a single namespace: `ai5-m
 
 #### Adding Compass Manifests for a New Skill
 
-When adding a skill, create `skills/<skill-name>/catalog-info.yaml`:
+When adding a skill, create `skills/<skill-name>/catalog-info.yaml`. Set `spec.lifecycle` from the pack plugin (`<pack>/<pack>-plugin.yaml`); default to the plugin value and ask the user before changing it — a skill may match the plugin or use a **less mature** lifecycle only (never above the plugin). New packs default the plugin to `development`.
+
 ```yaml
 apiVersion: backstage.io/v1alpha1
 kind: AiResource
@@ -126,16 +127,13 @@ metadata:
       icon: github
 spec:
   type: skill
-  lifecycle: beta
+  lifecycle: <plugin-lifecycle>  # from <pack>-plugin.yaml; same or less mature than plugin
   owner: group:redhat/ai5-marketplace
   disciplines:
     - <discipline>
   categories:
     - <category>
-  agents:
-    - claude-code
-    - opencode
-    - cursor
+  agents: []
   dependsOn:
     - airesource:ai5-marketplace/<pack-name>
     # Add mcpserver and airesource (skill) dependencies as needed

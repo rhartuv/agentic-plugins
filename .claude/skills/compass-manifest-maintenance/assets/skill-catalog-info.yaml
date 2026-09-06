@@ -1,5 +1,6 @@
 # Template: skills/<skill-name>/catalog-info.yaml
 # Replace <pack>, <skill-name>, title, description, tags, disciplines, categories, dependsOn.
+# lifecycle: copy from <pack>/<pack>-plugin.yaml spec.lifecycle (default); may downgrade only — see relationship-rules.md
 apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
@@ -22,7 +23,7 @@ metadata:
       icon: github
 spec:
   type: skill
-  lifecycle: beta
+  lifecycle: <plugin-lifecycle>  # from <pack>/<pack>-plugin.yaml; same or less mature than plugin
   owner: group:redhat/ai5-marketplace
   disciplines:
     - <discipline>
