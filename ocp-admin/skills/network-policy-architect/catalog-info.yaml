@@ -25,7 +25,7 @@ metadata:
       icon: github
 spec:
   type: skill
-  lifecycle: beta
+  lifecycle: development
   owner: group:redhat/ai5-marketplace
   disciplines:
     - security
