@@ -12,7 +12,7 @@
 
 ### In-repository documentation
 
-This pack ships an AI-oriented knowledge base under **`docs/`**. Start at **[docs/INDEX.md](docs/INDEX.md)** and use **`docs/.ai-index/`** (semantic index, task mapping) for token-efficient discovery.
+This pack ships an AI-oriented knowledge base under **`references/`** (index and source attribution) and **`skills/*/references/`** (runtime skill docs). Start at **[references/INDEX.md](references/INDEX.md)** and use **`references/.ai-index/`** (semantic index, task mapping) for token-efficient discovery.
 
 ### Configuration and architecture
 

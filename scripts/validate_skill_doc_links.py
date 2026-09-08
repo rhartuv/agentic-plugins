@@ -7,6 +7,9 @@ Rules:
 - Internal docs links must use references/... path from skill directory.
 - Linked reference files must exist (symlinks allowed, dangling symlinks rejected).
 - Resolved targets must stay within the pack root.
+
+Scans SKILL.md and other skill-root markdown (for example REBALANCE_*.md).
+Pack-level references/**/*.md is covered by validate_docs_tree_links.py.
 """
 
 from __future__ import annotations
@@ -32,6 +35,16 @@ DEFAULT_PACKS = [
 MD_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 
 
+def _skill_root_markdown(skills_dir: Path) -> list[Path]:
+    """SKILL.md plus companion skill-root markdown; skip shared pools like skills/references/."""
+    files: list[Path] = []
+    for skill_dir in sorted(skills_dir.glob("*")):
+        if not skill_dir.is_dir() or not (skill_dir / "SKILL.md").exists():
+            continue
+        files.extend(sorted(skill_dir.glob("*.md")))
+    return files
+
+
 @dataclass
 class ValidationResult:
     scanned_files: int = 0
@@ -50,11 +63,11 @@ def iter_skill_files(paths: Iterable[str]) -> list[Path]:
         if path.is_dir():
             skills_dir = path / "skills"
             if skills_dir.exists():
-                files.extend(sorted(skills_dir.glob("*/SKILL.md")))
+                files.extend(_skill_root_markdown(skills_dir))
                 continue
         pack_path = Path(p)
         if (pack_path / "skills").exists():
-            files.extend(sorted((pack_path / "skills").glob("*/SKILL.md")))
+            files.extend(_skill_root_markdown(pack_path / "skills"))
     dedup = sorted(set(files))
     return dedup
 

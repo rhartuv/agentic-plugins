@@ -384,7 +384,7 @@ The remediation skill orchestrates 6 specialized skills to provide complete CVE 
 
 ## Documentation
 
-The rh-sre pack includes AI-optimized documentation in the `docs/` directory demonstrating advanced documentation patterns:
+The rh-sre pack includes AI-optimized documentation under `references/` (pack index) and `skills/*/references/` (runtime skill docs):
 
 ### Semantic Indexing System
 
@@ -400,7 +400,7 @@ The rh-sre pack includes AI-optimized documentation in the `docs/` directory dem
 - **Lightspeed**: Red Hat Lightspeed platform integration
 - **References**: CVSS scoring, security standards
 
-See [docs/INDEX.md](docs/INDEX.md) for the complete documentation map.
+See [references/INDEX.md](references/INDEX.md) for the complete documentation map.
 
 ## MCP Server Integrations
 
@@ -606,7 +606,7 @@ rh-sre/
 │   ├── job-template-creator/SKILL.md
 │   ├── job-template-remediation-validator/SKILL.md
 │   └── execution-summary/SKILL.md
-└── docs/                        # AI-optimized documentation
+└── references/                  # Pack documentation map and attributions
     ├── INDEX.md
     ├── SOURCES.md
     └── .ai-index/               # Semantic indexing

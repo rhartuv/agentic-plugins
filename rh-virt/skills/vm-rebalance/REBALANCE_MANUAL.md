@@ -381,7 +381,7 @@ Preserve all existing VM fields and only modify the affinity section.
 
 **Error Handling with Clear Explanations:**
 - If VM fails to start → Explain: "VM failed to start on <target-node>. This usually means the node doesn't have enough resources (CPU/memory) or has scheduling constraints preventing this VM."
-  - Consult [scheduling-errors.md](../troubleshooting/scheduling-errors.md)
+  - Consult [scheduling-errors.md](references/troubleshooting/scheduling-errors.md)
   - Suggest: Check node capacity, verify node is Ready, check for taints
 - If VM scheduled on wrong node → Explain: "VM started but Kubernetes placed it on <actual-node> instead of <target-node>. This means <target-node> couldn't accommodate the VM due to resource constraints, taints, or other scheduling rules."
   - Report actual vs expected node
@@ -588,10 +588,10 @@ VM has restarted, verify services are healthy.
 
 **Document Consultation** (OPTIONAL - when migration fails):
 1. **Action**: Read relevant troubleshooting guides to understand VM migration failure scenarios:
-   - [scheduling-errors.md](../troubleshooting/scheduling-errors.md) - For ErrorUnschedulable, node taints, resource constraints
-   - [lifecycle-errors.md](../troubleshooting/lifecycle-errors.md) - For VM start/stop failures during cold migration
-   - [storage-errors.md](../troubleshooting/storage-errors.md) - For PVC access mode issues affecting live migration
-2. **Output to user**: "I consulted [scheduling-errors.md](../troubleshooting/scheduling-errors.md) to understand potential causes for the migration failure."
+   - [scheduling-errors.md](references/troubleshooting/scheduling-errors.md) - For ErrorUnschedulable, node taints, resource constraints
+   - [lifecycle-errors.md](references/troubleshooting/lifecycle-errors.md) - For VM start/stop failures during cold migration
+   - [storage-errors.md](references/troubleshooting/storage-errors.md) - For PVC access mode issues affecting live migration
+2. **Output to user**: "I consulted [scheduling-errors.md](references/troubleshooting/scheduling-errors.md) to understand potential causes for the migration failure."
 
 **When to consult**:
 - Live migration fails (check storage, network, resource constraints)

@@ -6,18 +6,18 @@
     "kernel_cve_bare_metal": {
       "description": "Kernel CVE on bare metal or VM RHEL systems",
       "required_docs": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "optional_docs": [],
       "workflow_order": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "estimated_tokens": 4100,
       "critical_sections": {
-        "ansible/cve-remediation-templates.md": "Template 4: Kernel Update with Reboot",
-        "rhel/package-management.md": "Pattern 3: Kernel Package Updates, Reboot Detection Patterns"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md": "Template 4: Kernel Update with Reboot",
+        "skills/playbook-generator/references/rhel/package-management.md": "Pattern 3: Kernel Package Updates, Reboot Detection Patterns"
       },
       "prerequisites": [
         "System backup created",
@@ -27,18 +27,18 @@
     "package_update_rhel": {
       "description": "Standard package update CVE on RHEL systems (non-Kubernetes)",
       "required_docs": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "optional_docs": [],
       "workflow_order": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "estimated_tokens": 4100,
       "critical_sections": {
-        "ansible/cve-remediation-templates.md": "Template 1: Package Update",
-        "rhel/package-management.md": "Pattern 1: Single Package Update, Pattern 2: Multiple Related Packages"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md": "Template 1: Package Update",
+        "skills/playbook-generator/references/rhel/package-management.md": "Pattern 1: Single Package Update, Pattern 2: Multiple Related Packages"
       },
       "prerequisites": [
         "RHEL subscription active",
@@ -48,19 +48,19 @@
     "service_restart_cve": {
       "description": "CVE requiring service configuration changes and restart",
       "required_docs": [
-        "ansible/cve-remediation-templates.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md"
       ],
       "optional_docs": [
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "workflow_order": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "estimated_tokens": 4100,
       "critical_sections": {
-        "ansible/cve-remediation-templates.md": "Template 2: Service Restart",
-        "rhel/package-management.md": "Service Restart After Package Updates"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md": "Template 2: Service Restart",
+        "skills/playbook-generator/references/rhel/package-management.md": "Service Restart After Package Updates"
       },
       "prerequisites": [
         "Service configuration backup",
@@ -70,17 +70,17 @@
     "config_file_cve": {
       "description": "CVE requiring system configuration file updates",
       "required_docs": [
-        "ansible/cve-remediation-templates.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md"
       ],
       "optional_docs": [
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "workflow_order": [
-        "ansible/cve-remediation-templates.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md"
       ],
       "estimated_tokens": 2500,
       "critical_sections": {
-        "ansible/cve-remediation-templates.md": "Template 3: Configuration File Update"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md": "Template 3: Configuration File Update"
       },
       "prerequisites": [
         "Configuration backup created",
@@ -90,18 +90,18 @@
     "selinux_remediation": {
       "description": "CVE affecting SELinux file contexts or policies",
       "required_docs": [
-        "ansible/cve-remediation-templates.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md"
       ],
       "optional_docs": [
-        "rhel/selinux-context.md"
+        "skills/mcp-aap-validator/references/rhel/selinux-context.md"
       ],
       "workflow_order": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/selinux-context.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/mcp-aap-validator/references/rhel/selinux-context.md"
       ],
       "estimated_tokens": 2500,
       "critical_sections": {
-        "ansible/cve-remediation-templates.md": "Template 5: SELinux Context Update"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md": "Template 5: SELinux Context Update"
       },
       "prerequisites": [
         "SELinux enabled and enforcing",
@@ -111,22 +111,22 @@
     "batch_remediation": {
       "description": "Multiple CVEs across fleet of RHEL systems",
       "required_docs": [
-        "ansible/cve-remediation-templates.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md"
       ],
       "optional_docs": [
-        "ansible/error-handling.md",
-        "rhel/version-compatibility.md",
-        "rhel/package-management.md"
+        "skills/mcp-aap-validator/references/ansible/error-handling.md",
+        "skills/mcp-aap-validator/references/rhel/version-compatibility.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "workflow_order": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md",
-        "ansible/error-handling.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md",
+        "skills/mcp-aap-validator/references/ansible/error-handling.md"
       ],
       "estimated_tokens": 4100,
       "critical_sections": {
-        "ansible/cve-remediation-templates.md": "Template 6: Batch Remediation",
-        "rhel/package-management.md": "Pattern 2: Multiple Related Packages"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md": "Template 6: Batch Remediation",
+        "skills/playbook-generator/references/rhel/package-management.md": "Pattern 2: Multiple Related Packages"
       },
       "prerequisites": [
         "Inventory grouped by environment",
@@ -137,20 +137,20 @@
     "risk_assessment": {
       "description": "Analyze CVE impact without creating remediation",
       "required_docs": [
-        "insights/vulnerability-logic.md",
-        "references/cvss-scoring.md"
+        "skills/cve-validation/references/insights/vulnerability-logic.md",
+        "skills/cve-validation/references/cvss-scoring.md"
       ],
       "optional_docs": [
-        "references/compliance-frameworks.md"
+        "skills/mcp-aap-validator/references/compliance-frameworks.md"
       ],
       "workflow_order": [
-        "insights/vulnerability-logic.md",
-        "references/cvss-scoring.md"
+        "skills/cve-validation/references/insights/vulnerability-logic.md",
+        "skills/cve-validation/references/cvss-scoring.md"
       ],
       "estimated_tokens": 1000,
       "critical_sections": {
-        "insights/vulnerability-logic.md": "CVE Risk Assessment Methodology",
-        "references/cvss-scoring.md": "Red Hat Severity Mappings"
+        "skills/cve-validation/references/insights/vulnerability-logic.md": "CVE Risk Assessment Methodology",
+        "skills/cve-validation/references/cvss-scoring.md": "Red Hat Severity Mappings"
       },
       "prerequisites": [
         "CVE ID known",
@@ -160,18 +160,18 @@
     "httpd_cve": {
       "description": "Apache httpd package CVE remediation",
       "required_docs": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "optional_docs": [],
       "workflow_order": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "estimated_tokens": 4100,
       "critical_sections": {
-        "ansible/cve-remediation-templates.md": "Template 1: Package Update (httpd example)",
-        "rhel/package-management.md": "Pattern 2: Multiple Related Packages (httpd + httpd-tools)"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md": "Template 1: Package Update (httpd example)",
+        "skills/playbook-generator/references/rhel/package-management.md": "Pattern 2: Multiple Related Packages (httpd + httpd-tools)"
       },
       "prerequisites": [
         "httpd service can be restarted",
@@ -181,18 +181,18 @@
     "openssl_cve": {
       "description": "OpenSSL library CVE requiring service restarts",
       "required_docs": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "optional_docs": [],
       "workflow_order": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "estimated_tokens": 4100,
       "critical_sections": {
-        "ansible/cve-remediation-templates.md": "Template 1: Package Update (service restart patterns)",
-        "rhel/package-management.md": "Pattern 2: Multiple Related Packages (openssl + openssl-libs), Service Restart After Package Updates"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md": "Template 1: Package Update (service restart patterns)",
+        "skills/playbook-generator/references/rhel/package-management.md": "Pattern 2: Multiple Related Packages (openssl + openssl-libs), Service Restart After Package Updates"
       },
       "prerequisites": [
         "All services using openssl identified",
@@ -202,18 +202,18 @@
     "glibc_cve": {
       "description": "glibc CVE requiring reboot",
       "required_docs": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "optional_docs": [],
       "workflow_order": [
-        "ansible/cve-remediation-templates.md",
-        "rhel/package-management.md"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md",
+        "skills/playbook-generator/references/rhel/package-management.md"
       ],
       "estimated_tokens": 4100,
       "critical_sections": {
-        "ansible/cve-remediation-templates.md": "Template 1: Package Update (reboot handling)",
-        "rhel/package-management.md": "Reboot Detection Patterns (needs-restarting)"
+        "skills/playbook-generator/references/ansible/cve-remediation-templates.md": "Template 1: Package Update (reboot handling)",
+        "skills/playbook-generator/references/rhel/package-management.md": "Reboot Detection Patterns (needs-restarting)"
       },
       "prerequisites": [
         "Reboot can be scheduled",

@@ -4,6 +4,9 @@ Validate markdown link integrity for runtime-adjacent docs trees.
 
 Scope:
 - skills/*/references/**/*.md
+- skills/*/*.md (skill-root markdown such as SKILL.md and REBALANCE_*.md)
+- <pack>/references/**/*.md
+- leftover <pack>/docs/**/*.md (if present after incomplete migration)
 - <pack>/README.md
 - <pack>/.catalog/*.md
 
@@ -12,6 +15,10 @@ Checks:
 - symlink targets resolve
 - no symlink loops
 - resolved targets do not escape pack root
+
+Pack README / catalog fragments: validate pack-local docs links
+(`references/`, `skills/`, and leftover `docs/`) so stale `docs/INDEX.md`
+pointers fail CI after a `docs/` → `references/` migration.
 """
 
 from __future__ import annotations
@@ -70,22 +77,59 @@ def resolve_packs(paths: Iterable[str]) -> set[Path]:
     return packs
 
 
+def _dedupe(paths: Iterable[Path]) -> list[Path]:
+    # Dedupe by the path used for relative-link resolution, not the symlink target.
+    # Shared-pool copies must be scanned from each skill directory.
+    seen: set[str] = set()
+    out: list[Path] = []
+    for path in paths:
+        key = str(path)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(path)
+    return out
+
+
+def _is_pack_local_doc_link(base: str) -> bool:
+    """README/catalog links that must resolve from the pack root."""
+    normalized = base.replace("\\", "/")
+    if normalized.startswith("./"):
+        normalized = normalized[2:]
+    return (
+        normalized.startswith("references/")
+        or normalized.startswith("skills/")
+        or normalized.startswith("docs/")
+    )
+
+
 def scan_targets(pack_root: Path) -> list[Path]:
     targets: list[Path] = []
-    targets.extend(sorted((pack_root / "skills").glob("*/references/**/*.md")))
+    skills_dir = pack_root / "skills"
+    if skills_dir.exists():
+        for skill_dir in sorted(skills_dir.glob("*")):
+            if not skill_dir.is_dir() or not (skill_dir / "SKILL.md").exists():
+                continue
+            targets.extend(sorted(skill_dir.glob("references/**/*.md")))
+            targets.extend(sorted(skill_dir.glob("*.md")))
+    pack_refs = pack_root / "references"
+    if pack_refs.exists():
+        targets.extend(sorted(pack_refs.glob("**/*.md")))
+    pack_docs = pack_root / "docs"
+    if pack_docs.exists():
+        targets.extend(sorted(pack_docs.glob("**/*.md")))
     readme = pack_root / "README.md"
     if readme.exists():
         targets.append(readme)
     catalog = pack_root / ".catalog"
     if catalog.exists():
         targets.extend(sorted(catalog.glob("*.md")))
-    return targets
+    return _dedupe(targets)
 
 
 def validate_file(path: Path, pack_root: Path) -> list[str]:
     errs: list[str] = []
     text = path.read_text(encoding="utf-8", errors="ignore")
-    is_skill_docs = "/skills/" in path.as_posix() and "/references/" in path.as_posix()
     is_pack_meta = (path == (pack_root / "README.md")) or (path.parent == (pack_root / ".catalog"))
     for line_no, line in enumerate(text.splitlines(), start=1):
         for m in MD_LINK_RE.finditer(line):
@@ -96,13 +140,17 @@ def validate_file(path: Path, pack_root: Path) -> list[str]:
             if not base.endswith(".md"):
                 continue
 
-            # For pack README / catalog fragments, validate only pack-local docs references.
+            # For pack README / catalog fragments, validate pack-local docs references
+            # including leftover docs/ links from incomplete migrations.
             if is_pack_meta:
-                if not (base.startswith("references/") or base.startswith("skills/")):
+                if not _is_pack_local_doc_link(base):
                     continue
-                link_path = (pack_root / base)
+                link_base = base.replace("\\", "/")
+                if link_base.startswith("./"):
+                    link_base = link_base[2:]
+                link_path = pack_root / link_base
             else:
-                link_path = (path.parent / base)
+                link_path = path.parent / base
             try:
                 resolved = link_path.resolve(strict=True)
             except FileNotFoundError:
@@ -112,13 +160,12 @@ def validate_file(path: Path, pack_root: Path) -> list[str]:
                 errs.append(f"{path}:{line_no}: symlink loop for '{raw}'")
                 continue
 
-            if is_skill_docs:
-                try:
-                    resolved.relative_to(pack_root)
-                except ValueError:
-                    errs.append(
-                        f"{path}:{line_no}: link escapes pack root '{raw}' -> '{resolved}'"
-                    )
+            try:
+                resolved.relative_to(pack_root)
+            except ValueError:
+                errs.append(
+                    f"{path}:{line_no}: link escapes pack root '{raw}' -> '{resolved}'"
+                )
 
             if link_path.is_symlink():
                 raw_link = os.readlink(link_path)
@@ -136,7 +183,7 @@ def validate_file(path: Path, pack_root: Path) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Validate markdown links in skills docs trees, pack README, and catalog fragments"
+        description="Validate markdown links in skill docs, pack references, README, and catalog fragments"
     )
     parser.add_argument(
         "paths",

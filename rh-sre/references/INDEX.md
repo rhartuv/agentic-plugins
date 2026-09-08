@@ -11,36 +11,36 @@ last_updated: 2026-02-24
 
 # Red Hat Remediation Agent - Documentation Index
 
-This knowledge base provides comprehensive Red Hat-specific patterns for CVE remediation on Kubernetes-managed RHEL systems.
+This knowledge base provides comprehensive Red Hat-specific patterns for CVE remediation on Kubernetes-managed RHEL systems. Canonical runtime documents live under `skills/<name>/references/`; this pack-level index is for navigation and source attribution.
 
 ## Quick Navigation
 
 ### Priority P0 (Core Documentation)
-- **[CVE Remediation Playbook Templates](ansible/cve-remediation-templates.md)** ⭐ HIGHEST VALUE
+- **[CVE Remediation Playbook Templates](../skills/playbook-generator/references/ansible/cve-remediation-templates.md)** ⭐ HIGHEST VALUE
   - 6 production-ready Ansible playbook templates
   - Package updates, kernel updates, service restarts, SELinux, batch remediation
 
-- **[RHEL Package Management](rhel/package-management.md)**
+- **[RHEL Package Management](../skills/playbook-generator/references/rhel/package-management.md)**
   - DNF/YUM workflows for RHEL 7/8/9
   - Systemd service management
   - Reboot detection and handling
 
 ### Priority P1 (Extended Documentation)
-- **[Red Hat Lightspeed Vulnerability Logic](insights/vulnerability-logic.md)** ✅
+- **[Red Hat Lightspeed Vulnerability Logic](../skills/cve-validation/references/insights/vulnerability-logic.md)** ✅
   - CVE risk assessment methodology
   - CVSS score interpretation
   - System inventory correlation
 
-- **[CVSS Scoring Reference](references/cvss-scoring.md)** ✅
+- **[CVSS Scoring Reference](../skills/cve-validation/references/cvss-scoring.md)** ✅
   - CVSS v3.1 metrics breakdown
   - Red Hat severity mappings (Critical/Important/Moderate/Low)
   - Priority decision matrix
 
-- **[Lightspeed MCP Parameters](references/lightspeed-mcp-parameters.md)** ✅
+- **[Lightspeed MCP Parameters](../skills/cve-impact/references/lightspeed-mcp-parameters.md)** ✅
   - Correct parameter names for Lightspeed MCP tools (e.g. `per_page` not `page_size` for list_hosts)
   - Consult before calling inventory__list_hosts to avoid validation errors
 
-- **[Lightspeed MCP Tool Failures](references/lightspeed-mcp-tool-failures.md)** ✅
+- **[Lightspeed MCP Tool Failures](../skills/cve-impact/references/lightspeed-mcp-tool-failures.md)** ✅
   - Generic pattern for backend errors (e.g. explain_cves `'dnf_modules'`) — user-friendly message, workarounds, no raw error exposure
 
 - **RHEL Version Compatibility** (planned)
@@ -102,39 +102,36 @@ This knowledge base provides comprehensive Red Hat-specific patterns for CVE rem
 ## Documentation Structure
 
 ```
-docs/
-├── INDEX.md (this file) ✅
-├── SOURCES.md (official Red Hat source attribution) ✅
-├── rhel/                       # RHEL-specific patterns
-│   ├── README.md ✅
-│   ├── package-management.md (P0) ✅
-│   ├── selinux-context.md (P1 - planned)
-│   ├── systemd-services.md (P2 - planned)
-│   ├── version-compatibility.md (P1 - planned)
-│   └── security-hardening-rhel9.md (P1 - planned)
-├── ansible/                    # Ansible playbook patterns
-│   ├── README.md ✅
-│   ├── cve-remediation-templates.md (P0) ⭐ ✅
-│   ├── playbook-patterns.md (P2 - planned)
-│   ├── error-handling.md (P1 - planned)
-│   ├── idempotency.md (P2 - planned)
-│   └── aap-integration.md (P2 - planned)
-├── insights/                   # Red Hat Lightspeed patterns
-│   ├── README.md ✅
-│   ├── vulnerability-logic.md (P1) ✅
-│   ├── remediation-workflow.md (P2 - planned)
-│   └── system-inventory.md (P2 - planned)
-├── references/                 # Reference documentation
-│   ├── README.md ✅
-│   ├── cvss-scoring.md (P1) ✅
-│   ├── compliance-frameworks.md (P2 - planned)
-│   └── glossary.md (P2 - planned)
-└── .ai-index/                  # AI inference optimization
-    ├── semantic-index.json ✅
-    ├── task-to-docs-mapping.json ✅
-    ├── cross-reference-graph.json ✅
-    └── generate-index.py (planned)
+rh-sre/
+├── references/                 # Pack navigation and source attribution (this tree)
+│   ├── INDEX.md (this file) ✅
+│   ├── SOURCES.md ✅
+│   └── .ai-index/            # AI inference optimization
+│       ├── semantic-index.json ✅
+│       ├── task-to-docs-mapping.json ✅
+│       ├── cross-reference-graph.json ✅
+│       └── generate-index.py (planned)
+└── skills/                    # Canonical runtime docs (skill-local references/)
+    ├── playbook-generator/references/
+    │   ├── ansible/cve-remediation-templates.md (P0) ⭐ ✅
+    │   ├── ansible/README.md ✅
+    │   ├── rhel/package-management.md (P0) ✅
+    │   └── rhel/README.md ✅
+    ├── cve-validation/references/
+    │   ├── insights/vulnerability-logic.md (P1) ✅
+    │   └── cvss-scoring.md (P1) ✅
+    ├── cve-impact/references/
+    │   ├── lightspeed-mcp-parameters.md ✅
+    │   └── lightspeed-mcp-tool-failures.md ✅
+    └── mcp-aap-validator/references/
+        ├── ansible/error-handling.md
+        ├── rhel/selinux-context.md
+        ├── rhel/systemd-services.md
+        ├── rhel/version-compatibility.md
+        └── compliance-frameworks.md
 ```
+
+Shared copies in other skills are symlinks to these canonical files. Do **not** nest `references/references/`.
 
 ## How to Use This Documentation (For AI Agents)
 
@@ -142,7 +139,9 @@ docs/
 
 **Always start by reading the semantic index**:
 ```
-Read: docs/.ai-index/semantic-index.json (~200 tokens)
+Read: references/.ai-index/semantic-index.json (~200 tokens)
+
+Index `path` values are pack-relative (from `rh-sre/`).
 ```
 
 The semantic index enables:
@@ -158,8 +157,8 @@ The semantic index enables:
 1. Read semantic-index.json
 2. Detect: CVE type = "kernel" (requires reboot)
 3. Load from task_mappings["kernel_cve"]:
-   - ansible/cve-remediation-templates.md (Template 4: Kernel Update)
-   - rhel/package-management.md (DNF/YUM workflows)
+   - skills/playbook-generator/references/ansible/cve-remediation-templates.md (Template 4: Kernel Update)
+   - skills/playbook-generator/references/rhel/package-management.md (DNF/YUM workflows)
 4. Generate playbook using patterns from loaded docs
 ```
 
@@ -176,10 +175,10 @@ The semantic index enables:
 
 Use the cross-reference graph to find related documentation:
 ```
-If reading: ansible/cve-remediation-templates.md
+If reading: skills/playbook-generator/references/ansible/cve-remediation-templates.md
 Also consider:
-  - rhel/package-management.md (complements: DNF patterns) ✅
-  - insights/vulnerability-logic.md (prerequisite: for risk assessment) ✅
+  - skills/playbook-generator/references/rhel/package-management.md (complements: DNF patterns) ✅
+  - skills/cve-validation/references/insights/vulnerability-logic.md (prerequisite: for risk assessment) ✅
 ```
 
 ## Common Remediation Workflows
@@ -188,36 +187,36 @@ Also consider:
 **Task**: "Remediate CVE-2024-XXXX affecting httpd package on RHEL 8"
 
 **Required Docs**:
-1. `ansible/cve-remediation-templates.md` (Template 1: Package Update) ✅
-2. `rhel/package-management.md` (DNF workflows) ✅
+1. `skills/playbook-generator/references/ansible/cve-remediation-templates.md` (Template 1: Package Update) ✅
+2. `skills/playbook-generator/references/rhel/package-management.md` (DNF workflows) ✅
 
 ### Workflow 2: Kernel CVE
 **Task**: "Remediate kernel CVE on RHEL production nodes"
 
 **Required Docs**:
-1. `ansible/cve-remediation-templates.md` (Template 4: Kernel Update) ✅
-2. `rhel/package-management.md` (kernel update procedures) ✅
+1. `skills/playbook-generator/references/ansible/cve-remediation-templates.md` (Template 4: Kernel Update) ✅
+2. `skills/playbook-generator/references/rhel/package-management.md` (kernel update procedures) ✅
 
 ### Workflow 3: Batch Remediation
 **Task**: "Remediate 5 CVEs across 20 RHEL servers"
 
 **Required Docs**:
-1. `ansible/cve-remediation-templates.md` (Template 6: Batch) ✅
-2. `rhel/package-management.md` (for RHEL-specific patterns) ✅
+1. `skills/playbook-generator/references/ansible/cve-remediation-templates.md` (Template 6: Batch) ✅
+2. `skills/playbook-generator/references/rhel/package-management.md` (for RHEL-specific patterns) ✅
 
 ### Workflow 4: Risk Assessment
 **Task**: "Analyze impact of CVE-2024-YYYY"
 
 **Required Docs**:
-1. `insights/vulnerability-logic.md` (Red Hat risk methodology) ✅
-2. `references/cvss-scoring.md` (CVSS interpretation) ✅
+1. `skills/cve-validation/references/insights/vulnerability-logic.md` (Red Hat risk methodology) ✅
+2. `skills/cve-validation/references/cvss-scoring.md` (CVSS interpretation) ✅
 
 ### Workflow 5: SELinux CVE
 **Task**: "Fix SELinux context vulnerability"
 
 **Required Docs**:
-1. `ansible/cve-remediation-templates.md` (Template 5: SELinux) ✅
-2. `rhel/package-management.md` (for RHEL-specific SELinux package handling) ✅
+1. `skills/playbook-generator/references/ansible/cve-remediation-templates.md` (Template 5: SELinux) ✅
+2. `skills/playbook-generator/references/rhel/package-management.md` (for RHEL-specific SELinux package handling) ✅
 
 ## Documentation Quality Standards
 
@@ -292,7 +291,7 @@ See [SOURCES.md](SOURCES.md) for complete source attribution table including:
 
 ## AI Inference Optimization
 
-This knowledge base includes an AI-optimized indexing layer in `docs/.ai-index/`:
+This knowledge base includes an AI-optimized indexing layer in `references/.ai-index/`:
 
 ### Semantic Index (`semantic-index.json`)
 - Document metadata with semantic keywords
@@ -370,7 +369,7 @@ This knowledge base includes an AI-optimized indexing layer in `docs/.ai-index/`
 ### Update Process
 1. Update or add markdown documentation
 2. Update YAML frontmatter with sources and metadata
-3. Run `python docs/.ai-index/generate-index.py` to regenerate indexes
+3. Run `python references/.ai-index/generate-index.py` to regenerate indexes
 4. Verify source URLs in SOURCES.md are current
 5. Update "Last Verified" dates
 

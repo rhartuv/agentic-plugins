@@ -94,7 +94,7 @@ export AAP_API_TOKEN="your-personal-access-token"
 | `job-troubleshooting.md` | Event parsing, host correlation, failure patterns | AAP 2.6 Troubleshooting Guide, Job Events |
 | `error-classification.md` | Error taxonomy, classification trees, resolution paths | AAP 2.6 Troubleshooting Guide, Ansible Module docs |
 
-See [docs/INDEX.md](docs/INDEX.md) for the complete documentation map and [docs/SOURCES.md](docs/SOURCES.md) for all source attributions.
+See [references/INDEX.md](references/INDEX.md) for the complete documentation map and [references/SOURCES.md](references/SOURCES.md) for all source attributions.
 
 ## Architecture
 
@@ -113,13 +113,10 @@ rh-automation/
 │   ├── host-fact-inspector/         # UC3: Host correlation
 │   ├── resolution-advisor/          # UC3: Resolution guidance
 │   └── execution-summary/          # Shared: Audit trail
-└── docs/
-    ├── aap/
-    │   ├── governance-readiness.md  # 7-domain assessment reference
-    │   ├── execution-governance.md # Execution governance reference
-    │   └── job-troubleshooting.md   # Failure analysis reference
-    └── references/
-        └── error-classification.md  # Error taxonomy reference
+└── references/
+    ├── INDEX.md                     # Documentation map
+    ├── SOURCES.md                   # Red Hat source attributions
+    └── .ai-index/                   # Semantic indexing
 ```
 
 ## References
