@@ -3,7 +3,7 @@
 Validate markdown link integrity for runtime-adjacent docs trees.
 
 Scope:
-- skills/*/docs/**/*.md
+- skills/*/references/**/*.md
 - <pack>/README.md
 - <pack>/.catalog/*.md
 
@@ -72,7 +72,7 @@ def resolve_packs(paths: Iterable[str]) -> set[Path]:
 
 def scan_targets(pack_root: Path) -> list[Path]:
     targets: list[Path] = []
-    targets.extend(sorted((pack_root / "skills").glob("*/docs/**/*.md")))
+    targets.extend(sorted((pack_root / "skills").glob("*/references/**/*.md")))
     readme = pack_root / "README.md"
     if readme.exists():
         targets.append(readme)
@@ -85,7 +85,7 @@ def scan_targets(pack_root: Path) -> list[Path]:
 def validate_file(path: Path, pack_root: Path) -> list[str]:
     errs: list[str] = []
     text = path.read_text(encoding="utf-8", errors="ignore")
-    is_skill_docs = "/skills/" in path.as_posix() and "/docs/" in path.as_posix()
+    is_skill_docs = "/skills/" in path.as_posix() and "/references/" in path.as_posix()
     is_pack_meta = (path == (pack_root / "README.md")) or (path.parent == (pack_root / ".catalog"))
     for line_no, line in enumerate(text.splitlines(), start=1):
         for m in MD_LINK_RE.finditer(line):
@@ -98,7 +98,7 @@ def validate_file(path: Path, pack_root: Path) -> list[str]:
 
             # For pack README / catalog fragments, validate only pack-local docs references.
             if is_pack_meta:
-                if not (base.startswith("docs/") or base.startswith("skills/")):
+                if not (base.startswith("references/") or base.startswith("skills/")):
                     continue
                 link_path = (pack_root / base)
             else:

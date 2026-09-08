@@ -118,7 +118,7 @@ Ask concisely, validate before proceeding. Make additional questions if needed t
 4. **Workflow**: "Steps with MCP tools?" (e.g., "1. Validate VM - resources_get")
 5. **Common Issues**: "3+ issues: problem: cause: solution"
 6. **Prerequisites**: "Special requirements? (env vars, permissions)"
-7. **External Resources**: "Any external docs/links/KB articles referenced?" (will be saved to `docs/` folder)
+7. **External Resources**: "Any external references/links/KB articles referenced?" (will be saved to `references/` folder)
 
 **Quality over Speed**: Focus on gathering complete, accurate information. Validation and iteration will ensure correctness - prioritize quality of final result over generation time.
 
@@ -210,7 +210,7 @@ Show complete spec:
 **Workflow**: <N> steps
 **Common Issues**: <N> documented
 **MCP Tools**: <tool_count> tools (verified to exist)
-**External Resources**: <count> (will be saved to docs/)
+**External Resources**: <count> (will be saved to references/)
 **Human-in-the-Loop**: <Yes/No>
 
 [If >10 steps or complex workflow]:
@@ -229,26 +229,26 @@ Proceed with generation? (yes/no)
 ```bash
 mkdir -p <pack>/skills/<skill-name>/
 # If external resources provided by user:
-mkdir -p <pack>/skills/<skill-name>/docs/
+mkdir -p <pack>/skills/<skill-name>/references/
 ```
 
 **Generate files**:
 1. **SKILL.md**: YAML frontmatter + mandatory sections (follow SKILL_DESIGN_PRINCIPLES.md template - already consulted in Phase 3)
    - Focus on complete, production-ready content
    - Include all relevant information from user and verified sources
-   - Keep main skill focused; detailed content can go to `docs/` if needed
-2. **docs/ folder** (if applicable):
-   - `docs/workflow-details.md` - Extended workflow explanations if skill is concise
-   - `docs/common-issues.md` - Detailed troubleshooting with full KB article content
-   - `docs/examples.md` - Comprehensive usage examples
-   - `docs/external-resources.md` - Any external docs/links/KB articles mentioned by user
+   - Keep main skill focused; detailed content can go to `references/` if needed
+2. **references/ folder** (if applicable):
+   - `references/workflow-details.md` - Extended workflow explanations if skill is concise
+   - `references/common-issues.md` - Detailed troubleshooting with full KB article content
+   - `references/examples.md` - Comprehensive usage examples
+   - `references/external-resources.md` - Any external references/links/KB articles mentioned by user
 3. **Update <pack>/AGENTS.md**: Add intent routing entry
 4. **Create <pack>/mcps.json**: If new MCP server needed (use `${ENV_VAR}` format)
 5. **Compass manifests**: Run **compass-manifest-maintenance** (`.claude/skills/compass-manifest-maintenance/`) for registered packs — skill `catalog-info.yaml`, Location targets, bidirectional `dependsOn`/`dependencyOf` on plugin and MCP manifests
 6. **Update marketplace/rh-agentic-collection.yml** in [agentic-catalog](https://github.com/RHEcosystemAppEng/agentic-catalog): If new pack (register pack for Lola installation)
 7. **Create pack structure**: If new pack (README.md, AGENTS.md, skills/ directory)
 
-Generate SKILL.md following the mandatory section template in SKILL_DESIGN_PRINCIPLES.md (already consulted in Phase 3). If SKILL.md becomes too long, move detailed content to `docs/` with references in main file.
+Generate SKILL.md following the mandatory section template in SKILL_DESIGN_PRINCIPLES.md (already consulted in Phase 3). If SKILL.md becomes too long, move detailed content to `references/` with references in main file.
 
 ### Phase 5: Validation & Iteration
 
@@ -267,7 +267,7 @@ uv run python scripts/validate_skills_tier2.py <pack>/skills/<skill-name>/SKILL.
 **Report clearly**:
 - ✅ PASSED → Proceed to Phase 6
 - ⚠️ WARNINGS → Review warnings with user
-  - Non-standard subdirectory (docs/) is acceptable if needed
+  - Non-standard subdirectory (references/) is acceptable if needed
   - Description buzzwords acceptable if accurate for critical skills
   - Ask: "Warnings acceptable? (yes/no)"
 - ❌ ERRORS → **Fix required**, iterate until validation passes
@@ -275,10 +275,10 @@ uv run python scripts/validate_skills_tier2.py <pack>/skills/<skill-name>/SKILL.
 **Iteration Protocol** (if validation fails):
 1. **Analyze errors**: Identify specific issues (line count, missing sections, format problems)
 2. **Determine fix strategy**:
-   - Line count exceeded → Move detailed content to `docs/` folder, keep main skill concise
+   - Line count exceeded → Move detailed content to `references/` folder, keep main skill concise
    - Missing sections → Add required sections per DP7
    - Format issues → Correct frontmatter, section headers, or structure
-3. **Apply fixes**: Edit SKILL.md and/or create docs/ files
+3. **Apply fixes**: Edit SKILL.md and/or create references/ files
 4. **Re-validate**: Run both Tier 1 and Tier 2 again
 5. **Repeat until ✅ PASSED**
 
@@ -358,23 +358,23 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 **Cause**: Skill content is comprehensive but exceeds agentskills.io 500-line limit
 
-**Fix**: Iterate to move detailed content to `docs/` folder:
-1. Create `<skill>/docs/` directory
-2. Move detailed workflow explanations to `docs/workflow-details.md`
-3. Move full troubleshooting KB articles to `docs/common-issues.md`
-4. Move comprehensive examples to `docs/examples.md`
-5. Keep main SKILL.md concise with references to docs/
+**Fix**: Iterate to move detailed content to `references/` folder:
+1. Create `<skill>/references/` directory
+2. Move detailed workflow explanations to `references/workflow-details.md`
+3. Move full troubleshooting KB articles to `references/common-issues.md`
+4. Move comprehensive examples to `references/examples.md`
+5. Keep main SKILL.md concise with references to references/
 6. Re-run validation
 
 **Example**:
 ```markdown
 ## Common Issues
 
-See [docs/common-issues.md](docs/common-issues.md) for detailed solutions.
+See [references/common-issues.md](references/common-issues.md) for detailed solutions.
 
 ### Issue 1: Snapshot Fails
 Storage doesn't support snapshots.
-**Solution**: Use snapshot-capable storage. [Details](docs/common-issues.md#issue-1)
+**Solution**: Use snapshot-capable storage. [Details](references/common-issues.md#issue-1)
 ```
 
 ## Dependencies
@@ -443,7 +443,7 @@ See [Prerequisites](#prerequisites) section for required system tools (git, uv, 
 
 ## Example Usage
 
-**See [docs/examples.md](docs/examples.md) for comprehensive examples.**
+**See [references/examples.md](references/examples.md) for comprehensive examples.**
 
 ### Quick Example: Creating VM Backup Skill
 
@@ -461,8 +461,8 @@ Skill guides through:
 Result: Production-ready skill in rh-virt/skills/vm-backup-create/
 ```
 
-**More examples**: [docs/examples.md](docs/examples.md)
+**More examples**: [references/examples.md](references/examples.md)
 - Example 1: VM backup skill (complete create interaction)
 - Example 2: Non-representative name correction
 - Example 3: Importing an existing skill (analysis, adaptation, validation)
-- Example 4: Large skill requiring docs/ folder with iteration
+- Example 4: Large skill requiring references/ folder with iteration

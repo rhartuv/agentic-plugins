@@ -149,8 +149,8 @@ Do NOT validate for "best practices" or add missing elements—return AS IS.
 - `playbook-executor` - Executes generated playbooks and tracks job status
 
 ### Reference Documentation
-- [cve-remediation-templates.md](docs/ansible/cve-remediation-templates.md) - Ansible playbook templates for different CVE types
-- [package-management.md](docs/rhel/package-management.md) - RHEL package management best practices (DNF vs YUM, reboot detection)
+- [cve-remediation-templates.md](references/ansible/cve-remediation-templates.md) - Ansible playbook templates for different CVE types
+- [package-management.md](references/rhel/package-management.md) - RHEL package management best practices (DNF vs YUM, reboot detection)
 
 ## Critical: Human-in-the-Loop Requirements
 

@@ -57,9 +57,9 @@ Do NOT use when:
    - Include server prefix
 
 4. **Documentation consulted** - Look for Read tool calls on documentation files
-   - Pattern: Files under `rh-sre/docs/` or `rh-sre/skills/*/SKILL.md`
-   - Extract only from `docs/` onwards
-   - Example: `/path/to/rh-sre/docs/ansible/playbook-templates.md` → `docs/ansible/playbook-templates.md`
+   - Pattern: Files under `rh-sre/references/` or `rh-sre/skills/*/SKILL.md`
+   - Extract only from `references/` onwards
+   - Example: `/path/to/rh-sre/references/ansible/playbook-templates.md` → `references/ansible/playbook-templates.md`
    - Example: `/path/to/rh-sre/skills/fleet-inventory/SKILL.md` → `skills/fleet-inventory/SKILL.md`
    - Include "I consulted [filename]" statements in conversation
 

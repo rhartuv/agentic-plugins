@@ -173,7 +173,7 @@ Confirm: yes/no/modify
 #### 5a. Diagnostic Workflow (ErrorUnschedulable)
 
 **CRITICAL: Document Consultation FIRST:**
-1. Read [scheduling-errors.md](docs/troubleshooting/scheduling-errors.md) using Read tool
+1. Read [scheduling-errors.md](references/troubleshooting/scheduling-errors.md) using Read tool
 2. Output: "I detected ErrorUnschedulable. I consulted [scheduling-errors.md] to understand diagnosis strategies."
 
 **Gather diagnostics:**
@@ -298,11 +298,11 @@ Troubleshooting: See Common Issues
 - `vm-lifecycle-manager` - Start VMs | `vm-inventory` - List VMs | `vm-delete` - Delete VMs | `vm-clone` - Clone VMs | `vm-snapshot-create` - Snapshot VMs
 
 ### Reference Documentation
-- [scheduling-errors.md](docs/troubleshooting/scheduling-errors.md) - ErrorUnschedulable (consulted Step 5a)
-- [storage-errors.md](docs/troubleshooting/storage-errors.md) - ErrorDataVolumeNotReady
-- [network-errors.md](docs/troubleshooting/network-errors.md) - Network failures
-- [runtime-errors.md](docs/troubleshooting/runtime-errors.md) - CrashLoopBackOff
-- [Troubleshooting INDEX](docs/troubleshooting/INDEX.md) - Full error index
+- [scheduling-errors.md](references/troubleshooting/scheduling-errors.md) - ErrorUnschedulable (consulted Step 5a)
+- [storage-errors.md](references/troubleshooting/storage-errors.md) - ErrorDataVolumeNotReady
+- [network-errors.md](references/troubleshooting/network-errors.md) - Network failures
+- [runtime-errors.md](references/troubleshooting/runtime-errors.md) - CrashLoopBackOff
+- [Troubleshooting INDEX](references/troubleshooting/INDEX.md) - Full error index
 - [OpenShift Virt Docs](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html-single/virtualization/index)
 - [KubeVirt API](https://kubevirt.io/api-reference/)
 - [OpenShift MCP](https://github.com/openshift/openshift-mcp-server)

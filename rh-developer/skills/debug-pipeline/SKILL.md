@@ -43,7 +43,7 @@ Use this skill when OpenShift Pipelines (Tekton) fail, hang, or produce unexpect
 
 ## Critical: Human-in-the-Loop Requirements
 
-See [Human-in-the-Loop Requirements](docs/human-in-the-loop.md) for mandatory checkpoint behavior.
+See [Human-in-the-Loop Requirements](references/human-in-the-loop.md) for mandatory checkpoint behavior.
 
 ## Workflow
 
@@ -290,7 +290,7 @@ Select an option:
 
 ## Pipeline Failure Reference
 
-For failure categories, error patterns, and troubleshooting decision trees, see [docs/debugging-patterns.md](docs/debugging-patterns.md) (sections: Pipeline/Tekton Failure Patterns, Common Tekton Error Messages).
+For failure categories, error patterns, and troubleshooting decision trees, see [references/debugging-patterns.md](references/debugging-patterns.md) (sections: Pipeline/Tekton Failure Patterns, Common Tekton Error Messages).
 
 ## Dependencies
 
@@ -304,5 +304,5 @@ For failure categories, error patterns, and troubleshooting decision trees, see 
 - `/validate-environment` - To verify OpenShift and pipeline operator setup
 
 ### Reference Documentation
-- [docs/debugging-patterns.md](docs/debugging-patterns.md) - Common error patterns and pipeline troubleshooting trees
-- [docs/prerequisites.md](docs/prerequisites.md) - Required tools (oc), cluster access verification
+- [references/debugging-patterns.md](references/debugging-patterns.md) - Common error patterns and pipeline troubleshooting trees
+- [references/prerequisites.md](references/prerequisites.md) - Required tools (oc), cluster access verification

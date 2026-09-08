@@ -104,8 +104,8 @@ Proceeding with fleet inventory query...
 ### Step 1: Retrieve System Inventory
 
 **Document Consultation** (REQUIRED - Execute FIRST):
-1. **Action**: Read [insights-api.md](docs/insights/insights-api.md) using the Read tool to understand `inventory__list_hosts` response format and pagination handling
-2. **Output to user**: "I consulted [insights-api.md](docs/insights/insights-api.md) to understand the `inventory__list_hosts` response format and pagination handling."
+1. **Action**: Read [insights-api.md](references/insights/insights-api.md) using the Read tool to understand `inventory__list_hosts` response format and pagination handling
+2. **Output to user**: "I consulted [insights-api.md](references/insights/insights-api.md) to understand the `inventory__list_hosts` response format and pagination handling."
 
 **MCP Tools**: `inventory__load_inventory_dashboard` and `inventory__list_hosts` (from lightspeed-mcp)
 
@@ -142,8 +142,8 @@ Proceeding with fleet inventory query...
 ### Step 2: Filter and Organize Systems
 
 **Document Consultation** (REQUIRED - Execute FIRST):
-1. **Action**: Read [fleet-management.md](docs/insights/fleet-management.md) using the Read tool to understand fleet inventory reporting structure and best practices
-2. **Output to user**: "I consulted [fleet-management.md](docs/insights/fleet-management.md) to structure this inventory report."
+1. **Action**: Read [fleet-management.md](references/insights/fleet-management.md) using the Read tool to understand fleet inventory reporting structure and best practices
+2. **Output to user**: "I consulted [fleet-management.md](references/insights/fleet-management.md) to structure this inventory report."
 
 Apply user-requested filters and grouping. See [references/01-parameter-reference.md](references/01-parameter-reference.md) for filtering and sorting patterns.
 
@@ -252,8 +252,8 @@ Examples:
   - Use after: "Show affected systems" → "Remediate those systems"
 
 ### Reference Documentation
-- [insights-api.md](docs/insights/insights-api.md) - Red Hat Lightspeed API patterns and response formats
-- [fleet-management.md](docs/insights/fleet-management.md) - System inventory best practices and filtering strategies
+- [insights-api.md](references/insights/insights-api.md) - Red Hat Lightspeed API patterns and response formats
+- [fleet-management.md](references/insights/fleet-management.md) - System inventory best practices and filtering strategies
 
 ### Skill Orchestration Pattern
 

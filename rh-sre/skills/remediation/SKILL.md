@@ -80,7 +80,7 @@ Execute skills in this order. **MANDATORY**: Use actual Skill tool invocations, 
 
 **Sequencing (MANDATORY)**: Invoke validators **one at a time**. **Do NOT proceed to Step 1 until Step 0 is complete.** Wait for each validator to return explicit results (PASSED / FAILED / PARTIAL) before moving on. "Successfully loaded skill" alone does NOT mean validation completed—you must see the actual validation outcome.
 
-**Invocation**: Use the Skill tool for ALL sub-skill invocations (validators, cve-validation, cve-impact, system-context, playbook-generator, playbook-executor, remediation-verifier). **Do NOT use "Task Output" with the skill name as task ID**—that causes "No task found" errors (e.g. "No task found with ID: cve-validation"). See [skill-invocation.md](docs/references/skill-invocation.md).
+**Invocation**: Use the Skill tool for ALL sub-skill invocations (validators, cve-validation, cve-impact, system-context, playbook-generator, playbook-executor, remediation-verifier). **Do NOT use "Task Output" with the skill name as task ID**—that causes "No task found" errors (e.g. "No task found with ID: cve-validation"). See [skill-invocation.md](references/skill-invocation.md).
 
 **Handle result**: If validation fails, stop and provide setup instructions. If passed, proceed to Step 1. **If any skill invocation fails** (e.g. "No task found with ID: ..."): Proceed with a warning—do not block. Later steps will surface real errors if MCP is unavailable.
 
@@ -207,9 +207,9 @@ Execute skills in this order. **MANDATORY**: Use actual Skill tool invocations, 
 
 ### Reference Documentation
 - [references/01-remediation-plan-template.md](references/01-remediation-plan-template.md) - Plan format for user validation
-- [lightspeed-mcp-tool-failures.md](docs/references/lightspeed-mcp-tool-failures.md) - Backend errors (e.g. explain_cves), user-friendly message, workarounds
-- [cve-remediation-templates.md](docs/ansible/cve-remediation-templates.md)
-- [package-management.md](docs/rhel/package-management.md)
+- [lightspeed-mcp-tool-failures.md](references/lightspeed-mcp-tool-failures.md) - Backend errors (e.g. explain_cves), user-friendly message, workarounds
+- [cve-remediation-templates.md](references/ansible/cve-remediation-templates.md)
+- [package-management.md](references/rhel/package-management.md)
 
 ## Critical: Human-in-the-Loop Requirements
 
@@ -239,7 +239,7 @@ This skill requires explicit user confirmation at:
 
 **vulnerability__explain_cves**: Requires a valid `system_uuid` from inventory. Do NOT call it unless you have the resolved UUID from Step 3 (system-context) or Step 1 (cve-impact). Never pass `system_uuid: "undefined"` or placeholder values—this causes validation errors. For remediation availability at Step 2, use `get_cve` via cve-validation only.
 
-**Lightspeed tool failures**: If a tool fails with a cryptic backend error (e.g. `'dnf_modules'`), do NOT retry or expose the raw error. Use workarounds from [lightspeed-mcp-tool-failures.md](docs/references/lightspeed-mcp-tool-failures.md).
+**Lightspeed tool failures**: If a tool fails with a cryptic backend error (e.g. `'dnf_modules'`), do NOT retry or expose the raw error. Use workarounds from [lightspeed-mcp-tool-failures.md](references/lightspeed-mcp-tool-failures.md).
 
 ## Error Handling
 
@@ -247,7 +247,7 @@ This skill requires explicit user confirmation at:
 - **No Remediation Available**: "CVE-XXXX-YYYY doesn't have an automated remediation playbook. Manual patching required."
 - **System Not Found**: "System XXXX is not in the Lightspeed inventory. Please ensure it's registered."
 - **Batch Partial Failure**: "Successfully processed X of Y CVEs. Failed: [list]. Reason: [explanations]"
-- **Lightspeed tool failures** (e.g. explain_cves `'dnf_modules'`): Do NOT show raw error. Use user-friendly message and workaround from [lightspeed-mcp-tool-failures.md](docs/references/lightspeed-mcp-tool-failures.md).
+- **Lightspeed tool failures** (e.g. explain_cves `'dnf_modules'`): Do NOT show raw error. Use user-friendly message and workaround from [lightspeed-mcp-tool-failures.md](references/lightspeed-mcp-tool-failures.md).
 
 ## Output Format
 

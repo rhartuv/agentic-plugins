@@ -72,7 +72,7 @@ export AI_OBSERVABILITY_MCP_URL=https://$(oc get route aiobs-mcp-server-route -n
 | NVIDIA NIM | Optimized inference with TensorRT-LLM on NVIDIA GPUs | `/nim-setup` |
 | Caikit+TGIS | Models in Caikit format with gRPC API | Model conversion |
 
-See [supported-runtimes.md](skills/serving-runtime-config/docs/references/supported-runtimes.md) for detailed runtime comparison.
+See [supported-runtimes.md](skills/serving-runtime-config/references/supported-runtimes.md) for detailed runtime comparison.
 
 ## Supported Models
 
@@ -86,4 +86,4 @@ Common models with known hardware profiles:
 | Mixtral 8x7B | 46.7B MoE | 2x A100 80GB | vLLM |
 | Mistral 7B | 7B | 1x (16GB VRAM) | vLLM |
 
-See [known-model-profiles.md](skills/model-deploy/docs/references/known-model-profiles.md) for full profiles. Models not listed are supported via live documentation lookup.
+See [known-model-profiles.md](skills/model-deploy/references/known-model-profiles.md) for full profiles. Models not listed are supported via live documentation lookup.

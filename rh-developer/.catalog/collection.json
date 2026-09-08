@@ -188,43 +188,43 @@
   "resources": [
     {
       "description": "OpenShift platform guides for developers and administrators.",
-      "embedded_doc": "skills/validate-environment/docs/prerequisites.md",
+      "embedded_doc": "skills/validate-environment/references/prerequisites.md",
       "title": "OpenShift documentation",
       "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/"
     },
     {
       "description": "Helm install, upgrade, and chart authoring.",
-      "embedded_doc": "skills/recommend-image/docs/dynamic-validation.md",
+      "embedded_doc": "skills/recommend-image/references/dynamic-validation.md",
       "title": "Helm documentation",
       "url": "https://helm.sh/docs/"
     },
     {
       "description": "OpenShift builds and S2I concepts.",
-      "embedded_doc": "skills/detect-project/docs/builder-images.md",
+      "embedded_doc": "skills/detect-project/references/builder-images.md",
       "title": "Source-to-Image (S2I)",
       "url": "https://docs.openshift.com/container-platform/latest/cicd/builds/understanding-image-builds.html"
     },
     {
       "description": "UBI and base image guidance.",
-      "embedded_doc": "skills/recommend-image/docs/image-selection-criteria.md",
+      "embedded_doc": "skills/recommend-image/references/image-selection-criteria.md",
       "title": "Red Hat Universal Base Images",
       "url": "https://developers.redhat.com/products/rhel/ubi"
     },
     {
       "description": "Local container workflows used by the pack.",
-      "embedded_doc": "skills/debug-build/docs/debugging-patterns.md",
+      "embedded_doc": "skills/debug-build/references/debugging-patterns.md",
       "title": "Podman",
       "url": "https://docs.podman.io/"
     },
     {
       "description": "Pack policy for confirmations and destructive actions.",
-      "embedded_doc": "skills/validate-environment/docs/human-in-the-loop.md",
+      "embedded_doc": "skills/validate-environment/references/human-in-the-loop.md",
       "title": "Human-in-the-loop (pack)",
       "url": "https://github.com/RHEcosystemAppEng/agentic-plugins"
     },
     {
       "description": "SSH/systemd patterns for `/rhel-deploy`.",
-      "embedded_doc": "skills/rhel-deploy/docs/rhel-deployment.md",
+      "embedded_doc": "skills/rhel-deploy/references/rhel-deployment.md",
       "title": "RHEL deployment notes (pack)",
       "url": "https://github.com/RHEcosystemAppEng/agentic-plugins"
     }

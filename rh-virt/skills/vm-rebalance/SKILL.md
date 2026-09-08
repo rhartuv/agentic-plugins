@@ -134,7 +134,7 @@ Orchestrate VM migrations across OpenShift cluster nodes for load balancing, mai
 
 **Error for live migration**: If RWO → "Cannot live migrate. Use cold migration (brief downtime ~30-60s)."
 
-**Reference**: [references/live-migration-best-practices.md](./references/live-migration-best-practices.md)
+**Reference**: [references/live-migration-best-practices.md](references/live-migration-best-practices.md)
 
 ### Validation 4: Verify Target Node Exists
 
@@ -144,7 +144,7 @@ Orchestrate VM migrations across OpenShift cluster nodes for load balancing, mai
 
 **Errors**: Not found → "Node doesn't exist" | Not Ready → "Choose different target" | Cordoned → "Uncordon or choose different target"
 
-**Reference**: [scheduling-errors.md](docs/troubleshooting/scheduling-errors.md)
+**Reference**: [scheduling-errors.md](references/troubleshooting/scheduling-errors.md)
 
 ## Node Selection for Automatic Rebalancing
 
@@ -167,7 +167,7 @@ Filter where ALL true:
 
 **Cold Migration**: Brief downtime (~30-60s). Works with any storage. Stop VM → Update placement → Start on target.
 
-**Reference**: [references/live-migration-best-practices.md](./references/live-migration-best-practices.md)
+**Reference**: [references/live-migration-best-practices.md](references/live-migration-best-practices.md)
 
 ## Common Plan Visualization
 
@@ -273,22 +273,22 @@ If any node's CPU or Memory percentage **exceeds 100%** after rebalancing:
 ### Error 1: Live Migration Fails - Storage Not RWX
 **Symptom**: "Cannot live migrate: PVC access mode is ReadWriteOnce"
 **Solution**: Use cold migration OR convert PVC to RWX
-**Reference**: [storage-errors.md](docs/troubleshooting/storage-errors.md)
+**Reference**: [storage-errors.md](references/troubleshooting/storage-errors.md)
 
 ### Error 2: VM Stuck ErrorUnschedulable After Cold Migration
 **Symptom**: "VM cannot be scheduled: ErrorUnschedulable"
 **Solution**: Check node capacity (`nodes_top`), verify no blocking taints (`resources_get` Node), add tolerations, choose different target, remove nodeSelector
-**Reference**: [scheduling-errors.md](docs/troubleshooting/scheduling-errors.md)
+**Reference**: [scheduling-errors.md](references/troubleshooting/scheduling-errors.md)
 
 ### Error 3: Live Migration Times Out
 **Symptom**: "Migration exceeded timeout: 150s per GiB"
 **Solution**: Retry migration, reduce VM workload, use cold migration, increase timeout in HyperConverged CR
-**Reference**: [references/performance-tuning.md](./references/performance-tuning.md)
+**Reference**: [references/performance-tuning.md](references/performance-tuning.md)
 
 ### Error 4: Migration Rejected - Cluster Limit Reached
 **Symptom**: "Migration rejected: cluster limit reached (5 concurrent)"
 **Solution**: Wait for migrations to complete (`resources_list` VirtualMachineInstanceMigration), retry, migrate sequentially, increase limit
-**Reference**: [references/performance-tuning.md](./references/performance-tuning.md)
+**Reference**: [references/performance-tuning.md](references/performance-tuning.md)
 
 ### Error 5: RBAC Permission Denied
 **Symptom**: "Forbidden: User cannot create VirtualMachineInstanceMigration"
@@ -297,7 +297,7 @@ If any node's CPU or Memory percentage **exceeds 100%** after rebalancing:
 ### Error 6: Network Saturation
 **Symptom**: Multiple migrations slow/fail, high network utilization
 **Solution**: Reduce concurrent migrations, set bandwidth limit, use dedicated migration network
-**Reference**: [references/performance-tuning.md](./references/performance-tuning.md)
+**Reference**: [references/performance-tuning.md](references/performance-tuning.md)
 
 ### Error 7: Resource Version Conflict During Cold Migration
 **Symptom**: "Apply failed: conflict with 'kubernetes-mcp-server' using .spec.runStrategy"
@@ -326,16 +326,16 @@ If any node's CPU or Memory percentage **exceeds 100%** after rebalancing:
 - [REBALANCE_AUTOMATIC.md](./REBALANCE_AUTOMATIC.md) - AI-driven rebalancing
 
 **Performance and Best Practices**:
-- [references/live-migration-best-practices.md](./references/live-migration-best-practices.md) - Configuration, requirements, networks
-- [references/performance-tuning.md](./references/performance-tuning.md) - Right-sizing, overcommit, bandwidth
-- [references/anti-patterns.md](./references/anti-patterns.md) - Common mistakes
-- [references/production-considerations.md](./references/production-considerations.md) - HA, capacity, security
+- [references/live-migration-best-practices.md](references/live-migration-best-practices.md) - Configuration, requirements, networks
+- [references/performance-tuning.md](references/performance-tuning.md) - Right-sizing, overcommit, bandwidth
+- [references/anti-patterns.md](references/anti-patterns.md) - Common mistakes
+- [references/production-considerations.md](references/production-considerations.md) - HA, capacity, security
 
 **Troubleshooting**:
-- [Troubleshooting INDEX](docs/troubleshooting/INDEX.md) - Master index
-- [scheduling-errors.md](docs/troubleshooting/scheduling-errors.md) - ErrorUnschedulable, taints
-- [storage-errors.md](docs/troubleshooting/storage-errors.md) - PVC access modes
-- [lifecycle-errors.md](docs/troubleshooting/lifecycle-errors.md) - VM start/stop
+- [Troubleshooting INDEX](references/troubleshooting/INDEX.md) - Master index
+- [scheduling-errors.md](references/troubleshooting/scheduling-errors.md) - ErrorUnschedulable, taints
+- [storage-errors.md](references/troubleshooting/storage-errors.md) - PVC access modes
+- [lifecycle-errors.md](references/troubleshooting/lifecycle-errors.md) - VM start/stop
 
 **Official Documentation**:
 - [OpenShift Virt - Live Migration](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html-single/virtualization/index#virt-live-migration)

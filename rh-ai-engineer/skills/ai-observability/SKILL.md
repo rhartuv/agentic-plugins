@@ -411,8 +411,8 @@ See [Prerequisites](#prerequisites) for the complete list of required and option
 - `/model-monitor` - TrustyAI bias/drift metrics (complements infrastructure observability)
 
 ### Reference Documentation
-- [known-model-profiles.md](docs/references/known-model-profiles.md) - Expected performance baselines for common models
-- [supported-runtimes.md](docs/references/supported-runtimes.md) - Runtime capabilities and known limitations
+- [known-model-profiles.md](references/known-model-profiles.md) - Expected performance baselines for common models
+- [supported-runtimes.md](references/supported-runtimes.md) - Runtime capabilities and known limitations
 
 ## Critical: Human-in-the-Loop Requirements
 

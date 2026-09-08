@@ -1,1 +1,0 @@
-../../../mcp-aap-validator/docs/rhel/selinux-context.md

@@ -53,7 +53,7 @@ Do NOT use when:
 - Reports structured analysis with Red Hat citations
 
 **Document Consultation** (performed by the skill):
-The job-failure-analyzer skill reads [job-troubleshooting.md](docs/aap/job-troubleshooting.md) and reports its consultation.
+The job-failure-analyzer skill reads [job-troubleshooting.md](references/aap/job-troubleshooting.md) and reports its consultation.
 
 ### 3. Correlate with Host Facts
 
@@ -65,7 +65,7 @@ The job-failure-analyzer skill reads [job-troubleshooting.md](docs/aap/job-troub
 - Reports correlation findings
 
 **Document Consultation** (performed by the skill):
-The host-fact-inspector skill reads [job-troubleshooting.md](docs/aap/job-troubleshooting.md) for correlation patterns.
+The host-fact-inspector skill reads [job-troubleshooting.md](references/aap/job-troubleshooting.md) for correlation patterns.
 
 ### 4. Provide Resolution Advisory
 
@@ -76,7 +76,7 @@ The host-fact-inspector skill reads [job-troubleshooting.md](docs/aap/job-troubl
 - Identifies related governance gaps
 
 **Document Consultation** (performed by the skill):
-The resolution-advisor skill reads [error-classification.md](docs/references/error-classification.md) and [job-troubleshooting.md](docs/aap/job-troubleshooting.md).
+The resolution-advisor skill reads [error-classification.md](references/error-classification.md) and [job-troubleshooting.md](references/aap/job-troubleshooting.md).
 
 ### 5. Generate Execution Summary
 
@@ -104,8 +104,8 @@ The resolution-advisor skill reads [error-classification.md](docs/references/err
 - `governance-assessor` - If root cause points to platform governance gaps
 
 ### Reference Documentation
-- [job-troubleshooting.md](docs/aap/job-troubleshooting.md) - Event parsing, failure patterns, correlation
-- [error-classification.md](docs/references/error-classification.md) - Error taxonomy and resolution paths
+- [job-troubleshooting.md](references/aap/job-troubleshooting.md) - Event parsing, failure patterns, correlation
+- [error-classification.md](references/error-classification.md) - Error taxonomy and resolution paths
 
 ## Example Usage
 

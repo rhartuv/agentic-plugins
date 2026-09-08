@@ -9,7 +9,7 @@ help:
 	@echo "  validate-structure            - Structure, links, compliance, MCP tools (no per-skill tier checks)"
 	@echo "  validate-collection-schema    - Schema + roster + banners (subset of compliance)"
 	@echo "  validate-collection-compliance - Full .catalog compliance (includes collection.json drift)"
-	@echo "  validate-compass-manifests     - Compass catalog-info.yaml roster and bidirectional refs"
+	@echo "  validate-compass-manifests     - Compass manifests, roster, refs, and skill references/ layout"
 	@echo "  validate-skill-design         - Validate all skills (use PACK=rh-sre for a specific pack)"
 	@echo "  validate-skill-design-changed - Validate only changed skills (staged + unstaged, for local dev)"
 	@echo "  validate-mcp-tools            - Validate allowed-tools against live MCP servers (requires podman)"

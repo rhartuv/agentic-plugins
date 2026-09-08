@@ -1,1 +1,0 @@
-../../detect-project/docs/builder-images.md

@@ -126,7 +126,7 @@ TaskCreate(subject: "#12 Retrieve credentials", description: "Download kubeconfi
 
 **Prerequisites Check**: Execute verification from Prerequisites section.
 
-**On Failure**: If prerequisites fail, consult [troubleshooting.md](docs/troubleshooting.md) for common setup issues, then stop and report error to user.
+**On Failure**: If prerequisites fail, consult [troubleshooting.md](references/troubleshooting.md) for common setup issues, then stop and report error to user.
 
 ---
 
@@ -142,11 +142,11 @@ Use AskUserQuestion to collect configuration:
    - **SNO**: Platform is automatically set to "none" (Red Hat API requirement) - DO NOT ask user
    - **HA**: Ask user to select: baremetal, vsphere, nutanix, or oci
 3. **Version**: Call `list_versions`, show "Full Support" versions
-4. **Cluster Name**: Ask "Cluster name? (or type your custom name directly)" - Suggest based on context (e.g., "prod-ocp", "edge-site-01", "dev-cluster") OR user types custom name. Validate: 1-54 chars, lowercase/numbers/hyphens, starts with letter ([validation](docs/input-validation-guide.md#cluster-name))
-5. **Base Domain**: Ask "Base domain? (e.g., example.com)" - User types domain directly. Validate: valid DNS format ([validation](docs/input-validation-guide.md#base-domain))
+4. **Cluster Name**: Ask "Cluster name? (or type your custom name directly)" - Suggest based on context (e.g., "prod-ocp", "edge-site-01", "dev-cluster") OR user types custom name. Validate: 1-54 chars, lowercase/numbers/hyphens, starts with letter ([validation](references/input-validation-guide.md#cluster-name))
+5. **Base Domain**: Ask "Base domain? (e.g., example.com)" - User types domain directly. Validate: valid DNS format ([validation](references/input-validation-guide.md#base-domain))
 6. **CPU Arch**: x86_64 (default), aarch64, ppc64le, s390x
 7. **SSH Key**: Ask "How to provide?" Options: Generate new (recommended, save to cluster folder) | Existing file (path) | Paste | ⚠️ None (warn, require "PROCEED WITHOUT SSH" confirmation)
-8. **Hardware**: Confirm servers meeting [host requirements](docs/host-requirements.md) are ready
+8. **Hardware**: Confirm servers meeting [host requirements](references/host-requirements.md) are ready
 
 **Create folder**: `/tmp/{cluster_name}.{base_domain}/` (permissions 700), display location
 
@@ -158,7 +158,7 @@ Use AskUserQuestion to collect configuration:
 
 Ask: "How to configure networking?" Options: 1) Default (auto CIDRs, DHCP, HA: ask VIPs) | 2) Custom CIDRs (ask each, validate) | 3) Static IPs (Simple/Advanced/Manual modes, use `generate_nmstate_yaml`) | 4) Describe requirements (AI infers from text like "192.168.1.0/24, 100 pods")
 
-**Reference**: [Networking Guide](docs/networking.md) has detailed examples for all 4 options
+**Reference**: [Networking Guide](references/networking.md) has detailed examples for all 4 options
 
 ---
 
@@ -167,7 +167,7 @@ Ask: "How to configure networking?" Options: 1) Default (auto CIDRs, DHCP, HA: a
 
 Display summary: Cluster Name, Type (SNO/HA), Version, Platform, Architecture, Domain, VIPs (if applicable), Networking (DHCP/Static)
 
-**Reference**: [Examples](docs/examples.md)
+**Reference**: [Examples](references/examples.md)
 
 ---
 
@@ -211,7 +211,7 @@ Ask: "Review configuration. Ready to create cluster definition?"
 - **Parameters**: `{cluster_id, nmstate_yaml, mac_address}`
 - **Verify**: Call `list_static_network_config`
 
-**Reference**: [Providers](docs/providers.md), [Networking](docs/networking.md)
+**Reference**: [Providers](references/providers.md), [Networking](references/networking.md)
 
 ---
 
@@ -270,7 +270,7 @@ Display: "Waiting for you to boot hosts. When ready, say 'check for hosts'."
 
 **If insufficient**: Ask to wait/proceed/abort.
 
-**Reference**: [Host Requirements](docs/host-requirements.md)
+**Reference**: [Host Requirements](references/host-requirements.md)
 
 ---
 
@@ -298,7 +298,7 @@ Display: "Waiting for you to boot hosts. When ready, say 'check for hosts'."
 
 **If validation fails**:
 1. Display errors from cluster_info
-2. Consult [troubleshooting.md](docs/troubleshooting.md) for cluster status meanings and validation error diagnosis
+2. Consult [troubleshooting.md](references/troubleshooting.md) for cluster status meanings and validation error diagnosis
 3. Offer options: fix/wait/abort
 
 ---
@@ -338,7 +338,7 @@ Ask: "Start installation now?"
 
 **On Error**:
 1. Display error message
-2. Consult [troubleshooting.md](docs/troubleshooting.md) for error diagnosis
+2. Consult [troubleshooting.md](references/troubleshooting.md) for error diagnosis
 3. If error is new/undocumented, note it for future documentation
 4. Offer retry/abort
 
@@ -368,7 +368,7 @@ Background monitoring? (yes/no)
 **If manual**: Wait for "check status", then call `cluster_info`, display progress, repeat until "installed" or "error"
 
 **If installation fails**:
-1. Consult [troubleshooting.md](docs/troubleshooting.md) for cluster lifecycle states and common installation errors
+1. Consult [troubleshooting.md](references/troubleshooting.md) for cluster lifecycle states and common installation errors
 2. Download logs (`cluster_logs_download_url`) for detailed diagnosis
 3. Offer options: diagnose errors, cleanup and retry, or manual intervention
 4. **Cleanup**: Failed cluster remains in Assisted Installer - use cluster_info to verify state before deleting or retrying with same cluster_id
@@ -385,7 +385,7 @@ Display: "Installation Completed! Cluster: {cluster_name}, Status: installed, Ti
 ### Step 17: Retrieve Credentials
 
 **Document Consultation** (REQUIRED):
-1. **Action**: Read [credentials-management.md](docs/credentials-management.md)
+1. **Action**: Read [credentials-management.md](references/credentials-management.md)
 2. **Output**: "I consulted credentials-management.md for credential download procedures."
 
 **Execute**: Follow download procedure to save kubeconfig and kubeadmin-password to `/tmp/{cluster_name}.{base_domain}/` (permissions 600)
@@ -433,7 +433,7 @@ Congratulations!
 
 **If yes**: Ask destination (default: ~/.kube/clusters/), copy folder with `cp -r`, set permissions 700, display confirmation
 
-**Reference**: [Credentials Management](docs/credentials-management.md)
+**Reference**: [Credentials Management](references/credentials-management.md)
 
 ---
 
@@ -455,27 +455,27 @@ All tools from `openshift-self-managed` MCP server:
 
 ### Reference Documentation
 **Configuration & Validation**:
-- [Input Validation Guide](docs/input-validation-guide.md) - Parameter requirements
-- [Networking](docs/networking.md) - Network configuration, VIPs, CIDR planning
-- [Static Networking Guide](docs/static-networking-guide.md) - NMState configuration
+- [Input Validation Guide](references/input-validation-guide.md) - Parameter requirements
+- [Networking](references/networking.md) - Network configuration, VIPs, CIDR planning
+- [Static Networking Guide](references/static-networking-guide.md) - NMState configuration
 
 **Platform & Infrastructure**:
-- [Providers](docs/providers.md) - Infrastructure providers (baremetal, vsphere, oci, nutanix)
-- [Platforms](docs/platforms.md) - OpenShift types (SNO, OCP, ROSA, ARO, OSD)
-- [Host Requirements](docs/host-requirements.md) - Hardware specs by cluster type
+- [Providers](references/providers.md) - Infrastructure providers (baremetal, vsphere, oci, nutanix)
+- [Platforms](references/platforms.md) - OpenShift types (SNO, OCP, ROSA, ARO, OSD)
+- [Host Requirements](references/host-requirements.md) - Hardware specs by cluster type
 
 **Post-Installation**:
-- [Credentials Management](docs/credentials-management.md) - Kubeconfig and authentication setup
-- [Identity Providers](docs/idp.md) - HTPasswd, LDAP, OIDC, GitHub authentication
-- [RBAC](docs/rbac.md) - Role-Based Access Control and Security Context Constraints
-- [Certificate Rotation](docs/certificate-rotation.md) - Certificate management and renewal
-- [Security Checklist](docs/security-checklist.md) - Post-installation security verification
-- [Storage](docs/storage.md) - Storage options by provider
-- [Examples](docs/examples.md) - Configuration examples
-- [Troubleshooting](docs/troubleshooting.md) - Common errors and resolutions
+- [Credentials Management](references/credentials-management.md) - Kubeconfig and authentication setup
+- [Identity Providers](references/idp.md) - HTPasswd, LDAP, OIDC, GitHub authentication
+- [RBAC](references/rbac.md) - Role-Based Access Control and Security Context Constraints
+- [Certificate Rotation](references/certificate-rotation.md) - Certificate management and renewal
+- [Security Checklist](references/security-checklist.md) - Post-installation security verification
+- [Storage](references/storage.md) - Storage options by provider
+- [Examples](references/examples.md) - Configuration examples
+- [Troubleshooting](references/troubleshooting.md) - Common errors and resolutions
 
 **Complete Documentation Guide**:
-- **[Documentation Index](docs/INDEX.md)** - Navigate all ocp-admin documentation (consult for topics not explicitly referenced above)
+- **[Documentation Index](references/INDEX.md)** - Navigate all ocp-admin documentation (consult for topics not explicitly referenced above)
 
 ---
 
@@ -497,4 +497,4 @@ This skill performs critical, irreversible operations requiring explicit user co
 
 **Result**: SNO deployed in ~45 min. All artifacts in `/tmp/edge-site-01.edge.local/`: kubeconfig, kubeadmin-password, SSH keys, discovery.iso, ISO URL, metadata
 
-**More Examples**: See [examples.md](docs/examples.md) for HA, static networking, multi-cluster, and air-gapped configurations.
+**More Examples**: See [examples.md](references/examples.md) for HA, static networking, multi-cluster, and air-gapped configurations.

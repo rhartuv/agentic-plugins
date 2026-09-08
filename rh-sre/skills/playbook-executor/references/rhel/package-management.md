@@ -1,0 +1,1 @@
+../../../playbook-generator/references/rhel/package-management.md

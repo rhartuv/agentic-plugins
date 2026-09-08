@@ -46,8 +46,8 @@ Do NOT use when:
 **CRITICAL**: Document consultation MUST happen BEFORE any MCP tool invocations.
 
 **Document Consultation** (REQUIRED - Execute FIRST):
-1. **Action**: Read [execution-governance.md](docs/aap/execution-governance.md) using the Read tool to understand inventory risk classification, extra_vars safety scanning, and governance controls
-2. **Output to user**: "I consulted [execution-governance.md](docs/aap/execution-governance.md) which cites Red Hat's Security Best Practices and Job Templates documentation for execution governance controls."
+1. **Action**: Read [execution-governance.md](references/aap/execution-governance.md) using the Read tool to understand inventory risk classification, extra_vars safety scanning, and governance controls
+2. **Output to user**: "I consulted [execution-governance.md](references/aap/execution-governance.md) which cites Red Hat's Security Best Practices and Job Templates documentation for execution governance controls."
 
 ### Step 2: Identify the Job Template
 
@@ -244,7 +244,7 @@ Per Red Hat's *Security Best Practices* (Ch. 15, Sec. 15.1.4): "Remove user acce
 - `execution-summary` - Audit trail
 
 ### Reference Documentation
-- [execution-governance.md](docs/aap/execution-governance.md) - Risk classification and safety scanning reference
+- [execution-governance.md](references/aap/execution-governance.md) - Risk classification and safety scanning reference
 
 ## Example Usage
 

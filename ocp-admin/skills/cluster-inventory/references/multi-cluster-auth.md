@@ -1,0 +1,1 @@
+../../cluster-report/references/multi-cluster-auth.md

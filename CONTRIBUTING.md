@@ -62,6 +62,7 @@ Both tiers must pass before submitting a PR.
 
 - [ ] Tier 1 validation passed (agentskills.io spec)
 - [ ] Tier 2 validation passed (design principles)
+- [ ] Compass manifests and references layout validated: `make validate-compass-manifests`
 - [ ] Skill doc links validated: `uv run python scripts/validate_skill_doc_links.py <pack>/skills/<skill-name>/SKILL.md`
 - [ ] Skill doc tree links validated: `uv run python scripts/validate_docs_tree_links.py <pack>/skills/<skill-name>/SKILL.md`
 - [ ] Pack AGENTS.md intent routing updated

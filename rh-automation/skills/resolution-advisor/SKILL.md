@@ -42,9 +42,9 @@ Do NOT use when:
 **CRITICAL**: Document consultation MUST happen BEFORE providing recommendations.
 
 **Document Consultation** (REQUIRED - Execute FIRST):
-1. **Action**: Read [error-classification.md](docs/references/error-classification.md) using the Read tool to understand the error taxonomy, classification decision tree, and resolution path mapping
-2. **Action**: Read [job-troubleshooting.md](docs/aap/job-troubleshooting.md) using the Read tool to understand failure pattern details and Red Hat source citations
-3. **Output to user**: "I consulted [error-classification.md](docs/references/error-classification.md) and [job-troubleshooting.md](docs/aap/job-troubleshooting.md) to determine the resolution path based on Red Hat's troubleshooting guidance."
+1. **Action**: Read [error-classification.md](references/error-classification.md) using the Read tool to understand the error taxonomy, classification decision tree, and resolution path mapping
+2. **Action**: Read [job-troubleshooting.md](references/aap/job-troubleshooting.md) using the Read tool to understand failure pattern details and Red Hat source citations
+3. **Output to user**: "I consulted [error-classification.md](references/error-classification.md) and [job-troubleshooting.md](references/aap/job-troubleshooting.md) to determine the resolution path based on Red Hat's troubleshooting guidance."
 
 ### Step 2: Determine Resolution Path
 
@@ -125,8 +125,8 @@ If the failure correlates with a governance readiness domain, recommend the user
 - `execution-summary` - Audit trail
 
 ### Reference Documentation
-- [error-classification.md](docs/references/error-classification.md) - Error taxonomy and resolution paths
-- [job-troubleshooting.md](docs/aap/job-troubleshooting.md) - Failure patterns and Red Hat citations
+- [error-classification.md](references/error-classification.md) - Error taxonomy and resolution paths
+- [job-troubleshooting.md](references/aap/job-troubleshooting.md) - Failure patterns and Red Hat citations
 
 ## Example Usage
 

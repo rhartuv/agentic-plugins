@@ -244,8 +244,8 @@ Use `resources_get` on DataVolume, check `status.phase` (Pending/Succeeded/Faile
 **Document Consultation** (OPTIONAL - when cloning fails):
 - **When to consult**: Storage cloning fails, VM creation fails, PVC clone not supported, storage class issues
 - **When NOT to consult**: VM already exists, RBAC errors, namespace not found (clear causes)
-- **Action**: Read [storage-errors.md](docs/troubleshooting/storage-errors.md) for VM cloning failures, storage provisioning, DataVolume errors
-- **Output to user**: "I consulted [storage-errors.md](docs/troubleshooting/storage-errors.md) to understand potential causes."
+- **Action**: Read [storage-errors.md](references/troubleshooting/storage-errors.md) for VM cloning failures, storage provisioning, DataVolume errors
+- **Output to user**: "I consulted [storage-errors.md](references/troubleshooting/storage-errors.md) to understand potential causes."
 
 ```markdown
 ## ❌ VM Cloning Failed
@@ -260,7 +260,7 @@ Use `resources_get` on DataVolume, check `status.phase` (Pending/Succeeded/Faile
 - PVC clone not supported - Storage class doesn't support cloning
 - Source VM still running - Some storage backends require source VM stopped
 
-**Troubleshooting** (see [storage-errors.md](docs/troubleshooting/storage-errors.md)):
+**Troubleshooting** (see [storage-errors.md](references/troubleshooting/storage-errors.md)):
 1. Check storage quota: `resources_list` for ResourceQuota in target namespace
 2. Check permissions: `resources_list` to verify RBAC (note: `oc auth can-i` has no MCP equivalent)
 3. Check storage class: `resources_get` for StorageClass config, `resources_list` for available classes
@@ -327,8 +327,8 @@ Allow modifications during clone: instance type/size, storage size, network conf
 - `vm-delete` - Clean up failed clones or unwanted copies
 
 ### Reference Documentation
-- [storage-errors.md](docs/troubleshooting/storage-errors.md) - VM cloning failure scenarios, storage provisioning issues, and DataVolume cloning errors (optionally consulted when cloning operations fail)
-- [Troubleshooting INDEX](docs/troubleshooting/INDEX.md) - Navigation hub for discovering additional error categories when encountering unexpected issues outside the categories above
+- [storage-errors.md](references/troubleshooting/storage-errors.md) - VM cloning failure scenarios, storage provisioning issues, and DataVolume cloning errors (optionally consulted when cloning operations fail)
+- [Troubleshooting INDEX](references/troubleshooting/INDEX.md) - Navigation hub for discovering additional error categories when encountering unexpected issues outside the categories above
 - [OpenShift Virtualization Cloning](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html-single/virtualization/index#virt/virtual_machines/cloning_vms/virt-cloning-vm.html)
 - [DataVolume Cloning](https://github.com/kubevirt/containerized-data-importer/blob/main/doc/datavolumes.md#cloning)
 - [KubeVirt VirtualMachine API](https://kubevirt.io/api-reference/)

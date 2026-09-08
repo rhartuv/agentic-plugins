@@ -60,7 +60,7 @@ This skill uses `openshift-administration` MCP server exclusively. This server p
 
 **Required Environment Variables**: `KUBECONFIG` — must contain at least one cluster context. Two or more recommended for comparison.
 
-**Multi-Cluster Setup**: For large-scale deployments using service account tokens instead of interactive `oc login`, see [multi-cluster-auth.md](docs/multi-cluster-auth.md) and the [build-kubeconfig.py](scripts/build-kubeconfig.py) helper script.
+**Multi-Cluster Setup**: For large-scale deployments using service account tokens instead of interactive `oc login`, see [multi-cluster-auth.md](references/multi-cluster-auth.md) and the [build-kubeconfig.py](scripts/build-kubeconfig.py) helper script.
 
 **Helper Scripts** (Python 3, stdlib only — auditable, do not reimplement):
 - [`assemble.py`](scripts/assemble.py) — resolves `$file` references into complete raw data JSON
@@ -328,11 +328,11 @@ Render the structured JSON output as markdown using this template:
 
 ### Operational Alerts
 
-⚠️ **etcd**: If any cluster reports etcd fragmentation ratio > 4.0 or DB size approaching quota, see [etcd-maintenance.md](docs/etcd-maintenance.md) for defragmentation procedure.
+⚠️ **etcd**: If any cluster reports etcd fragmentation ratio > 4.0 or DB size approaching quota, see [etcd-maintenance.md](references/etcd-maintenance.md) for defragmentation procedure.
 
-⚠️ **PVC Capacity**: If any PVC usage exceeds 80% or `predict_linear` forecasts capacity exhaustion within 24h, see [pvc-capacity-planning.md](docs/pvc-capacity-planning.md) for expansion workflow.
+⚠️ **PVC Capacity**: If any PVC usage exceeds 80% or `predict_linear` forecasts capacity exhaustion within 24h, see [pvc-capacity-planning.md](references/pvc-capacity-planning.md) for expansion workflow.
 
-⚠️ **Database Connections**: If PostgreSQL active connections exceed 80% of `max_connections`, see [database-connection-management.md](docs/database-connection-management.md) for saturation diagnosis and connection pooling.
+⚠️ **Database Connections**: If PostgreSQL active connections exceed 80% of `max_connections`, see [database-connection-management.md](references/database-connection-management.md) for saturation diagnosis and connection pooling.
 ```
 
 ### Step 5: Cleanup
@@ -384,12 +384,12 @@ Would you like to:
 - `/cluster-inventory` - List and inspect individual clusters
 
 ### Reference Documentation
-- [Credentials Management](docs/credentials-management.md) - KUBECONFIG setup and multi-cluster contexts
-- [Multi-Cluster Auth](docs/multi-cluster-auth.md) - Service account token configuration for large deployments
-- [etcd Maintenance](docs/etcd-maintenance.md) - Consult when etcd fragmentation ratio appears elevated in cluster metrics
-- [PVC Capacity Planning](docs/pvc-capacity-planning.md) - Consult when PVC usage is high or approaching capacity
-- [Database Connection Management](docs/database-connection-management.md) - Consult when PostgreSQL connection usage is high
-- **[Documentation Index](docs/INDEX.md)** - Complete guide to all ocp-admin documentation (consult for topics not explicitly referenced above)
+- [Credentials Management](references/credentials-management.md) - KUBECONFIG setup and multi-cluster contexts
+- [Multi-Cluster Auth](references/multi-cluster-auth.md) - Service account token configuration for large deployments
+- [etcd Maintenance](references/etcd-maintenance.md) - Consult when etcd fragmentation ratio appears elevated in cluster metrics
+- [PVC Capacity Planning](references/pvc-capacity-planning.md) - Consult when PVC usage is high or approaching capacity
+- [Database Connection Management](references/database-connection-management.md) - Consult when PostgreSQL connection usage is high
+- **[Documentation Index](references/INDEX.md)** - Complete guide to all ocp-admin documentation (consult for topics not explicitly referenced above)
 
 ## Error Handling
 

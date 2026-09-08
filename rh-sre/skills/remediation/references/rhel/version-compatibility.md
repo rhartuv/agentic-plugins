@@ -1,0 +1,1 @@
+../../../mcp-aap-validator/references/rhel/version-compatibility.md

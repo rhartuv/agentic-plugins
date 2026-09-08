@@ -214,7 +214,7 @@ Report: `🗑️ Deleting storage... ✓ DV deleted (storage freed) ✓ PVC dele
 
 **Partial failure (storage failed):**
 
-**OPTIONAL**: Read [storage-errors.md](docs/troubleshooting/storage-errors.md) for PVC cleanup. Output: "Consulted storage-errors.md for failure."
+**OPTIONAL**: Read [storage-errors.md](references/troubleshooting/storage-errors.md) for PVC cleanup. Output: "Consulted storage-errors.md for failure."
 
 ```markdown
 ## ⚠️ Partial Deletion
@@ -224,7 +224,7 @@ Report: `🗑️ Deleting storage... ✓ DV deleted (storage freed) ✓ PVC dele
 
 **Complete failure:**
 
-**OPTIONAL**: Read [lifecycle-errors.md](docs/troubleshooting/lifecycle-errors.md) for deletion failures. Output: "Consulted lifecycle-errors.md for failure causes."
+**OPTIONAL**: Read [lifecycle-errors.md](references/troubleshooting/lifecycle-errors.md) for deletion failures. Output: "Consulted lifecycle-errors.md for failure causes."
 
 ```markdown
 ## ❌ VM Deletion Failed
@@ -244,11 +244,11 @@ Report: `🗑️ Deleting storage... ✓ DV deleted (storage freed) ✓ PVC dele
 
 ### Issue 3: VM Has Finalizers
 **Error**: "VM deletion blocked by finalizers"
-**Solution**: Consult [lifecycle-errors.md](docs/troubleshooting/lifecycle-errors.md) "VM Stuck in Terminating" for MCP-first approach using `resources_get` to check finalizers, `resources_create_or_update` to remove if needed.
+**Solution**: Consult [lifecycle-errors.md](references/troubleshooting/lifecycle-errors.md) "VM Stuck in Terminating" for MCP-first approach using `resources_get` to check finalizers, `resources_create_or_update` to remove if needed.
 
 ### Issue 4: Storage Deletion Failure
 **Error**: "PVC deletion failed: resource in use"
-**Solution**: Verify VM deleted first. Consult [storage-errors.md](docs/troubleshooting/storage-errors.md) for MCP-first diagnostics using `pods_list_in_namespace` to check mounts, `resources_get` for PVC status.
+**Solution**: Verify VM deleted first. Consult [storage-errors.md](references/troubleshooting/storage-errors.md) for MCP-first diagnostics using `pods_list_in_namespace` to check mounts, `resources_get` for PVC status.
 
 ### Issue 5: Confirmation Mismatch
 **Error**: "Names do not match"
@@ -275,9 +275,9 @@ Report: `🗑️ Deleting storage... ✓ DV deleted (storage freed) ✓ PVC dele
 - `vm-lifecycle-manager` - Stop VMs | `vm-inventory` - List VMs | `vm-create` - Create VMs | `vm-clone` - Clone VMs
 
 ### Reference Documentation
-- [lifecycle-errors.md](docs/troubleshooting/lifecycle-errors.md) - Deletion failures, finalizers, stuck Terminating (consulted on deletion failure)
-- [storage-errors.md](docs/troubleshooting/storage-errors.md) - Storage deletion, PVC cleanup (consulted on storage failure)
-- [Troubleshooting INDEX](docs/troubleshooting/INDEX.md) - Full error index
+- [lifecycle-errors.md](references/troubleshooting/lifecycle-errors.md) - Deletion failures, finalizers, stuck Terminating (consulted on deletion failure)
+- [storage-errors.md](references/troubleshooting/storage-errors.md) - Storage deletion, PVC cleanup (consulted on storage failure)
+- [Troubleshooting INDEX](references/troubleshooting/INDEX.md) - Full error index
 - [OpenShift Virt Docs](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html-single/virtualization/index)
 - [KubeVirt API](https://kubevirt.io/api-reference/)
 - [K8s Finalizers](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/)

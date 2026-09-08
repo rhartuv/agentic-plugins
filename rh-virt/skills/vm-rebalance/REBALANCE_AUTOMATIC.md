@@ -195,7 +195,7 @@ For each candidate migration, check:
 - Verify VM has matching tolerations
 - If mismatch, skip that target or propose adding tolerations
 
-**Concurrency Limits** (see [references/performance-tuning.md](./references/performance-tuning.md)):
+**Concurrency Limits** (see [references/performance-tuning.md](references/performance-tuning.md)):
 - Cluster limit: 5 concurrent migrations (default)
 - Per-node limit: 2 outbound migrations (default)
 - Plan migration batches respecting limits
@@ -383,7 +383,7 @@ Count migrations where `.status.phase` is NOT "Succeeded" or "Failed".
 
 **Wait if at limit** before starting new migrations.
 
-**Reference**: [references/performance-tuning.md](./references/performance-tuning.md#concurrency-limits-tuning)
+**Reference**: [references/performance-tuning.md](references/performance-tuning.md#concurrency-limits-tuning)
 
 ---
 
@@ -545,7 +545,7 @@ Display similar format but include:
 
 ### Intelligent Workload Analysis
 
-**Categorize VMs by workload type** (see [references/production-considerations.md](./references/production-considerations.md)):
+**Categorize VMs by workload type** (see [references/production-considerations.md](references/production-considerations.md)):
 
 - **Database** (high dirty page rate) → Schedule during low-activity window, consider cold migration
 - **Web servers** (low dirty page rate) → Safe for concurrent live migration
@@ -574,7 +574,7 @@ Review `.network.interfaces[].rxBytes` and `.network.interfaces[].txBytes`.
 - Set bandwidth limits per migration
 - Suggest dedicated migration network
 
-**Reference**: [references/live-migration-best-practices.md#dedicated-migration-network](./references/live-migration-best-practices.md#dedicated-migration-network-production-best-practice)
+**Reference**: [references/live-migration-best-practices.md#dedicated-migration-network](references/live-migration-best-practices.md#dedicated-migration-network-production-best-practice)
 
 ### Multi-Constraint Optimization
 
@@ -652,7 +652,7 @@ Review `.network.interfaces[].rxBytes` and `.network.interfaces[].txBytes`.
 - Have rollback plan for critical workloads
 - Consider snapshots before risky migrations (use `/vm-snapshot-create`)
 
-**Reference**: [references/anti-patterns.md](./references/anti-patterns.md)
+**Reference**: [references/anti-patterns.md](references/anti-patterns.md)
 
 ---
 

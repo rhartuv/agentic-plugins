@@ -129,8 +129,8 @@ After the environment is validated, collect remaining deployment configuration. 
 ### Step 3: Determine Runtime
 
 **Document Consultation** (read before selecting runtime):
-1. **Action**: Read [supported-runtimes.md](docs/references/supported-runtimes.md) using the Read tool to understand runtime capabilities and selection criteria
-2. **Output to user**: "I consulted [supported-runtimes.md](docs/references/supported-runtimes.md) to understand runtime capabilities."
+1. **Action**: Read [supported-runtimes.md](references/supported-runtimes.md) using the Read tool to understand runtime capabilities and selection criteria
+2. **Output to user**: "I consulted [supported-runtimes.md](references/supported-runtimes.md) to understand runtime capabilities."
 
 **Runtime Selection Logic:**
 
@@ -145,8 +145,8 @@ After the environment is validated, collect remaining deployment configuration. 
 ### Step 4: Look Up Model Hardware Profile
 
 **Document Consultation** (read before determining hardware requirements):
-1. **Action**: Read [known-model-profiles.md](docs/references/known-model-profiles.md) using the Read tool to find hardware profile for the requested model
-2. **Output to user**: "I consulted [known-model-profiles.md](docs/references/known-model-profiles.md) to find hardware requirements for [model-name]."
+1. **Action**: Read [known-model-profiles.md](references/known-model-profiles.md) using the Read tool to find hardware profile for the requested model
+2. **Output to user**: "I consulted [known-model-profiles.md](references/known-model-profiles.md) to find hardware requirements for [model-name]."
 
 **If model IS in known-model-profiles.md:**
 - Extract: GPU count, GPU type, VRAM, key vLLM args
@@ -441,8 +441,8 @@ See [Prerequisites](#prerequisites) for the complete list of required and option
 - `/guardrails-config` - Add content safety guardrails to LLM deployments
 
 ### Reference Documentation
-- [known-model-profiles.md](docs/references/known-model-profiles.md) - Hardware profiles for common models
-- [supported-runtimes.md](docs/references/supported-runtimes.md) - Runtime capabilities and selection criteria
+- [known-model-profiles.md](references/known-model-profiles.md) - Hardware profiles for common models
+- [supported-runtimes.md](references/supported-runtimes.md) - Runtime capabilities and selection criteria
 - [live-doc-lookup.md](references/live-doc-lookup.md) - Protocol for fetching specs for unknown models
 
 ## Critical: Human-in-the-Loop Requirements
@@ -459,4 +459,4 @@ See [skill-conventions.md](references/skill-conventions.md) for general HITL and
 
 ## Example Usage
 
-See [model-deploy examples](docs/examples/model-deploy.md) for complete deployment walkthroughs (vLLM and NIM).
+See [model-deploy examples](references/examples/model-deploy.md) for complete deployment walkthroughs (vLLM and NIM).

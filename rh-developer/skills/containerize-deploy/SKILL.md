@@ -27,7 +27,7 @@ Use `/containerize-deploy` when a user wants a complete guided workflow from sou
 
 ## Critical: Human-in-the-Loop Requirements
 
-See [Human-in-the-Loop Requirements](docs/human-in-the-loop.md) for mandatory checkpoint behavior.
+See [Human-in-the-Loop Requirements](references/human-in-the-loop.md) for mandatory checkpoint behavior.
 
 ## Workflow
 
@@ -471,9 +471,9 @@ Present a summary including:
 - `/debug-rhel` - RHEL deployment failures (systemd, SELinux, firewall)
 
 ### Reference Documentation
-- [docs/builder-images.md](docs/builder-images.md) - Language detection, S2I builder images
-- [docs/image-selection-criteria.md](docs/image-selection-criteria.md) - Image variant selection, LTS timelines
-- [docs/python-s2i-entrypoints.md](docs/python-s2i-entrypoints.md) - Python S2I configuration
-- [docs/rhel-deployment.md](docs/rhel-deployment.md) - RHEL host deployment
-- [docs/debugging-patterns.md](docs/debugging-patterns.md) - Common error patterns and troubleshooting
-- [docs/prerequisites.md](docs/prerequisites.md) - All required tools by skill
+- [references/builder-images.md](references/builder-images.md) - Language detection, S2I builder images
+- [references/image-selection-criteria.md](references/image-selection-criteria.md) - Image variant selection, LTS timelines
+- [references/python-s2i-entrypoints.md](references/python-s2i-entrypoints.md) - Python S2I configuration
+- [references/rhel-deployment.md](references/rhel-deployment.md) - RHEL host deployment
+- [references/debugging-patterns.md](references/debugging-patterns.md) - Common error patterns and troubleshooting
+- [references/prerequisites.md](references/prerequisites.md) - All required tools by skill

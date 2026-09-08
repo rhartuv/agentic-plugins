@@ -9,7 +9,7 @@ Read when completing a fleet inventory report to format the output.
 ```markdown
 # Managed Fleet Inventory
 
-I consulted [fleet-management.md](../../../docs/insights/fleet-management.md) to structure this inventory report.
+I consulted [fleet-management.md](insights/fleet-management.md) to structure this inventory report.
 
 Retrieved from Red Hat Lightspeed on YYYY-MM-DDTHH:MM:SSZ
 

@@ -43,7 +43,7 @@ Use `/rhel-deploy` when deploying applications to standalone RHEL, Fedora, or Ce
 
 ## Critical: Human-in-the-Loop Requirements
 
-See [Human-in-the-Loop Requirements](docs/human-in-the-loop.md) for mandatory checkpoint behavior.
+See [Human-in-the-Loop Requirements](references/human-in-the-loop.md) for mandatory checkpoint behavior.
 
 ## Workflow
 
@@ -242,7 +242,7 @@ ssh [target] "podman pull [image-reference]"
 | Environment | [list env vars] |
 | Run Mode | [rootless / rootful] |
 
-**SELinux Volume Labels:** Use `:z` for shared volumes, `:Z` for private volumes. See [docs/rhel-deployment.md](docs/rhel-deployment.md) for SELinux configuration details.
+**SELinux Volume Labels:** Use `:z` for shared volumes, `:Z` for private volumes. See [references/rhel-deployment.md](references/rhel-deployment.md) for SELinux configuration details.
 
 Proceed with this configuration? (yes/modify/cancel)
 ```
@@ -324,7 +324,7 @@ Proceed with firewall configuration? (yes/skip)
 
 **Runtime packages for [language]:**
 
-See [docs/rhel-deployment.md](docs/rhel-deployment.md) for the complete runtime package mapping by language and RHEL version (Node.js, Python, Java, Go, Ruby, PHP).
+See [references/rhel-deployment.md](references/rhel-deployment.md) for the complete runtime package mapping by language and RHEL version (Node.js, Python, Java, Go, Ruby, PHP).
 
 **Commands to execute:**
 ```bash
@@ -381,7 +381,7 @@ Proceed with deployment? (yes/no)
 | `${PORT}` | [container-port] | Application listen port |
 | `${START_COMMAND}` | [see below] | Language-specific start command |
 
-**Start commands by language:** See [docs/rhel-deployment.md](docs/rhel-deployment.md) for language-specific systemd unit templates (Node.js, Python, Java, Go).
+**Start commands by language:** See [references/rhel-deployment.md](references/rhel-deployment.md) for language-specific systemd unit templates (Node.js, Python, Java, Go).
 
 **Target location:** `/etc/systemd/system/[app-name].service`
 
@@ -478,7 +478,7 @@ Select an option:
 - `/debug-container` - Container startup issues on RHEL host
 
 ### Reference Documentation
-- [docs/rhel-deployment.md](docs/rhel-deployment.md) - Systemd templates, SELinux, firewall, runtime packages
-- [docs/selinux-troubleshooting.md](docs/selinux-troubleshooting.md) - SELinux denial analysis and fixes
-- [docs/debugging-patterns.md](docs/debugging-patterns.md) - Common error patterns and troubleshooting
-- [docs/prerequisites.md](docs/prerequisites.md) - Required tools (ssh, podman)
+- [references/rhel-deployment.md](references/rhel-deployment.md) - Systemd templates, SELinux, firewall, runtime packages
+- [references/selinux-troubleshooting.md](references/selinux-troubleshooting.md) - SELinux denial analysis and fixes
+- [references/debugging-patterns.md](references/debugging-patterns.md) - Common error patterns and troubleshooting
+- [references/prerequisites.md](references/prerequisites.md) - Required tools (ssh, podman)

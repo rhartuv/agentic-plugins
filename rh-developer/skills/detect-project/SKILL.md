@@ -27,7 +27,7 @@ Analyze the project to detect language/framework and recommend a build strategy.
 
 ## Critical: Human-in-the-Loop Requirements
 
-See [Human-in-the-Loop Requirements](docs/human-in-the-loop.md) for mandatory checkpoint behavior.
+See [Human-in-the-Loop Requirements](references/human-in-the-loop.md) for mandatory checkpoint behavior.
 
 ## Workflow
 
@@ -274,6 +274,6 @@ After successful detection, these values should be available for other skills:
 - `/rhel-deploy` - Deploy to RHEL using detected project info
 
 ### Reference Documentation
-- [docs/builder-images.md](docs/builder-images.md) - Language detection matrix, version-to-image mapping, S2I builder selection
-- [docs/python-s2i-entrypoints.md](docs/python-s2i-entrypoints.md) - Python entry point detection, APP_MODULE configuration
-- [docs/prerequisites.md](docs/prerequisites.md) - Required tools (git)
+- [references/builder-images.md](references/builder-images.md) - Language detection matrix, version-to-image mapping, S2I builder selection
+- [references/python-s2i-entrypoints.md](references/python-s2i-entrypoints.md) - Python entry point detection, APP_MODULE configuration
+- [references/prerequisites.md](references/prerequisites.md) - Required tools (git)

@@ -24,7 +24,7 @@ Provide intelligent, use-case-aware container image recommendations that go beyo
 
 ## Critical: Human-in-the-Loop Requirements
 
-See [Human-in-the-Loop Requirements](docs/human-in-the-loop.md) for mandatory checkpoint behavior.
+See [Human-in-the-Loop Requirements](references/human-in-the-loop.md) for mandatory checkpoint behavior.
 
 ## Workflow
 
@@ -116,7 +116,7 @@ For each language, evaluate available variants against user requirements.
 
 **Key Scoring Factors:** Image size, security posture, build tools availability, startup time, LTS status
 
-> **See [docs/image-selection-criteria.md](docs/image-selection-criteria.md)** for comprehensive scoring matrices with weighted criteria by environment (production/development/edge/serverless).
+> **See [references/image-selection-criteria.md](references/image-selection-criteria.md)** for comprehensive scoring matrices with weighted criteria by environment (production/development/edge/serverless).
 
 ### Step 3.5: Dynamic Image Validation
 
@@ -143,7 +143,7 @@ To provide accurate image recommendations, I need `skopeo` to inspect container 
 - Check architecture support (amd64, arm64)
 - Show when the image was last built
 
-**Install skopeo:** See [docs/prerequisites.md](docs/prerequisites.md) for installation commands by OS.
+**Install skopeo:** See [references/prerequisites.md](references/prerequisites.md) for installation commands by OS.
 
 After installing, run `/recommend-image` again for enhanced recommendations.
 
@@ -266,7 +266,7 @@ Return to Step 2 with new inputs.
 - **Development** → Full variant
 - **Serverless** → Smallest available (minimal or native binary)
 
-> **See [docs/image-selection-criteria.md](docs/image-selection-criteria.md)** for comprehensive image size references, LTS timelines, decision trees, and framework-specific recommendations (Quarkus, Spring Boot, Next.js, Django/Flask).
+> **See [references/image-selection-criteria.md](references/image-selection-criteria.md)** for comprehensive image size references, LTS timelines, decision trees, and framework-specific recommendations (Quarkus, Spring Boot, Next.js, Django/Flask).
 
 ## Dependencies
 
@@ -278,7 +278,7 @@ Return to Step 2 with new inputs.
 - `/s2i-build` - Build with the recommended image
 
 ### Reference Documentation
-- [docs/image-selection-criteria.md](docs/image-selection-criteria.md) - Comprehensive scoring matrices, image size reference, LTS timelines, decision trees
-- [docs/builder-images.md](docs/builder-images.md) - UBI image registry, framework-specific recommendations, variant availability
-- [docs/dynamic-validation.md](docs/dynamic-validation.md) - Skopeo commands, Red Hat Security Data API, image verification patterns
-- [docs/prerequisites.md](docs/prerequisites.md) - Skopeo installation instructions
+- [references/image-selection-criteria.md](references/image-selection-criteria.md) - Comprehensive scoring matrices, image size reference, LTS timelines, decision trees
+- [references/builder-images.md](references/builder-images.md) - UBI image registry, framework-specific recommendations, variant availability
+- [references/dynamic-validation.md](references/dynamic-validation.md) - Skopeo commands, Red Hat Security Data API, image verification patterns
+- [references/prerequisites.md](references/prerequisites.md) - Skopeo installation instructions

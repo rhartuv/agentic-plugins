@@ -404,7 +404,7 @@ The **vm-create** skill includes automatic error diagnosis and workaround propos
 - **ErrorUnschedulable** - Node taints/tolerations mismatch, resource constraints, node selector issues
 - **ErrorDataVolumeNotReady** - Storage provisioning delays, storage class issues, quota exceeded
 
-**For comprehensive troubleshooting guidance**, see [docs/troubleshooting/INDEX.md](skills/vm-rebalance/docs/troubleshooting/INDEX.md).
+**For comprehensive troubleshooting guidance**, see [docs/troubleshooting/INDEX.md](skills/vm-rebalance/references/troubleshooting/INDEX.md).
 
 ### MCP Server Won't Start
 

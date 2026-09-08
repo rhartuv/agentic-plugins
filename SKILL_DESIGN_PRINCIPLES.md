@@ -182,10 +182,13 @@ Every skill MUST include a **Dependencies** section listing:
 ```
 
 **Skill-local docs rule (required):**
-- Internal docs consumed by a skill must resolve under that skill directory using `docs/...` links.
-- Do **not** use upward traversal links to pack-level docs such as `../docs/...`, `../../docs/...`, or `../../../docs/...`.
-- Shared docs may be reused via symlinks under `skills/<skill>/docs/...`.
-- Pack-level `docs/INDEX.md` and `docs/SOURCES.md` may exist for repository navigation/source attribution, but skills must not depend on them at execution time.
+- Internal docs consumed by a skill must resolve under that skill directory using `references/...` or `./references/...` links in `SKILL.md`.
+- Do **not** use upward traversal links to pack-level docs such as `../references/...`, `../../references/...`, or `../../../references/...`.
+- Shared docs may be reused via symlinks under `skills/<skill>/references/...`. Link targets inside shared pool files must resolve when the file is opened through a skill symlink (use same-directory or `references/...` paths from the symlink location).
+- After migrating `docs/` → `references/`, **delete** the `skills/<name>/docs/` directory — do not leave empty or stale folders.
+- Do **not** nest `references/references/` inside a skill. If `docs/references/` existed, flatten files into `skills/<name>/references/`.
+- Pack-level `<pack>/references/` or skill-level `skills/<name>/references/` are the only allowed reference locations.
+- Pack-level `references/INDEX.md` and `references/SOURCES.md` may exist for repository navigation/source attribution, but skills must not depend on them at execution time.
 
 **Rationale**: Makes dependencies explicit for debugging and troubleshooting.
 

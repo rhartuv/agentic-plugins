@@ -413,8 +413,8 @@ If user chooses relaunch: **MCP Tool** `jobs_relaunch_retrieve` with `hosts: "fa
 
 ### Reference Documentation
 - [references/](references/) - Step-numbered reference files (01–05) for templates and examples
-- [AAP Job Execution Guide](docs/ansible/aap-job-execution.md) - AAP job execution best practices
-- [Playbook Integration with AAP](docs/ansible/playbook-integration-aap.md) - Playbook-to-AAP workflow
+- [AAP Job Execution Guide](references/ansible/aap-job-execution.md) - AAP job execution best practices
+- [Playbook Integration with AAP](references/ansible/playbook-integration-aap.md) - Playbook-to-AAP workflow
 
 ## Critical: Human-in-the-Loop Requirements
 

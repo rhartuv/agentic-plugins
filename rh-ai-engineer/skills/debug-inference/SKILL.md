@@ -342,8 +342,8 @@ See [Prerequisites](#prerequisites) for the complete list of required and option
 - `/model-monitor` - Check if TrustyAI monitoring detected issues before they became failures
 
 ### Reference Documentation
-- [known-model-profiles.md](docs/references/known-model-profiles.md) - Correct resource sizing for common models
-- [supported-runtimes.md](docs/references/supported-runtimes.md) - Runtime capabilities and known limitations
+- [known-model-profiles.md](references/known-model-profiles.md) - Correct resource sizing for common models
+- [supported-runtimes.md](references/supported-runtimes.md) - Runtime capabilities and known limitations
 - [live-doc-lookup.md](references/live-doc-lookup.md) - Protocol for looking up unrecognized errors
 
 ## Critical: Human-in-the-Loop Requirements

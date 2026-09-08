@@ -1,0 +1,1 @@
+../../cluster-creator/references/storage.md

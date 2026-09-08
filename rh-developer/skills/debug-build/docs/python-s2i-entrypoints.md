@@ -1,1 +1,0 @@
-../../detect-project/docs/python-s2i-entrypoints.md

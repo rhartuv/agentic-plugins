@@ -277,15 +277,15 @@ Create OpenShift clusters using the Red Hat Assisted Installer with full workflo
 - `alter_static_network_config_nmstate_for_host` - Apply static networking to hosts
 
 **Documentation**:
-- [Input Validation Guide](skills/cluster-creator/docs/input-validation-guide.md) - Parameter requirements
-- [Providers](skills/cluster-creator/docs/providers.md) - Infrastructure providers (baremetal, vsphere, oci, nutanix)
-- [Platforms](skills/cluster-creator/docs/platforms.md) - OpenShift types (SNO, OCP, ROSA, ARO, OSD)
-- [Networking](skills/cluster-creator/docs/networking.md) - Network configuration, VIPs, CIDR planning
-- [Static Networking Guide](skills/cluster-creator/docs/static-networking-guide.md) - NMState configuration
-- [Host Requirements](skills/cluster-creator/docs/host-requirements.md) - Hardware specifications
-- [Examples](skills/cluster-creator/docs/examples.md) - 10 real-world configurations
-- [Troubleshooting](skills/cluster-creator/docs/troubleshooting.md) - Common errors and solutions
-- [INDEX.md](skills/cluster-creator/docs/INDEX.md) - Complete documentation navigation
+- [Input Validation Guide](skills/cluster-creator/references/input-validation-guide.md) - Parameter requirements
+- [Providers](skills/cluster-creator/references/providers.md) - Infrastructure providers (baremetal, vsphere, oci, nutanix)
+- [Platforms](skills/cluster-creator/references/platforms.md) - OpenShift types (SNO, OCP, ROSA, ARO, OSD)
+- [Networking](skills/cluster-creator/references/networking.md) - Network configuration, VIPs, CIDR planning
+- [Static Networking Guide](skills/cluster-creator/references/static-networking-guide.md) - NMState configuration
+- [Host Requirements](skills/cluster-creator/references/host-requirements.md) - Hardware specifications
+- [Examples](skills/cluster-creator/references/examples.md) - 10 real-world configurations
+- [Troubleshooting](skills/cluster-creator/references/troubleshooting.md) - Common errors and solutions
+- [INDEX.md](skills/cluster-creator/references/INDEX.md) - Complete documentation navigation
 
 ### 2. **cluster-inventory** - Cluster Discovery and Status
 
@@ -466,7 +466,7 @@ export KUBECONFIG=/tmp/cluster-report-kubeconfig
 # In Claude Code: /cluster-report
 ```
 
-See [skills/cluster-report/docs/multi-cluster-auth.md](skills/cluster-report/docs/multi-cluster-auth.md) for the full setup guide, token rotation, and troubleshooting.
+See [skills/cluster-report/references/multi-cluster-auth.md](skills/cluster-report/references/multi-cluster-auth.md) for the full setup guide, token rotation, and troubleshooting.
 
 ---
 
@@ -680,26 +680,26 @@ Result: Real-time installation status without leaving Claude
 The pack includes 17 comprehensive reference documents covering all aspects of OpenShift administration:
 
 ### Installation & Planning
-- [Input Validation Guide](skills/cluster-creator/docs/input-validation-guide.md) - Parameter validation rules
-- [Providers](skills/cluster-creator/docs/providers.md) - Infrastructure providers (baremetal, vsphere, oci, nutanix)
-- [Platforms](skills/cluster-creator/docs/platforms.md) - OpenShift platform types (SNO, OCP, ROSA, ARO, OSD)
-- [Host Requirements](skills/cluster-creator/docs/host-requirements.md) - Hardware specifications
-- [Networking](skills/cluster-creator/docs/networking.md) - Network configuration, VIPs, CIDR planning, Egress IP, Multus, SR-IOV, Dual-Stack
-- [Static Networking Guide](skills/cluster-creator/docs/static-networking-guide.md) - NMState configuration (Simple/Advanced/Manual modes)
-- [Storage](skills/cluster-creator/docs/storage.md) - Storage options, CSI drivers, ODF
-- [Examples](skills/cluster-creator/docs/examples.md) - 10 real-world cluster configurations
+- [Input Validation Guide](skills/cluster-creator/references/input-validation-guide.md) - Parameter validation rules
+- [Providers](skills/cluster-creator/references/providers.md) - Infrastructure providers (baremetal, vsphere, oci, nutanix)
+- [Platforms](skills/cluster-creator/references/platforms.md) - OpenShift platform types (SNO, OCP, ROSA, ARO, OSD)
+- [Host Requirements](skills/cluster-creator/references/host-requirements.md) - Hardware specifications
+- [Networking](skills/cluster-creator/references/networking.md) - Network configuration, VIPs, CIDR planning, Egress IP, Multus, SR-IOV, Dual-Stack
+- [Static Networking Guide](skills/cluster-creator/references/static-networking-guide.md) - NMState configuration (Simple/Advanced/Manual modes)
+- [Storage](skills/cluster-creator/references/storage.md) - Storage options, CSI drivers, ODF
+- [Examples](skills/cluster-creator/references/examples.md) - 10 real-world cluster configurations
 
 ### Post-Installation
-- [Credentials Management](skills/cluster-creator/docs/credentials-management.md) - Authentication, OAuth, RBAC, identity providers
-- [Multi-Cluster Authentication](skills/cluster-report/docs/multi-cluster-auth.md) - Service account tokens, kubeconfig merging
-- [Day-2 Operations](skills/cluster-creator/docs/day-2-operations.md) - Monitoring, logging, updates, scaling, maintenance
-- [Certificate Management](skills/cluster-creator/docs/certificate-management.md) - Certificate lifecycle and rotation
-- [Backup and Restore](skills/cluster-creator/docs/backup-restore.md) - etcd backup/restore procedures
+- [Credentials Management](skills/cluster-creator/references/credentials-management.md) - Authentication, OAuth, RBAC, identity providers
+- [Multi-Cluster Authentication](skills/cluster-report/references/multi-cluster-auth.md) - Service account tokens, kubeconfig merging
+- [Day-2 Operations](skills/cluster-creator/references/day-2-operations.md) - Monitoring, logging, updates, scaling, maintenance
+- [Certificate Management](skills/cluster-creator/references/certificate-management.md) - Certificate lifecycle and rotation
+- [Backup and Restore](skills/cluster-creator/references/backup-restore.md) - etcd backup/restore procedures
 
 ### Reference & Troubleshooting
-- [Quick Reference](skills/cluster-creator/docs/quick-reference.md) - Common `oc` commands and scenarios
-- [Troubleshooting](skills/cluster-creator/docs/troubleshooting.md) - Common errors and resolutions
-- [INDEX.md](skills/cluster-creator/docs/INDEX.md) - Complete documentation navigation
+- [Quick Reference](skills/cluster-creator/references/quick-reference.md) - Common `oc` commands and scenarios
+- [Troubleshooting](skills/cluster-creator/references/troubleshooting.md) - Common errors and resolutions
+- [INDEX.md](skills/cluster-creator/references/INDEX.md) - Complete documentation navigation
 
 **All documentation**:
 - Derived from official Red Hat sources
@@ -752,7 +752,7 @@ The pack includes 17 comprehensive reference documents covering all aspects of O
 1. Check host requirements match cluster type (SNO vs HA)
 2. Verify VIPs are in same subnet as nodes
 3. Review cluster events: Use `cluster-inventory` skill
-4. Check troubleshooting guide: [skills/cluster-creator/docs/troubleshooting.md](skills/cluster-creator/docs/troubleshooting.md)
+4. Check troubleshooting guide: [skills/cluster-creator/references/troubleshooting.md](skills/cluster-creator/references/troubleshooting.md)
 5. Verify network connectivity between hosts
 
 ### Skills Not Triggering

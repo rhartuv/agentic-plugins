@@ -1,0 +1,1 @@
+../../cluster-creator/references/input-validation-guide.md

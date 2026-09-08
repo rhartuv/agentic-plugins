@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validate Compass catalog-info.yaml manifests for agentic packs in the root Location.
+Validate Compass catalog-info.yaml manifests and skill references layout.
 
 Structural checks (no SKILL.md semantic inference):
   - Roster parity: skills on disk vs pack Location targets vs manifest files
@@ -10,10 +10,14 @@ Structural checks (no SKILL.md semantic inference):
   - Forbidden partOf/hasPart on skill manifests; redundant plugin dependsOn system
   - Dangling airesource refs; canonical mcpserver:redhat/* allowed without local file
   - Basic field conventions on skill manifests (namespace, owner, agents, distribution)
+  - Skill documentation layout (all packs with skills/):
+      no skills/<name>/docs/; no references/references/ nesting;
+      no internal docs/ links; symlinks under references/ must not target docs/
 """
 
 from __future__ import annotations
 
+import os
 import re
 import sys
 from pathlib import Path
@@ -28,6 +32,8 @@ _FORBIDDEN_RELATION_RE = re.compile(r"^\s+(partOf|hasPart)\s*:", re.MULTILINE)
 _CANONICAL_MCP_PREFIXES = ("mcpserver:redhat/", "mcpserver:default/")
 _EXPECTED_OWNER = "group:redhat/ai5-marketplace"
 _EXPECTED_NAMESPACE = "ai5-marketplace"
+_MD_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+_SKILL_DOCS_STANDARD = "https://agent-plugins.org/specification"
 
 
 def _load_yaml(path: Path) -> dict:
@@ -42,6 +48,16 @@ def _refs(spec: dict, key: str) -> list[str]:
     if not isinstance(value, list):
         return []
     return [str(item) for item in value]
+
+
+def all_packs_with_skills() -> list[str]:
+    packs: list[str] = []
+    for entry in sorted(_REPO_ROOT.iterdir()):
+        if not entry.is_dir() or entry.name.startswith("."):
+            continue
+        if (entry / "skills").is_dir():
+            packs.append(entry.name)
+    return packs
 
 
 def registered_packs() -> list[str]:
@@ -101,6 +117,82 @@ def _is_allowed_dangling_mcp(ref: str) -> bool:
     return ref.startswith(_CANONICAL_MCP_PREFIXES)
 
 
+def _is_external_link(target: str) -> bool:
+    lower = target.lower()
+    return (
+        lower.startswith("http://")
+        or lower.startswith("https://")
+        or lower.startswith("mailto:")
+        or lower.startswith("#")
+    )
+
+
+def _is_forbidden_docs_link(target: str) -> bool:
+    if _is_external_link(target):
+        return False
+    normalized = target.split("#", 1)[0].strip().replace("\\", "/")
+    if normalized.startswith("docs/") or normalized.startswith("./docs/"):
+        return True
+    return "/docs/" in normalized
+
+
+def _check_skill_docs_layout(skill_dir: Path, errors: list[str]) -> None:
+    """Enforce agent-plugins.org / agentskills.io references/ layout (APPENG-6308)."""
+    docs_dir = skill_dir / "docs"
+    if docs_dir.is_dir():
+        rel = docs_dir.relative_to(_REPO_ROOT)
+        errors.append(
+            f"{rel}: skill documentation must use references/ not docs/ "
+            f"(rename to references/, update links, then delete docs/; "
+            f"see {_SKILL_DOCS_STANDARD})"
+        )
+
+    nested_refs = skill_dir / "references" / "references"
+    if nested_refs.is_dir():
+        rel = nested_refs.relative_to(_REPO_ROOT)
+        errors.append(
+            f"{rel}: flatten references/references/ into skills/<name>/references/ "
+            f"(no nested references directories; see {_SKILL_DOCS_STANDARD})"
+        )
+
+    references_dir = skill_dir / "references"
+    if references_dir.is_dir():
+        for path in sorted(references_dir.rglob("*")):
+            if not path.is_symlink():
+                continue
+            raw = os.readlink(path)
+            normalized = raw.replace("\\", "/")
+            if "/docs/" in normalized or normalized.startswith("docs/"):
+                rel = path.relative_to(_REPO_ROOT)
+                errors.append(
+                    f"{rel}: symlink still targets docs/ path '{raw}' — "
+                    "update to references/ after migration"
+                )
+
+    for md_file in sorted(skill_dir.rglob("*.md")):
+        if md_file.is_symlink() and not md_file.exists():
+            continue
+        try:
+            text = md_file.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            continue
+        rel_md = md_file.relative_to(_REPO_ROOT)
+        for line_no, line in enumerate(text.splitlines(), start=1):
+            for match in _MD_LINK_RE.finditer(line):
+                raw_target = match.group(1).strip()
+                if _is_forbidden_docs_link(raw_target):
+                    errors.append(
+                        f"{rel_md}:{line_no}: update docs/ link to references/: "
+                        f"'{raw_target}'"
+                    )
+                target = raw_target.split("#", 1)[0].strip().replace("\\", "/")
+                if "references/references/" in target:
+                    errors.append(
+                        f"{rel_md}:{line_no}: flatten references/references/ link to "
+                        f"references/: '{raw_target}'"
+                    )
+
+
 def _check_skill_conventions(path: Path, data: dict, errors: list[str]) -> None:
     meta = data.get("metadata", {})
     spec = data.get("spec", {})
@@ -117,6 +209,12 @@ def _check_skill_conventions(path: Path, data: dict, errors: list[str]) -> None:
         errors.append(f"{rel}: spec.agents must be []")
     if spec.get("type") != "skill":
         errors.append(f"{rel}: spec.type must be skill")
+
+
+def validate_pack_layout(pack: str, errors: list[str]) -> None:
+    pack_dir = _REPO_ROOT / pack
+    for skill in sorted(skills_on_disk(pack_dir)):
+        _check_skill_docs_layout(pack_dir / "skills" / skill, errors)
 
 
 def validate_pack(pack: str, owned_mcps: dict[str, Path], errors: list[str]) -> None:
@@ -176,7 +274,10 @@ def validate_pack(pack: str, owned_mcps: dict[str, Path], errors: list[str]) -> 
     pack_skill_mcp_union: set[str] = set()
 
     for skill in sorted(disk):
-        manifest = pack_dir / "skills" / skill / "catalog-info.yaml"
+        skill_dir = pack_dir / "skills" / skill
+        _check_skill_docs_layout(skill_dir, errors)
+
+        manifest = skill_dir / "catalog-info.yaml"
         if not manifest.is_file():
             errors.append(f"{pack}: missing {manifest.relative_to(_REPO_ROOT)}")
             continue
@@ -267,13 +368,20 @@ def main() -> int:
     errors: list[str] = []
     owned_mcps = load_owned_mcps()
 
+    registered: list[str] = []
     if not _ROOT_CATALOG.is_file():
         errors.append(
             f"missing root catalog Location: {_ROOT_CATALOG.relative_to(_REPO_ROOT)}"
         )
     else:
-        for pack in registered_packs():
+        registered = registered_packs()
+        for pack in registered:
             validate_pack(pack, owned_mcps, errors)
+
+    registered_set = set(registered)
+    for pack in all_packs_with_skills():
+        if pack not in registered_set:
+            validate_pack_layout(pack, errors)
 
     if errors:
         print("Compass manifest validation failed:", file=sys.stderr)

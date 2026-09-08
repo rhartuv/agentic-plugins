@@ -27,7 +27,7 @@ Use this skill after `/detect-project` to build container images from source cod
 
 ## Critical: Human-in-the-Loop Requirements
 
-See [Human-in-the-Loop Requirements](docs/human-in-the-loop.md) for mandatory checkpoint behavior.
+See [Human-in-the-Loop Requirements](references/human-in-the-loop.md) for mandatory checkpoint behavior.
 
 ## Workflow
 
@@ -387,7 +387,7 @@ What would you like to do?
 - `/deploy` - After successful build, to deploy the image
 
 ### Reference Documentation
-- [docs/builder-images.md](docs/builder-images.md) - S2I builder image selection, version mapping
-- [docs/python-s2i-entrypoints.md](docs/python-s2i-entrypoints.md) - Python APP_MODULE configuration, entry point troubleshooting
-- [docs/debugging-patterns.md](docs/debugging-patterns.md) - Common build error patterns and troubleshooting
-- [docs/prerequisites.md](docs/prerequisites.md) - Required tools (oc)
+- [references/builder-images.md](references/builder-images.md) - S2I builder image selection, version mapping
+- [references/python-s2i-entrypoints.md](references/python-s2i-entrypoints.md) - Python APP_MODULE configuration, entry point troubleshooting
+- [references/debugging-patterns.md](references/debugging-patterns.md) - Common build error patterns and troubleshooting
+- [references/prerequisites.md](references/prerequisites.md) - Required tools (oc)

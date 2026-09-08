@@ -100,7 +100,7 @@ Use this mode when the user specifies:
 
 **Estimated Duration:** ~30-60 seconds for typical VM (depends on memory size)
 
-**Reference**: See [references/live-migration-best-practices.md](./references/live-migration-best-practices.md) for configuration parameters, storage requirements, and network optimization
+**Reference**: See [references/live-migration-best-practices.md](references/live-migration-best-practices.md) for configuration parameters, storage requirements, and network optimization
 
 **Rollback:** If migration fails, VM continues running on current node
 
@@ -150,7 +150,7 @@ Confirm this migration or tell me what to change:
 **Note on Node Affinity:**
 We use nodeAffinity (not nodeSelector) for better long-term resilience. After migration, you'll have the option to remove it, allowing the VM to reschedule to other nodes if <target-node> fails in the future.
 
-**Reference**: See [references/production-considerations.md](./references/production-considerations.md) for workload categorization and downtime planning strategies
+**Reference**: See [references/production-considerations.md](references/production-considerations.md) for workload categorization and downtime planning strategies
 
 Confirm this migration or tell me what to change:
 - yes - Proceed with cold migration
@@ -226,7 +226,7 @@ Confirm this migration or tell me what to change:
 
 **Timeout**: Stop polling after 10 minutes (600 seconds) and report timeout error to user. Most migrations complete within 1-5 minutes depending on VM memory size.
 
-**Reference**: See [references/performance-tuning.md](./references/performance-tuning.md) for timeout configuration and migration optimization strategies
+**Reference**: See [references/performance-tuning.md](references/performance-tuning.md) for timeout configuration and migration optimization strategies
 
 **Expected Output**: VMIM resource with status field
 
@@ -381,7 +381,7 @@ Preserve all existing VM fields and only modify the affinity section.
 
 **Error Handling with Clear Explanations:**
 - If VM fails to start → Explain: "VM failed to start on <target-node>. This usually means the node doesn't have enough resources (CPU/memory) or has scheduling constraints preventing this VM."
-  - Consult [scheduling-errors.md](../../docs/troubleshooting/scheduling-errors.md)
+  - Consult [scheduling-errors.md](../troubleshooting/scheduling-errors.md)
   - Suggest: Check node capacity, verify node is Ready, check for taints
 - If VM scheduled on wrong node → Explain: "VM started but Kubernetes placed it on <actual-node> instead of <target-node>. This means <target-node> couldn't accommodate the VM due to resource constraints, taints, or other scheduling rules."
   - Report actual vs expected node
@@ -588,10 +588,10 @@ VM has restarted, verify services are healthy.
 
 **Document Consultation** (OPTIONAL - when migration fails):
 1. **Action**: Read relevant troubleshooting guides to understand VM migration failure scenarios:
-   - [scheduling-errors.md](../../docs/troubleshooting/scheduling-errors.md) - For ErrorUnschedulable, node taints, resource constraints
-   - [lifecycle-errors.md](../../docs/troubleshooting/lifecycle-errors.md) - For VM start/stop failures during cold migration
-   - [storage-errors.md](../../docs/troubleshooting/storage-errors.md) - For PVC access mode issues affecting live migration
-2. **Output to user**: "I consulted [scheduling-errors.md](../../docs/troubleshooting/scheduling-errors.md) to understand potential causes for the migration failure."
+   - [scheduling-errors.md](../troubleshooting/scheduling-errors.md) - For ErrorUnschedulable, node taints, resource constraints
+   - [lifecycle-errors.md](../troubleshooting/lifecycle-errors.md) - For VM start/stop failures during cold migration
+   - [storage-errors.md](../troubleshooting/storage-errors.md) - For PVC access mode issues affecting live migration
+2. **Output to user**: "I consulted [scheduling-errors.md](../troubleshooting/scheduling-errors.md) to understand potential causes for the migration failure."
 
 **When to consult**:
 - Live migration fails (check storage, network, resource constraints)
@@ -678,7 +678,7 @@ Would you like help troubleshooting this error?
 - ⚠️ **Batches >10 VMs**: Strongly recommend splitting into multiple batches (e.g., 5 VMs at a time)
 - ⚠️ **Multiple cold migrations**: Warn about cumulative downtime impact
 
-**Reference**: See [references/anti-patterns.md](./references/anti-patterns.md) for common mistakes when performing batch migrations and network saturation issues
+**Reference**: See [references/anti-patterns.md](references/anti-patterns.md) for common mistakes when performing batch migrations and network saturation issues
 
 **Workflow:**
 1. Validate all VMs exist and are migratable
@@ -837,10 +837,10 @@ Agent: [Switches to cold migration workflow]
 **Reference Documentation:**
 
 **Internal Skill Documentation**:
-- [references/live-migration-best-practices.md](./references/live-migration-best-practices.md) - Configuration, requirements, dedicated networks
-- [references/performance-tuning.md](./references/performance-tuning.md) - Right-sizing, overcommit, bandwidth tuning
-- [references/anti-patterns.md](./references/anti-patterns.md) - Common mistakes to avoid
-- [references/production-considerations.md](./references/production-considerations.md) - HA strategies, capacity planning
+- [references/live-migration-best-practices.md](references/live-migration-best-practices.md) - Configuration, requirements, dedicated networks
+- [references/performance-tuning.md](references/performance-tuning.md) - Right-sizing, overcommit, bandwidth tuning
+- [references/anti-patterns.md](references/anti-patterns.md) - Common mistakes to avoid
+- [references/production-considerations.md](references/production-considerations.md) - HA strategies, capacity planning
 
 **Official KubeVirt Documentation**:
 - [Live Migration - KubeVirt User Guide](https://kubevirt.io/user-guide/compute/live_migration/)

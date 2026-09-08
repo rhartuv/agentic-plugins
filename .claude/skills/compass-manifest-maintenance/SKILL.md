@@ -96,6 +96,19 @@ test -f CLAUDE.md && echo "✓ repo root" || echo "✗ wrong directory"
 
 7. **Reconcile plugin MCP deps** — plugin `dependsOn` = union of all `mcpserver:` refs across pack skill manifests.
 
+8. **Verify skill documentation layout** ([agent-plugins.org](https://agent-plugins.org/specification) / agentskills.io):
+   - Skill-local documentation belongs in `skills/<skill-name>/references/`, not `docs/`.
+   - **Allowed locations only:** pack-level `<pack>/references/` or skill-level `skills/<name>/references/`. **No** `references/references/` nesting inside a skill.
+   - **Scan** every `skills/<skill-name>/` for a `docs/` directory.
+   - **If `docs/` exists:**
+     1. Rename or merge into `references/` (merge file-by-file when both exist).
+     2. If `docs/references/` existed, flatten into `skills/<name>/references/` (not `references/references/`).
+     3. Update markdown links in `SKILL.md` and all files under the skill directory: `docs/...` → `references/...` (also `./docs/...` and relative `../docs/...` segments).
+     4. **Delete** the `docs/` directory after migration — do not leave an empty or stale `docs/` folder.
+     5. Update symlinks under `references/` that still target `docs/` paths to `references/`.
+   - Shared reference pools (e.g. `common-issues.md`, `live-doc-lookup.md`) symlinked into multiple skills must use link targets that resolve when opened through the symlink (same-directory or `references/...` paths from the symlink location).
+   - Run `uv run python scripts/validate_compass_manifests.py` to confirm (includes manifest roster, bidirectional refs, and references layout).
+
 ### 2. Register a new pack in Compass
 
 1. Create `<pack>/<pack>-plugin.yaml` from [assets/plugin-catalog-info.yaml](assets/plugin-catalog-info.yaml) with **`spec.lifecycle: development`** (default for new packs; confirm with user before raising maturity).
@@ -106,7 +119,7 @@ test -f CLAUDE.md && echo "✓ repo root" || echo "✗ wrong directory"
 
 ### 3. Drift / compliance audit
 
-Run `uv run python scripts/validate_compass_manifests.py` (or `make validate-compass-manifests`). It enforces the same structural rules as this table:
+Run `uv run python scripts/validate_compass_manifests.py` (or `make validate-compass-manifests`). It enforces manifest roster, bidirectional refs, and skill references layout:
 
 | Check | Rule |
 |-------|------|
@@ -117,6 +130,7 @@ Run `uv run python scripts/validate_compass_manifests.py` (or `make validate-com
 | Dangling refs | Every ref resolves to on-disk manifest or documented canonical MCP |
 | Forbidden | No `partOf`/`hasPart` on AiResource/MCPServer; no redundant `dependsOn: system:default/agentic-plugins` on plugins |
 | Namespace | Refs use `ai5-marketplace` except `mcpserver:redhat/*` and `default/agentic-plugins` |
+| Skill docs layout | No `skills/<name>/docs/` (delete after migrate); no `references/references/` nesting; links use `references/...` or `./references/...`, not `docs/...` |
 
 Report violations with file path and fix per workflow §1. Do not weaken checks.
 
@@ -131,6 +145,7 @@ Report violations with file path and fix per workflow §1. Do not weaken checks.
 - If skill on disk has no manifest → create from `assets/skill-catalog-info.yaml` and add Location target.
 - If inverse `dependencyOf` missing on plugin or MCP → update per [relationship-rules.md](references/relationship-rules.md).
 - If MCP ref cannot be resolved → grep pack manifests; do not invent new `mcpserver:` refs.
+- If `skills/<name>/docs/` exists or markdown links use `docs/...` → rename/merge to `references/`, flatten any `references/references/`, update link paths, **delete** `docs/`, fix symlinks; re-run `validate_compass_manifests.py`.
 
 ## Self-review checklist
 
@@ -141,6 +156,7 @@ Report violations with file path and fix per workflow §1. Do not weaken checks.
 - [ ] Pack Location lists every skill manifest path.
 - [ ] Plugin `dependencyOf` lists every skill in the pack.
 - [ ] No `partOf`/`hasPart` on custom kinds.
+- [ ] Skill documentation uses `references/` only — no leftover `docs/` directory, no `references/references/` nesting; links use `references/...` or `./references/...`.
 
 ## Dependencies
 
@@ -171,11 +187,12 @@ None — uses Read, Glob, Grep, Bash.
 - **Orchestration gaps** — `remediation`-style skills missing skill→skill edges or inverse `dependencyOf` on depended skills.
 - **Canonical vs owned** — Lightspeed and Security use `mcpserver:redhat/...`; do not register duplicates in `mcps/`.
 - **Unregistered packs** — `rh-developer`, `rh-ai-engineer`, `rh-automation` exist on disk but are not in root Location until explicitly added.
+- **`docs/` vs `references/`** — agent-plugins.org expects `references/` for skill-local docs; rename/merge, flatten `references/references/`, update links, **delete** `docs/`, then run `make validate-compass-manifests`.
 
 ## Example usage
 
 ```bash
-# CI structural validation (roster + bidirectional refs)
+# CI structural validation (roster + bidirectional refs + references layout)
 uv run python scripts/validate_compass_manifests.py
 # or: make validate-compass-manifests
 

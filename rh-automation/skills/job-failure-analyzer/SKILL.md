@@ -43,8 +43,8 @@ Do NOT use when:
 **CRITICAL**: Document consultation MUST happen BEFORE any MCP tool invocations.
 
 **Document Consultation** (REQUIRED - Execute FIRST):
-1. **Action**: Read [job-troubleshooting.md](docs/aap/job-troubleshooting.md) using the Read tool to understand event extraction, failure patterns, host summary interpretation, and root cause classification
-2. **Output to user**: "I consulted [job-troubleshooting.md](docs/aap/job-troubleshooting.md) which references Red Hat's AAP 2.6 Troubleshooting Guide for failure analysis patterns."
+1. **Action**: Read [job-troubleshooting.md](references/aap/job-troubleshooting.md) using the Read tool to understand event extraction, failure patterns, host summary interpretation, and root cause classification
+2. **Output to user**: "I consulted [job-troubleshooting.md](references/aap/job-troubleshooting.md) which references Red Hat's AAP 2.6 Troubleshooting Guide for failure analysis patterns."
 
 ### Step 2: Retrieve Job Status
 
@@ -167,7 +167,7 @@ Sort events by `counter` and produce a chronological failure narrative:
 - `execution-summary` - Audit trail
 
 ### Reference Documentation
-- [job-troubleshooting.md](docs/aap/job-troubleshooting.md) - Event parsing and failure patterns
+- [job-troubleshooting.md](references/aap/job-troubleshooting.md) - Event parsing and failure patterns
 
 ## Example Usage
 

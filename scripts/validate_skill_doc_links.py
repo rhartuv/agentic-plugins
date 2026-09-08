@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Validate skill markdown links to enforce skill-local docs convention.
+Validate skill markdown links to enforce skill-local references convention.
 
 Rules:
-- Forbid upward traversal into pack docs (../docs, ../../docs, etc).
-- Internal docs links must use docs/... path from skill directory.
-- Linked docs files must exist (symlinks allowed, dangling symlinks rejected).
+- Forbid upward traversal into pack docs (../references, ../../references, etc).
+- Internal docs links must use references/... path from skill directory.
+- Linked reference files must exist (symlinks allowed, dangling symlinks rejected).
 - Resolved targets must stay within the pack root.
 """
 
@@ -69,6 +69,11 @@ def is_external_link(target: str) -> bool:
     )
 
 
+def _is_skill_local_references_link(target: str) -> bool:
+    normalized = target.replace("\\", "/")
+    return normalized.startswith("references/") or normalized.startswith("./references/")
+
+
 def validate_skill_file(skill_file: Path, result: ValidationResult) -> None:
     skill_dir = skill_file.parent
     pack_root = skill_file.parent.parent.parent.resolve()
@@ -82,26 +87,27 @@ def validate_skill_file(skill_file: Path, result: ValidationResult) -> None:
                 continue
 
             target = raw_target.split("#", 1)[0].strip()
-            if ".md" not in target or "docs/" not in target:
+            if ".md" not in target or "references/" not in target:
                 continue
 
             result.checked_docs_links += 1
             normalized = target.replace("\\", "/")
 
-            # Forbid upward traversal to docs.
+            # Forbid upward traversal to references.
             if normalized.startswith("../") or "/../" in normalized:
                 result.errors.append(
-                    f"{skill_file}:{line_no}: forbidden upward docs path '{raw_target}'"
+                    f"{skill_file}:{line_no}: forbidden upward references path '{raw_target}'"
                 )
 
-            # Enforce skill-local docs path.
-            if not normalized.startswith("docs/"):
+            # Enforce skill-local references path (references/ or ./references/).
+            if not _is_skill_local_references_link(normalized):
                 result.errors.append(
-                    f"{skill_file}:{line_no}: docs link must be skill-local 'docs/...', got '{raw_target}'"
+                    f"{skill_file}:{line_no}: references link must be skill-local "
+                    f"'references/...' or './references/...', got '{raw_target}'"
                 )
                 continue
 
-            link_path = skill_dir / normalized
+            link_path = (skill_dir / normalized).resolve()
             try:
                 resolved = link_path.resolve(strict=True)
             except FileNotFoundError:

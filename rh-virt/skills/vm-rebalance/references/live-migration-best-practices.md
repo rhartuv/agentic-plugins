@@ -785,7 +785,7 @@ Use `resources_get` to fetch HyperConverged CR, modify `.spec.liveMigrationConfi
 - [Performance Tuning Guide](./performance-tuning.md) - Advanced tuning for migration performance
 - [Anti-Patterns](./anti-patterns.md) - Common mistakes to avoid
 - [Production Considerations](./production-considerations.md) - Right-sizing, workload planning, HA strategies
-- [Troubleshooting: Scheduling Errors](../../../docs/troubleshooting/scheduling-errors.md) - ErrorUnschedulable after cold migration
+- [Troubleshooting: Scheduling Errors](troubleshooting/scheduling-errors.md) - ErrorUnschedulable after cold migration
 
 ---
 

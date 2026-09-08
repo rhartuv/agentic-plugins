@@ -1,1 +1,0 @@
-../../cluster-creator/docs/providers.md

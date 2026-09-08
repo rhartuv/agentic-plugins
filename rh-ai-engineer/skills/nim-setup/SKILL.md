@@ -81,8 +81,8 @@ If `rhoai` MCP is not available, skip this check and proceed.
 ### Step 1: Verify GPU Operator and Node Feature Discovery
 
 **Document Consultation** (read before verifying operators):
-1. **Action**: Read [supported-runtimes.md](docs/references/supported-runtimes.md) using the Read tool to understand NIM platform requirements
-2. **Output to user**: "I consulted [supported-runtimes.md](docs/references/supported-runtimes.md) to understand NIM platform requirements."
+1. **Action**: Read [supported-runtimes.md](references/supported-runtimes.md) using the Read tool to understand NIM platform requirements
+2. **Output to user**: "I consulted [supported-runtimes.md](references/supported-runtimes.md) to understand NIM platform requirements."
 
 Check that the NVIDIA GPU Operator and NFD Operator are installed and healthy.
 
@@ -363,7 +363,7 @@ When handing off to `/model-deploy` after NIM setup, note these NIM-specific con
 - **GPU tolerations**: GPU nodes are almost always tainted in production. `/model-deploy` will automatically detect and add tolerations after deployment.
 
 ### Reference Documentation
-- [supported-runtimes.md](docs/references/supported-runtimes.md) - NIM runtime capabilities and requirements
+- [supported-runtimes.md](references/supported-runtimes.md) - NIM runtime capabilities and requirements
 - [live-doc-lookup.md](references/live-doc-lookup.md) - Protocol for fetching current RHOAI/NIM documentation
 
 ## Critical: Human-in-the-Loop Requirements
@@ -378,4 +378,4 @@ See [skill-conventions.md](references/skill-conventions.md) for general HITL and
 
 ## Example Usage
 
-See [nim-setup examples](docs/examples/nim-setup.md) for a complete first-time NIM setup walkthrough.
+See [nim-setup examples](references/examples/nim-setup.md) for a complete first-time NIM setup walkthrough.

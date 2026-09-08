@@ -22,7 +22,7 @@ Check that required tools and environment are properly configured.
 
 ## Critical: Human-in-the-Loop Requirements
 
-See [Human-in-the-Loop Requirements](docs/human-in-the-loop.md) for mandatory checkpoint behavior.
+See [Human-in-the-Loop Requirements](references/human-in-the-loop.md) for mandatory checkpoint behavior.
 
 **Key Rules:**
 1. WAIT for user to select validation scope before running checks
@@ -65,7 +65,7 @@ check_tool() {
 
 **Tools to check:** git, curl, jq, oc, helm, podman, docker, skopeo, ssh
 
-> **See [docs/prerequisites.md](docs/prerequisites.md)** for the complete tool requirements by skill, check commands, and installation instructions.
+> **See [references/prerequisites.md](references/prerequisites.md)** for the complete tool requirements by skill, check commands, and installation instructions.
 
 ### Step 3: Check OpenShift Connectivity (if TARGET includes openshift)
 
@@ -185,7 +185,7 @@ Select an option or describe what you'd like to do:
 
 This tool is required for [skill-names].
 
-See [docs/prerequisites.md](docs/prerequisites.md) for installation commands by OS.
+See [references/prerequisites.md](references/prerequisites.md) for installation commands by OS.
 ```
 
 ### Cluster Connection Failed
@@ -231,4 +231,4 @@ Options:
 - `/deploy` - Deployment requiring oc and cluster access
 
 ### Reference Documentation
-- [docs/prerequisites.md](docs/prerequisites.md) - Comprehensive tool requirements by skill, installation commands, cluster access verification
+- [references/prerequisites.md](references/prerequisites.md) - Comprehensive tool requirements by skill, installation commands, cluster access verification

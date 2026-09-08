@@ -1,1 +1,0 @@
-../../cluster-creator/docs/day-2-operations.md

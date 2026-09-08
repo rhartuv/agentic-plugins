@@ -2,7 +2,7 @@
 
 This sample shows the expected output when a user requests a scoped assessment
 targeting specific governance domains. The report follows the output template
-defined in [governance-readiness.md](../../../docs/aap/governance-readiness.md).
+defined in [governance-readiness.md](../../governance-readiness-assessor/references/aap/governance-readiness.md).
 
 ---
 
@@ -14,7 +14,7 @@ defined in [governance-readiness.md](../../../docs/aap/governance-readiness.md).
 **Scale Calibration**: Small team (1 inventory, 5 hosts, development only)
 
 **Documents Consulted**:
-- [governance-readiness.md](docs/aap/governance-readiness.md) -- Domains 3 and 4 assessment criteria, Red Hat citations
+- [governance-readiness.md](../../governance-readiness-assessor/references/aap/governance-readiness.md) -- Domains 3 and 4 assessment criteria, Red Hat citations
 
 ---
 

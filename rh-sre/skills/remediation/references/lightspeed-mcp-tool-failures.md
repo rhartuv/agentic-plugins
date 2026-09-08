@@ -1,0 +1,1 @@
+../../cve-impact/references/lightspeed-mcp-tool-failures.md

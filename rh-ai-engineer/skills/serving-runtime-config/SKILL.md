@@ -87,8 +87,8 @@ Verify the user-specified namespace is an RHOAI Data Science Project.
 - **Intent**: New runtime from scratch, or customize an existing one?
 
 **Document Consultation** (read before listing runtimes):
-1. **Action**: Read [supported-runtimes.md](docs/references/supported-runtimes.md) using the Read tool to understand available runtimes and their capabilities
-2. **Output to user**: "I consulted [supported-runtimes.md](docs/references/supported-runtimes.md) to understand available runtimes."
+1. **Action**: Read [supported-runtimes.md](references/supported-runtimes.md) using the Read tool to understand available runtimes and their capabilities
+2. **Output to user**: "I consulted [supported-runtimes.md](references/supported-runtimes.md) to understand available runtimes."
 
 **MCP Tool**: `list_serving_runtimes` (from rhoai)
 
@@ -290,7 +290,7 @@ See [Prerequisites](#prerequisites) for the complete list of required and option
 - `/debug-inference` - Troubleshoot InferenceService failures after deployment
 
 ### Reference Documentation
-- [supported-runtimes.md](docs/references/supported-runtimes.md) - Runtime capabilities and model format names
+- [supported-runtimes.md](references/supported-runtimes.md) - Runtime capabilities and model format names
 - [live-doc-lookup.md](references/live-doc-lookup.md) - Protocol for fetching specs for unknown frameworks
 
 ## Critical: Human-in-the-Loop Requirements

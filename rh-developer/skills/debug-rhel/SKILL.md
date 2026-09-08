@@ -35,7 +35,7 @@ Diagnose RHEL system issues by automatically gathering systemd status, journal l
 
 ## Critical: Human-in-the-Loop Requirements
 
-See [Human-in-the-Loop Requirements](docs/human-in-the-loop.md) for mandatory checkpoint behavior.
+See [Human-in-the-Loop Requirements](references/human-in-the-loop.md) for mandatory checkpoint behavior.
 
 ## Note: SSH/Bash Required
 
@@ -439,7 +439,7 @@ Select an option:
 
 **WAIT for user to select next action.**
 
-For common RHEL issues (systemd exit codes, SELinux denials, firewall), see [debugging-patterns.md](docs/debugging-patterns.md) and [selinux-troubleshooting.md](docs/selinux-troubleshooting.md).
+For common RHEL issues (systemd exit codes, SELinux denials, firewall), see [debugging-patterns.md](references/debugging-patterns.md) and [selinux-troubleshooting.md](references/selinux-troubleshooting.md).
 
 ## Dependencies
 
@@ -451,7 +451,7 @@ For common RHEL issues (systemd exit codes, SELinux denials, firewall), see [deb
 - `/debug-container` - debug Podman containers on the host
 
 ### Reference Documentation
-- [docs/selinux-troubleshooting.md](docs/selinux-troubleshooting.md) - SELinux denial analysis
-- [docs/rhel-deployment.md](docs/rhel-deployment.md) - RHEL deployment patterns
-- [docs/debugging-patterns.md](docs/debugging-patterns.md) - Common error patterns
-- [docs/prerequisites.md](docs/prerequisites.md) - Required tools and setup
+- [references/selinux-troubleshooting.md](references/selinux-troubleshooting.md) - SELinux denial analysis
+- [references/rhel-deployment.md](references/rhel-deployment.md) - RHEL deployment patterns
+- [references/debugging-patterns.md](references/debugging-patterns.md) - Common error patterns
+- [references/prerequisites.md](references/prerequisites.md) - Required tools and setup

@@ -27,7 +27,7 @@ Use `/deploy` after building a container image (via `/s2i-build` or external reg
 
 ## Critical: Human-in-the-Loop Requirements
 
-See [Human-in-the-Loop Requirements](docs/human-in-the-loop.md) for mandatory checkpoint behavior.
+See [Human-in-the-Loop Requirements](references/human-in-the-loop.md) for mandatory checkpoint behavior.
 
 ## Workflow
 
@@ -275,5 +275,5 @@ Your application is now live!
 - `/debug-build` - Build failures before deployment
 
 ### Reference Documentation
-- [docs/prerequisites.md](docs/prerequisites.md) - Required tools (oc), cluster access verification
-- [docs/debugging-patterns.md](docs/debugging-patterns.md) - Common error patterns and troubleshooting
+- [references/prerequisites.md](references/prerequisites.md) - Required tools (oc), cluster access verification
+- [references/debugging-patterns.md](references/debugging-patterns.md) - Common error patterns and troubleshooting

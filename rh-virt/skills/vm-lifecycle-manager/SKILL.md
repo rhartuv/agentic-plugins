@@ -134,7 +134,7 @@ Confirm: yes/no
 
 **On Failure:**
 
-**OPTIONAL**: Read [lifecycle-errors.md](docs/troubleshooting/lifecycle-errors.md) for start/stop failures or [scheduling-errors.md](docs/troubleshooting/scheduling-errors.md) for ErrorUnschedulable. Output: "Consulted lifecycle-errors.md for failure."
+**OPTIONAL**: Read [lifecycle-errors.md](references/troubleshooting/lifecycle-errors.md) for start/stop failures or [scheduling-errors.md](references/troubleshooting/scheduling-errors.md) for ErrorUnschedulable. Output: "Consulted lifecycle-errors.md for failure."
 
 **When to consult**: Start/stop failures, stuck transitions, unexpected errors. **NOT**: Already in state, not found, RBAC errors.
 
@@ -201,9 +201,9 @@ Confirm: yes/no
 - `vm-troubleshooter` (planned) - Diagnose startup/shutdown issues
 
 ### Reference Documentation
-- [lifecycle-errors.md](docs/troubleshooting/lifecycle-errors.md) - Start/stop failures, stuck transitions (consulted on failures)
-- [scheduling-errors.md](docs/troubleshooting/scheduling-errors.md) - ErrorUnschedulable, resource constraints (consulted when VM won't start)
-- [Troubleshooting INDEX](docs/troubleshooting/INDEX.md) - Navigation hub for error categories
+- [lifecycle-errors.md](references/troubleshooting/lifecycle-errors.md) - Start/stop failures, stuck transitions (consulted on failures)
+- [scheduling-errors.md](references/troubleshooting/scheduling-errors.md) - ErrorUnschedulable, resource constraints (consulted when VM won't start)
+- [Troubleshooting INDEX](references/troubleshooting/INDEX.md) - Navigation hub for error categories
 - [OpenShift Virt Docs](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html-single/virtualization/index#virt/about_virt/about-virt.html)
 - [KubeVirt Lifecycle](https://kubevirt.io/user-guide/virtual_machines/lifecycle/)
 - [RunStrategy Docs](https://kubevirt.io/user-guide/virtual_machines/run_strategies/)

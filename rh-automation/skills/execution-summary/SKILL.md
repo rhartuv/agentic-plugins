@@ -65,10 +65,10 @@ Review the current conversation/session to extract:
 
 | Document | Topic | Citation |
 |---|---|---|
-| [governance-readiness.md](docs/aap/governance-readiness.md) | 7-domain assessment framework | Red Hat AAP 2.5 Security Best Practices (Ch. 15), Workflows (Ch. 9), Notifications (Ch. 25) |
-| [execution-governance.md](docs/aap/execution-governance.md) | Risk classification, check mode | Red Hat AAP 2.5 Job Templates (Ch. 9), Controller Best Practices |
-| [job-troubleshooting.md](docs/aap/job-troubleshooting.md) | Event parsing, failure patterns | Red Hat AAP 2.6 Troubleshooting Guide |
-| [error-classification.md](docs/references/error-classification.md) | Error taxonomy | Red Hat AAP 2.6 Troubleshooting Guide |
+| [governance-readiness.md](references/aap/governance-readiness.md) | 7-domain assessment framework | Red Hat AAP 2.5 Security Best Practices (Ch. 15), Workflows (Ch. 9), Notifications (Ch. 25) |
+| [execution-governance.md](references/aap/execution-governance.md) | Risk classification, check mode | Red Hat AAP 2.5 Job Templates (Ch. 9), Controller Best Practices |
+| [job-troubleshooting.md](references/aap/job-troubleshooting.md) | Event parsing, failure patterns | Red Hat AAP 2.6 Troubleshooting Guide |
+| [error-classification.md](references/error-classification.md) | Error taxonomy | Red Hat AAP 2.6 Troubleshooting Guide |
 
 ### MCP Tools Used
 

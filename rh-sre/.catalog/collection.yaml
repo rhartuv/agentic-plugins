@@ -266,31 +266,31 @@ resources:
 - title: Red Hat Lightspeed Remediations Guide
   url: https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html-single/red_hat_lightspeed_remediations_guide/index
   description: Creating remediation plans, playbook generation.
-  embedded_doc: skills/playbook-generator/docs/ansible/cve-remediation-templates.md
+  embedded_doc: skills/playbook-generator/references/ansible/cve-remediation-templates.md
 - title: Red Hat Lightspeed MCP
   url: https://github.com/RedHatInsights/insights-mcp
   description: MCP server used by this collection; parameter reference.
-  embedded_doc: skills/cve-impact/docs/references/lightspeed-mcp-parameters.md
+  embedded_doc: skills/cve-impact/references/lightspeed-mcp-parameters.md
 - title: Assessing and Monitoring Security Vulnerabilities on RHEL Systems
   url: https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_vulnerabilities_on_rhel_systems/vuln-cves_vuln-overview
   description: CVE identification, classification, threat intelligence.
-  embedded_doc: skills/cve-validation/docs/insights/vulnerability-logic.md
+  embedded_doc: skills/cve-validation/references/insights/vulnerability-logic.md
 - title: Managing Software with the DNF Tool (RHEL 9)
   url: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/managing_software_with_the_dnf_tool/index
   description: DNF commands, updating packages, repository management.
-  embedded_doc: skills/playbook-generator/docs/rhel/package-management.md
+  embedded_doc: skills/playbook-generator/references/rhel/package-management.md
 - title: Severity Ratings (Red Hat Customer Portal)
   url: https://access.redhat.com/security/updates/classification
   description: Red Hat severity ratings, CVSS usage.
-  embedded_doc: skills/cve-validation/docs/references/cvss-scoring.md
+  embedded_doc: skills/cve-validation/references/cvss-scoring.md
 - title: Red Hat Ansible Automation Platform Documentation
   url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   description: AAP 2.6 docs; projects, job templates, playbook integration.
-  embedded_doc: skills/playbook-executor/docs/ansible/playbook-integration-aap.md
+  embedded_doc: skills/playbook-executor/references/ansible/playbook-integration-aap.md
 - title: AAP Job Execution
   url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html/using_automation_execution/controller-job-templates
   description: Job templates, check mode, dry-run execution.
-  embedded_doc: skills/playbook-executor/docs/ansible/aap-job-execution.md
+  embedded_doc: skills/playbook-executor/references/ansible/aap-job-execution.md
 - title: Ansible Automation Platform
   url: https://www.redhat.com/en/technologies/management/ansible
   description: AAP product overview for playbook execution.

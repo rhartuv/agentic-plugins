@@ -27,7 +27,7 @@ Use this skill when OpenShift builds fail, hang, or produce unexpected results. 
 
 ## Critical: Human-in-the-Loop Requirements
 
-See [Human-in-the-Loop Requirements](docs/human-in-the-loop.md) for mandatory checkpoint behavior.
+See [Human-in-the-Loop Requirements](references/human-in-the-loop.md) for mandatory checkpoint behavior.
 
 ## Workflow
 
@@ -298,7 +298,7 @@ Select an option:
 
 ## Build Failure Categories
 
-For S2I build phase failures, common error patterns (Node.js, Python, Java), and troubleshooting decision trees, see [docs/debugging-patterns.md](docs/debugging-patterns.md).
+For S2I build phase failures, common error patterns (Node.js, Python, Java), and troubleshooting decision trees, see [references/debugging-patterns.md](references/debugging-patterns.md).
 
 ## Dependencies
 
@@ -311,7 +311,7 @@ For S2I build phase failures, common error patterns (Node.js, Python, Java), and
 - `/deploy` - To deploy after a successful build
 
 ### Reference Documentation
-- [docs/builder-images.md](docs/builder-images.md) - S2I builder image selection, version mapping
-- [docs/python-s2i-entrypoints.md](docs/python-s2i-entrypoints.md) - Python APP_MODULE configuration
-- [docs/debugging-patterns.md](docs/debugging-patterns.md) - Common error patterns
-- [docs/prerequisites.md](docs/prerequisites.md) - Required tools (oc), cluster access verification
+- [references/builder-images.md](references/builder-images.md) - S2I builder image selection, version mapping
+- [references/python-s2i-entrypoints.md](references/python-s2i-entrypoints.md) - Python APP_MODULE configuration
+- [references/debugging-patterns.md](references/debugging-patterns.md) - Common error patterns
+- [references/prerequisites.md](references/prerequisites.md) - Required tools (oc), cluster access verification

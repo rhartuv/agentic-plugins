@@ -1,0 +1,1 @@
+../../../mcp-aap-validator/references/ansible/aap-integration.md

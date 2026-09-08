@@ -1,7 +1,7 @@
 # Sample Report: Full Governance Readiness Assessment
 
 This sample shows the expected output when a user requests a full platform governance audit.
-The report follows the output template defined in [governance-readiness.md](../../../docs/aap/governance-readiness.md).
+The report follows the output template defined in [governance-readiness.md](../../governance-readiness-assessor/references/aap/governance-readiness.md).
 
 ---
 
@@ -13,7 +13,7 @@ The report follows the output template defined in [governance-readiness.md](../.
 **Scale Calibration**: Enterprise (3 inventories, 87 hosts across production, staging, and development)
 
 **Documents Consulted**:
-- [governance-readiness.md](docs/aap/governance-readiness.md) -- 7-domain assessment framework, Red Hat citations, decision tables
+- [governance-readiness.md](../../governance-readiness-assessor/references/aap/governance-readiness.md) -- 7-domain assessment framework, Red Hat citations, decision tables
 
 ---
 

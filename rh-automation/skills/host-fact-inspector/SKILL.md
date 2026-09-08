@@ -45,8 +45,8 @@ Do NOT use when:
 **CRITICAL**: Document consultation MUST happen BEFORE any MCP tool invocations.
 
 **Document Consultation** (REQUIRED - Execute FIRST):
-1. **Action**: Read [job-troubleshooting.md](docs/aap/job-troubleshooting.md) using the Read tool to understand the host fact correlation table and error-to-fact mapping
-2. **Output to user**: "I consulted [job-troubleshooting.md](docs/aap/job-troubleshooting.md) to understand which host facts correlate with the identified failure patterns."
+1. **Action**: Read [job-troubleshooting.md](references/aap/job-troubleshooting.md) using the Read tool to understand the host fact correlation table and error-to-fact mapping
+2. **Output to user**: "I consulted [job-troubleshooting.md](references/aap/job-troubleshooting.md) to understand which host facts correlate with the identified failure patterns."
 
 ### Step 2: Look Up Affected Hosts
 
@@ -136,7 +136,7 @@ If facts appear stale or missing, report this: "Host facts may not be current. F
 - `execution-summary` - Audit trail
 
 ### Reference Documentation
-- [job-troubleshooting.md](docs/aap/job-troubleshooting.md) - Host fact correlation table
+- [job-troubleshooting.md](references/aap/job-troubleshooting.md) - Host fact correlation table
 
 ## Example Usage
 

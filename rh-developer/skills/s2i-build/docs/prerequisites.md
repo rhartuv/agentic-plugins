@@ -1,1 +1,0 @@
-../../validate-environment/docs/prerequisites.md

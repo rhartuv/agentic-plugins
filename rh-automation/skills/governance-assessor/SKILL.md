@@ -68,7 +68,7 @@ Do NOT use when:
 - Produces the structured Governance Readiness Report with Red Hat citations per domain, compound risk analysis, and prioritized fix order
 
 **Document Consultation** (performed by the skill):
-The governance-readiness-assessor skill reads [governance-readiness.md](docs/aap/governance-readiness.md) and reports its consultation.
+The governance-readiness-assessor skill reads [governance-readiness.md](references/aap/governance-readiness.md) and reports its consultation.
 
 ### 3. Present Report and Offer Remediation
 
@@ -108,7 +108,7 @@ Before creating or modifying any AAP resource:
 - `forensic-troubleshooter` - Follow-up: investigate failures found during assessment
 
 ### Reference Documentation
-- [governance-readiness.md](docs/aap/governance-readiness.md) - 7-domain assessment framework
+- [governance-readiness.md](references/aap/governance-readiness.md) - 7-domain assessment framework
 
 ### Sample Reports
 - [sample-full-assessment.md](references/sample-full-assessment.md) - Full 7+1 domain assessment with compound risk analysis
