@@ -175,7 +175,6 @@ None — uses Read, Glob, Grep, Bash.
 
 ### Reference Documentation
 
-- [CLAUDE.md](../../CLAUDE.md) — entity kinds, namespaces, reference formats
 - `scripts/validate_compass_manifests.py` — CI roster and bidirectional ref checks
 - [references/relationship-rules.md](references/relationship-rules.md)
 - [references/mcp-mapping.md](references/mcp-mapping.md)
