@@ -56,6 +56,8 @@ validate: check-uv
 	uv run python scripts/validate_skill_doc_links.py || EXIT=1; \
 	echo "=== Validating docs tree links..."; \
 	uv run python scripts/validate_docs_tree_links.py || EXIT=1; \
+	echo "=== Running compass layout regression tests..."; \
+	uv run python scripts/test_validate_compass_layout.py || EXIT=1; \
 	echo "=== Validating collection compliance (.catalog/)..."; \
 	uv run python scripts/validate_collection_compliance.py || EXIT=1; \
 	echo "=== Validating Compass manifests..."; \
@@ -80,6 +82,8 @@ validate-structure: check-uv
 	uv run python scripts/validate_skill_doc_links.py || EXIT=1; \
 	echo "=== Validating docs tree links..."; \
 	uv run python scripts/validate_docs_tree_links.py || EXIT=1; \
+	echo "=== Running compass layout regression tests..."; \
+	uv run python scripts/test_validate_compass_layout.py || EXIT=1; \
 	echo "=== Validating collection compliance (.catalog/)..."; \
 	uv run python scripts/validate_collection_compliance.py || EXIT=1; \
 	echo "=== Validating Compass manifests..."; \

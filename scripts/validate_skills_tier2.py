@@ -687,7 +687,7 @@ def validate_skill(skill_path: Path) -> ValidationResult:
     if content_bytes > 20480:
         result.warnings.append(
             f"SKILL.md is large ({content_bytes} bytes). "
-            "Consider moving content to references/ or docs/"
+            "Consider moving content to references/"
         )
 
     check_frontmatter_fields(frontmatter, result)

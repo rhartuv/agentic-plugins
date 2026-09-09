@@ -59,7 +59,7 @@ Do NOT use when:
 4. **Documentation consulted** - Look for Read tool calls on documentation files
    - Pattern: Files under `rh-sre/references/` or `rh-sre/skills/*/SKILL.md`
    - Extract only from `references/` onwards
-   - Example: `/path/to/rh-sre/references/ansible/playbook-templates.md` → `references/ansible/playbook-templates.md`
+   - Example: `/path/to/rh-sre/skills/playbook-generator/references/ansible/cve-remediation-templates.md` → `skills/playbook-generator/references/ansible/cve-remediation-templates.md`
    - Example: `/path/to/rh-sre/skills/fleet-inventory/SKILL.md` → `skills/fleet-inventory/SKILL.md`
    - Include "I consulted [filename]" statements in conversation
 
@@ -121,11 +121,11 @@ Docs: <doc1>,<doc2>,...
    - Example: `aap-mcp-job-management:job_templates_list`
    - Separate with commas: `lightspeed-mcp:get_cve,lightspeed-mcp:get_host_details`
 
-4. **Doc names**: Path from `docs/` onwards
-   - Format: `docs/category/filename.md` or `skills/skill-name/SKILL.md`
-   - Example: `docs/ansible/cve-remediation-templates.md`
+4. **Doc names**: Pack-relative path from `skills/` or pack `references/`
+   - Format: `skills/skill-name/references/category/filename.md` or `skills/skill-name/SKILL.md`
+   - Example: `skills/playbook-generator/references/ansible/cve-remediation-templates.md`
    - Example: `skills/fleet-inventory/SKILL.md`
-   - Separate with commas: `docs/ansible/playbook-templates.md,docs/insights/vulnerability-logic.md`
+   - Separate with commas: `skills/playbook-generator/references/ansible/cve-remediation-templates.md,skills/cve-validation/references/insights/vulnerability-logic.md`
 
 5. **Empty categories**: If no resources used, show "None"
    - Example: `Agents: None`
@@ -144,7 +144,7 @@ I've generated the execution summary for this workflow:
 Agents: None
 Skills: rh-sre:remediation,rh-sre:fleet-inventory,rh-sre:cve-impact,rh-sre:playbook-generator,rh-sre:job-template-creator
 Tools: lightspeed-mcp:get_host_details,lightspeed-mcp:get_cve,aap-mcp-job-management:job_templates_list
-Docs: docs/ansible/cve-remediation-templates.md,docs/insights/vulnerability-logic.md,skills/fleet-inventory/SKILL.md
+Docs: skills/playbook-generator/references/ansible/cve-remediation-templates.md,skills/cve-validation/references/insights/vulnerability-logic.md,skills/fleet-inventory/SKILL.md
 **** EXECUTION SUMMARY END ****
 
 This summary shows all agents, skills, tools, and documentation used during the workflow.
@@ -179,7 +179,7 @@ None (analyzes conversation history only)
 1. Invoked `mcp-lightspeed-validator` skill
 2. Invoked `fleet-inventory` skill
 3. Called `get_host_details` MCP tool
-4. Read `docs/insights/insights-api.md`
+4. Read `skills/fleet-inventory/references/insights/insights-api.md`
 
 **Skill Response**:
 ```
@@ -189,7 +189,7 @@ I've generated the execution summary for this workflow:
 Agents: None
 Skills: rh-sre:mcp-lightspeed-validator,rh-sre:fleet-inventory
 Tools: lightspeed-mcp:get_host_details
-Docs: docs/insights/insights-api.md,skills/fleet-inventory/SKILL.md
+Docs: skills/fleet-inventory/references/insights/insights-api.md,skills/fleet-inventory/SKILL.md
 **** EXECUTION SUMMARY END ****
 
 This workflow used 2 skills, 1 MCP tool, and consulted 2 documentation files.
@@ -213,7 +213,7 @@ I've generated the execution summary for this workflow:
 Agents: None
 Skills: rh-sre:remediation,rh-sre:cve-validation,rh-sre:cve-impact,rh-sre:system-context,rh-sre:playbook-generator,rh-sre:job-template-creator
 Tools: lightspeed-mcp:get_cve,lightspeed-mcp:get_cve_systems,lightspeed-mcp:get_host_details,lightspeed-mcp:create_vulnerability_playbook,aap-mcp-job-management:job_templates_launch_retrieve
-Docs: docs/references/cvss-scoring.md,docs/ansible/cve-remediation-templates.md,docs/insights/vulnerability-logic.md,skills/playbook-generator/SKILL.md
+Docs: skills/cve-validation/references/cvss-scoring.md,skills/playbook-generator/references/ansible/cve-remediation-templates.md,skills/cve-validation/references/insights/vulnerability-logic.md,skills/playbook-generator/SKILL.md
 **** EXECUTION SUMMARY END ****
 
 This comprehensive remediation workflow used the remediation skill that orchestrated 5 skills, invoked 5 MCP tools, and consulted 4 documentation files.
@@ -293,7 +293,7 @@ Include the resource with a note:
 Agents: None
 Skills: rh-sre:remediation,rh-sre:fleet-inventory,unknown-plugin:custom-skill
 Tools: lightspeed-mcp:get_cve
-Docs: docs/ansible/playbook-templates.md
+Docs: skills/playbook-generator/references/ansible/cve-remediation-templates.md
 **** EXECUTION SUMMARY END ****
 
 Note: "unknown-plugin:custom-skill" origin unclear - verify plugin source.
@@ -308,7 +308,7 @@ Note: "unknown-plugin:custom-skill" origin unclear - verify plugin source.
 5. **Compact format** - No spaces after commas
 6. **Include all categories** - Even if "None"
 7. **Extract docs from "I consulted" statements** - These indicate documentation usage
-8. **Path from docs/ onwards** - Not full filesystem paths
+8. **Pack-relative paths** - Use `skills/.../references/...` or `skills/.../SKILL.md`, not full filesystem paths
 9. **Brief explanation** - Help user understand the summary
 10. **Handle edge cases gracefully** - Empty workflows, incomplete history
 

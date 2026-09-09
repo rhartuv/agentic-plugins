@@ -348,7 +348,7 @@ Agent: "⏳ Storage cloning in progress... (45%)
 User: "Create a Fedora VM called test-vm in namespace demo"
 → vm-create skill creates the VM
 → Detects ErrorUnschedulable status
-→ Consults docs/troubleshooting/scheduling-errors.md for domain knowledge
+→ Consults references/troubleshooting/scheduling-errors.md for domain knowledge
 → Diagnoses: Node taints prevent scheduling
 → Proposes workaround: Add tolerations to VM spec
 
@@ -395,7 +395,7 @@ MCP server is configured in `mcps.json` (see [MCP Server Integration](#mcp-serve
 The **vm-create** skill includes automatic error diagnosis and workaround proposals. When VMs encounter scheduling issues:
 
 1. **Detection**: Skill automatically detects ErrorUnschedulable and other error states
-2. **Diagnosis**: Consults `docs/troubleshooting/INDEX.md` and category files to understand root cause
+2. **Diagnosis**: Consults `references/troubleshooting/INDEX.md` and category files to understand root cause
 3. **Investigation**: Executes diagnostic commands (node taints, resource availability, events)
 4. **Proposal**: Presents clear diagnosis with workaround options
 5. **Remediation**: Applies fix with user confirmation (human-in-the-loop)
@@ -404,7 +404,7 @@ The **vm-create** skill includes automatic error diagnosis and workaround propos
 - **ErrorUnschedulable** - Node taints/tolerations mismatch, resource constraints, node selector issues
 - **ErrorDataVolumeNotReady** - Storage provisioning delays, storage class issues, quota exceeded
 
-**For comprehensive troubleshooting guidance**, see [docs/troubleshooting/INDEX.md](skills/vm-rebalance/references/troubleshooting/INDEX.md).
+**For comprehensive troubleshooting guidance**, see [references/troubleshooting/INDEX.md](skills/vm-rebalance/references/troubleshooting/INDEX.md).
 
 ### MCP Server Won't Start
 
@@ -444,18 +444,10 @@ The **vm-create** skill includes automatic error diagnosis and workaround propos
 rh-virt/
 ├── README.md                    # This file
 ├── mcps.json                    # MCP server configuration
-├── docs/                        # AI-optimized knowledge base
-│   └── troubleshooting/         # VM error diagnosis and workarounds (categorized by error type)
-│       ├── INDEX.md             # Navigation hub for troubleshooting docs
-│       ├── scheduling-errors.md # ErrorUnschedulable diagnostics
-│       ├── storage-errors.md    # Storage provisioning issues
-│       ├── lifecycle-errors.md  # Start/stop/terminating problems
-│       ├── runtime-errors.md    # CrashLoopBackOff diagnostics
-│       ├── network-errors.md    # Network attachment failures
-│       └── .ai-index/           # Semantic indexing for AI discovery
-│           └── semantic-index.json
 └── skills/
-    ├── vm-create/SKILL.md      # VM provisioning with auto-diagnosis
+    ├── vm-create/              # VM provisioning with auto-diagnosis
+    │   ├── SKILL.md
+    │   └── references/troubleshooting/  # VM error diagnosis and workarounds
     ├── vm-lifecycle-manager/SKILL.md  # VM power management
     ├── vm-inventory/SKILL.md    # VM discovery and status
     ├── vm-delete/SKILL.md       # VM destruction and cleanup

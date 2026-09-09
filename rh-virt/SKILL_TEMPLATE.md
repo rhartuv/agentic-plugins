@@ -27,7 +27,7 @@ Before using this template, understand these mandatory requirements:
 ### 1. Document Consultation Transparency (Design Principle #1)
 - Skills MUST actually read documentation using Read tool before invoking MCP tools
 - Skills MUST declare consultation to user: "I consulted [file] to understand [topic]"
-- **REQUIRED** for rh-virt when relevant troubleshooting docs exist (docs/troubleshooting/)
+- **REQUIRED** for rh-virt when relevant troubleshooting docs exist (references/troubleshooting/)
 
 ### 2. Precise Parameter Specification (Design Principle #2)
 - Provide exact parameter names and formats with examples
@@ -195,8 +195,8 @@ Please respond with your choice.
 **CRITICAL (Include if relevant troubleshooting documentation exists)**: Document consultation MUST happen BEFORE tool invocation.
 
 **Document Consultation** (REQUIRED when relevant troubleshooting docs exist):
-1. **Action**: Read [doc.md](../../docs/troubleshooting/doc.md) using the Read tool to understand [specific topic]
-2. **Output to user**: "I consulted [doc.md](../../docs/troubleshooting/doc.md) to understand [specific topic]."
+1. **Action**: Read [doc.md](references/troubleshooting/doc.md) using the Read tool to understand [specific topic]
+2. **Output to user**: "I consulted [doc.md](references/troubleshooting/doc.md) to understand [specific topic]."
 
 **When to consult troubleshooting docs**:
 - VM creation/lifecycle skills → Read scheduling-errors.md, storage-errors.md, network-errors.md
@@ -204,12 +204,12 @@ Please respond with your choice.
 - Any skill encountering errors → Read relevant troubleshooting doc before reporting to user
 
 **Available troubleshooting documentation**:
-- docs/troubleshooting/INDEX.md - Master index of all troubleshooting docs
-- docs/troubleshooting/scheduling-errors.md - VM scheduling failures (ErrorUnschedulable, taints, resources)
-- docs/troubleshooting/storage-errors.md - Storage and PVC issues
-- docs/troubleshooting/network-errors.md - Network attachment failures (Multus, NAD)
-- docs/troubleshooting/lifecycle-errors.md - VM lifecycle state errors
-- docs/troubleshooting/runtime-errors.md - Runtime and crash issues
+- references/troubleshooting/INDEX.md - Master index of all troubleshooting docs
+- references/troubleshooting/scheduling-errors.md - VM scheduling failures (ErrorUnschedulable, taints, resources)
+- references/troubleshooting/storage-errors.md - Storage and PVC issues
+- references/troubleshooting/network-errors.md - Network attachment failures (Multus, NAD)
+- references/troubleshooting/lifecycle-errors.md - VM lifecycle state errors
+- references/troubleshooting/runtime-errors.md - Runtime and crash issues
 
 See CLAUDE.md Design Principle #1 for complete rationale.
 
@@ -330,7 +330,7 @@ Would you like help troubleshooting this error?
 2. <Step 2 to resolve>
 3. <Alternative if steps fail>
 
-**Related**: See [<doc-name>.md](../../docs/troubleshooting/<doc-name>.md) for more details
+**Related**: See [<doc-name>.md](references/troubleshooting/<doc-name>.md) for more details
 
 ### Issue 2: <Next Problem>
 
@@ -392,12 +392,12 @@ List skills that complement or replace this skill.
 ### Reference Documentation
 
 **Internal Troubleshooting Documentation**:
-- [INDEX.md](../../docs/troubleshooting/INDEX.md) - Master troubleshooting index
-- [scheduling-errors.md](../../docs/troubleshooting/scheduling-errors.md) - VM scheduling failures
-- [storage-errors.md](../../docs/troubleshooting/storage-errors.md) - Storage and PVC issues
-- [network-errors.md](../../docs/troubleshooting/network-errors.md) - Network attachment failures
-- [lifecycle-errors.md](../../docs/troubleshooting/lifecycle-errors.md) - VM lifecycle errors
-- [runtime-errors.md](../../docs/troubleshooting/runtime-errors.md) - Runtime and crash issues
+- [INDEX.md](references/troubleshooting/INDEX.md) - Master troubleshooting index
+- [scheduling-errors.md](references/troubleshooting/scheduling-errors.md) - VM scheduling failures
+- [storage-errors.md](references/troubleshooting/storage-errors.md) - Storage and PVC issues
+- [network-errors.md](references/troubleshooting/network-errors.md) - Network attachment failures
+- [lifecycle-errors.md](references/troubleshooting/lifecycle-errors.md) - VM lifecycle errors
+- [runtime-errors.md](references/troubleshooting/runtime-errors.md) - Runtime and crash issues
 
 **Official Red Hat Documentation**:
 - [Topic - OpenShift <version>](https://docs.redhat.com/en/documentation/openshift_container_platform/<version>/html-single/virtualization/index#section) - Main documentation
@@ -723,7 +723,7 @@ See `SKILLS_CHECKLIST.md` for the complete validation guide with scoring criteri
    - **Principle #7**: MCP Verification (check availability)
 
 6. **Link Everything**: Cross-reference related skills and documentation
-   - Use relative paths: `../../docs/file.md` or `../other-skill/SKILL.md`
+   - Use skill-local paths: `references/file.md` or `../other-skill/SKILL.md`
    - Verify links are valid before committing
 
 7. **Keep Current**: Use latest stable OpenShift version for all docs
@@ -806,7 +806,7 @@ For complete details, see [SKILL_DESIGN_PRINCIPLES.md](/SKILL_DESIGN_PRINCIPLES.
 2. **Output to user**: "I consulted [doc.md](path) to understand [topic]."
 ```
 
-**Status for rh-virt**: REQUIRED when relevant troubleshooting documentation exists. Skills should consult docs/troubleshooting/ files before handling errors or complex operations.
+**Status for rh-virt**: REQUIRED when relevant troubleshooting documentation exists. Skills should consult references/troubleshooting/ files before handling errors or complex operations.
 
 ### Principle #2: Precise Parameter Specification
 
@@ -870,10 +870,10 @@ For complete details, see [SKILL_DESIGN_PRINCIPLES.md](/SKILL_DESIGN_PRINCIPLES.
 **Collection**: rh-virt (OpenShift Virtualization management)
 **MCP Server**: openshift-virtualization (https://github.com/openshift/openshift-mcp-server)
 **Pattern**: MCP-first approach (always use MCP tools, not CLI fallbacks)
-**Documentation**: docs/troubleshooting/ contains error resolution guides (6 documents)
+**Documentation**: skills/*/references/troubleshooting/ contains error resolution guides (6 documents)
 
 **Related Collections**:
-- rh-sre: Reference implementation with full docs/ directory and semantic indexing
+- rh-sre: Reference implementation with pack references/ index and semantic indexing
 - Use rh-sre as architectural reference for advanced patterns
 
 ---

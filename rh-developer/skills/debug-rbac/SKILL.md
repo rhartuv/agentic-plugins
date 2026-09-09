@@ -61,7 +61,7 @@ When prerequisites fail:
 2. **Report error:**
    ```
    ❌ Cannot execute skill: MCP server `openshift` unavailable
-   📋 Setup: See docs/prerequisites.md for cluster access configuration
+   📋 Setup: See references/prerequisites.md for cluster access configuration
    ```
 3. **Request decision:** "How to proceed? (setup/skip/abort)"
 4. **Wait for user input**

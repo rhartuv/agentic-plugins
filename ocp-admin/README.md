@@ -775,25 +775,26 @@ The pack includes 17 comprehensive reference documents covering all aspects of O
 ocp-admin/
 ├── README.md                    # This file
 ├── mcps.json                    # MCP server configurations
-├── docs/                        # Comprehensive reference documentation (17 files)
-│   ├── INDEX.md                 # Master documentation navigation
-│   ├── input-validation-guide.md
-│   ├── providers.md
-│   ├── platforms.md
-│   ├── networking.md
-│   ├── static-networking-guide.md
-│   ├── host-requirements.md
-│   ├── storage.md
-│   ├── examples.md
-│   ├── credentials-management.md
-│   ├── multi-cluster-auth.md
-│   ├── day-2-operations.md
-│   ├── certificate-management.md
-│   ├── backup-restore.md
-│   ├── quick-reference.md
-│   └── troubleshooting.md
 ├── skills/
-│   ├── cluster-creator/SKILL.md      # End-to-end cluster deployment
+│   ├── cluster-creator/              # End-to-end cluster deployment
+│   │   ├── SKILL.md
+│   │   └── references/               # Cluster deployment reference docs (17 files)
+│   │       ├── INDEX.md
+│   │       ├── input-validation-guide.md
+│   │       ├── providers.md
+│   │       ├── platforms.md
+│   │       ├── networking.md
+│   │       ├── static-networking-guide.md
+│   │       ├── host-requirements.md
+│   │       ├── storage.md
+│   │       ├── examples.md
+│   │       ├── credentials-management.md
+│   │       ├── multi-cluster-auth.md
+│   │       ├── day-2-operations.md
+│   │       ├── certificate-management.md
+│   │       ├── backup-restore.md
+│   │       ├── quick-reference.md
+│   │       └── troubleshooting.md
 │   ├── cluster-inventory/SKILL.md    # Cluster discovery and status
 │   ├── cluster-report/SKILL.md       # Multi-cluster health reporting
 │   ├── container-cve-validator/      # Container image CVE validation

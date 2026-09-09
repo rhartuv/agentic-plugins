@@ -11,7 +11,7 @@
 
 ### Pack documentation
 
-See **`docs/`** for deep dives: `prerequisites.md`, `human-in-the-loop.md`, `image-selection-criteria.md`, `builder-images.md`, `rhel-deployment.md`, `debugging-patterns.md`.
+Skill-local reference docs live under **`skills/*/references/`** (for example `skills/validate-environment/references/prerequisites.md`, `skills/recommend-image/references/image-selection-criteria.md`, `skills/debug-pod/references/debugging-patterns.md`).
 
 ### Routing
 

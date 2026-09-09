@@ -13,7 +13,7 @@ Checks performed:
   5.  compatibility: if present, ≤500 chars
   6.  allowed-tools: space-delimited (fail on commas/arrays/YAML list)
   7.  Line count ≤ 500
-  8.  Subdirectories: only scripts/, references/, assets/, docs/ allowed
+  8.  Subdirectories: only scripts/, references/, assets/ allowed
   9.  No ASCII art outside fenced code blocks (WARNING)
   10. No persona statements outside fenced code blocks (ERROR)
   11. Description routing keywords (WARNING)
@@ -37,7 +37,7 @@ MAX_NAME_LEN = 64
 MAX_DESCRIPTION_LEN = 1024
 MAX_COMPATIBILITY_LEN = 500
 MAX_LINE_COUNT = 500
-ALLOWED_SUBDIRS = {"scripts", "references", "assets", "docs"}
+ALLOWED_SUBDIRS = {"scripts", "references", "assets"}
 DEPRECATED_SUBDIRS = {"resources"}
 
 ASCII_ART_PATTERN = re.compile(
@@ -267,6 +267,10 @@ def validate_skill(skill_path: Path) -> ValidationResult:
             if subdir_name in DEPRECATED_SUBDIRS:
                 result.warnings.append(
                     f"resources/ is deprecated — use references/, assets/, scripts/ instead"
+                )
+            elif subdir_name == "docs":
+                result.errors.append(
+                    "docs/ is not allowed — use references/ and delete docs/ after migration"
                 )
             elif subdir_name not in ALLOWED_SUBDIRS:
                 result.warnings.append(
