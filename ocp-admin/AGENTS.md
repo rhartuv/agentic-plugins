@@ -67,11 +67,11 @@ Security validation skills use Python helper scripts in `scripts/security-valida
    - Triggering cluster installation
    - Applying static network configuration
 3. **Verify prerequisites** — before executing skills, check that required environment variables are set (OFFLINE_TOKEN for cluster creation/inventory, KUBECONFIG for cluster reports).
-4. **Reference documentation** — when users encounter errors, point them to specific docs:
-   - Cluster creation issues → `docs/troubleshooting.md`
-   - Network configuration → `docs/networking.md`, `docs/static-networking-guide.md`
-   - Hardware requirements → `docs/host-requirements.md`
-   - Multi-cluster authentication → `docs/multi-cluster-auth.md`
+4. **Reference documentation** — when users encounter errors, point them to skill-local references under `skills/cluster-creator/references/`:
+   - Cluster creation issues → `skills/cluster-creator/references/troubleshooting.md`
+   - Network configuration → `skills/cluster-creator/references/networking.md`, `skills/cluster-creator/references/static-networking-guide.md`
+   - Hardware requirements → `skills/cluster-creator/references/host-requirements.md`
+   - Multi-cluster authentication → `skills/cluster-creator/references/multi-cluster-auth.md`
 5. **Installation monitoring** — for `/cluster-creator`, actively monitor installation progress and report validation errors from cluster events. Don't just trigger installation and disappear.
 6. **OpenShift cluster verification** — `/cluster-report` verifies each kubeconfig context is a genuine OpenShift cluster before reporting. Non-OpenShift contexts are skipped by default to avoid errors.
 7. **Suggest next steps** — after completing a skill, suggest related skills or documentation the user might need next.

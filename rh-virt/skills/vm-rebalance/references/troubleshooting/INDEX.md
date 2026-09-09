@@ -283,7 +283,7 @@ If you encounter an error **not documented** in the categories above:
 
    I recommend adding this error to the troubleshooting guide:
    - If it's a [scheduling/storage/lifecycle/runtime/network] issue → Add to existing category file
-   - If it's a new error class → Create new category file in docs/troubleshooting/
+   - If it's a new error class → Create new category file in `references/troubleshooting/` (canonical pool: `skills/vm-rebalance/references/troubleshooting/`)
 
    Would you like me to help document this error for future reference?
    ```

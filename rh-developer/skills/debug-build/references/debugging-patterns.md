@@ -196,7 +196,7 @@ ERROR: Could not find a version that satisfies the requirement
 
 ModuleNotFoundError: No module named 'X'
 └─ APP_MODULE misconfigured
-   → See docs/python-s2i-entrypoints.md
+   → See references/python-s2i-entrypoints.md
 
 gunicorn: command not found
 └─ gunicorn not in requirements
